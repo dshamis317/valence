@@ -42,3 +42,4 @@ gem 'sorcery'
 
 gem 'rails_12factor', group: :production
 gem 'pry'
+gem 'httparty'
