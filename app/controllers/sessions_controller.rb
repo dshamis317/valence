@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   end
 
   def create # login
-
     user = login(params[:email], params[:username], params[:password])
 
     if user
@@ -12,14 +11,11 @@ class SessionsController < ApplicationController
     else
       render :new
     end
-
   end
 
   def destroy # logout
-
     logout
     redirect_to root_path
-
   end
 
 end

@@ -5,12 +5,12 @@ class PlaylistsController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
+    @user = current_user
     @playlist = Playlist.new
   end
 
   def create
-    @playlist = Playlist.new(playlist_params)
+    @playlist = Playlist.create(playlist_params)
     
     if @playlist.save
       current_user.playlists << @playlist
@@ -18,8 +18,6 @@ class PlaylistsController < ApplicationController
     else 
       render :new
     end
-
-
   end
 
   def show
@@ -38,7 +36,7 @@ class PlaylistsController < ApplicationController
 
   def destroy
     Playlist.delete(params[:id])
-    redirect_to uder_playlists_path(current_user)
+    redirect_to user_playlists_path(current_user)
   end
 
   private
@@ -48,3 +46,7 @@ class PlaylistsController < ApplicationController
   end
 
 end
+
+
+
+
