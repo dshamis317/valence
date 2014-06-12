@@ -1,52 +1,68 @@
 # App Name: Valence
 
-#### Resources/Gems:
-
-EchoNest API
-Spotify API
-
 
 ## Research/Concept
 
-- - - TODO - - -
+Valence is a way for people to discover new music, make playlist of their favorite songs and see their music in a new way. We all love our music but we don't have a good way of understaing what makes up a song: what makes it unique and what makes it appeal to us.
+
+Valence is an interactive tool that allows anyone to visualize their music and see the story of their own musical taste.
+
 
 ## Data Model:
 
-| User            |
-| ----------------|
-| username        |
-| email           |
-| password        |
+| User             |
+| ---------------- |
+| email            |
+| crypted_password |
+| salt             |
+| username         |
 
 | Songs           |
 | ----------------|
 | title           |
 | artist          |
-
-- - - TODO - - -
+| energy          |
+| liveness        |
+| tempo           |
+| speechiness     |
+| acousticness    |
+| time_signature  |
+| duration        |
+| loudness        |
+| valence         |
+| danceability    |
+| url             |
 
 | Playlist        |
-| ----------------|
-| name            |
-| song_id         |
+| --------------- |
+| title           |
 | mood            |
+| user_id         |
+
+| playlists_songs |
+| --------------- |
+| playlist_id     |
+| song_id         |
+
 
 ##Sitemap
 
-- - - TODO - - -
+
 
 ##Wireframes
 
-- - - TODO - - -
 
-##Documentation:
 
-http://developer.echonest.com/
-https://developer.spotify.com/technologies/libspotify/
+#### Resources/Gems:
+
+EchoNest API: http://developer.echonest.com/
+iTunes API: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+
 
 ##Heroku:
 
-- - - TODO - - -
+http://valence.herokuapp.com/
+
 
 ##Trello:
 
