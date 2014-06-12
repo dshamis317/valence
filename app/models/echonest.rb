@@ -4,7 +4,7 @@ class Echonest
 
   def self.find_song_by_title(title)
     title = title.gsub(" ", "%20").downcase
-    data = HTTParty.get("http://developer.echonest.com/api/v4/song/search?api_key=RG2SROJXBA0JXRBLQ&format=json&title="+title+"&sort=artist_familiarity-desc&results=10")
+    data = HTTParty.get("http://developer.echonest.com/api/v4/song/search?api_key="+api_key+"&format=json&title="+title+"&sort=artist_familiarity-desc&results=10")
     songs = data['response']['songs']
     return songs
     ## songs.each will give us the ability to pull individual artist, title and id
