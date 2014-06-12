@@ -1,28 +1,53 @@
-== README
+# App Name: Valence
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### Resources/Gems:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+EchoNest API
+Spotify API
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## Research/Concept
+
+- - - TODO - - -
+
+## Data Model:
+
+| User            |
+| ----------------|
+| username        |
+| email           |
+| password        |
+
+| Songs           |
+| ----------------|
+| title           |
+| artist          |
+
+- - - TODO - - -
+
+| Playlist        |
+| ----------------|
+| name            |
+| song_id         |
+| mood            |
+
+##Sitemap
+
+- - - TODO - - -
+
+##Wireframes
+
+- - - TODO - - -
+
+##Documentation:
+
+http://developer.echonest.com/
+https://developer.spotify.com/technologies/libspotify/
+
+##Heroku:
+
+- - - TODO - - -
+
+##Trello:
+
+https://trello.com/b/RMuqoudp/valence
