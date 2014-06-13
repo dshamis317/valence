@@ -5,5 +5,5 @@
 
 <% if current_user%>
     <%= link_to 'Edit Profile', edit_user_path(current_user) %>
-    <%= link_to 'View Playlist', user_playlist_path %>
+    <%= link_to 'View Playlists', user_playlists_path(current_user) %>
 <% end %>
