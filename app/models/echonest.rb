@@ -1,10 +1,11 @@
-class Echonest
+class Echonest < ActiveRecord::Base
 
   api_key = ENV.fetch("ECHONEST_API_KEY")
 
   def self.find_song_by_title(title)
     title = title.gsub(" ", "%20").downcase
-    data = HTTParty.get("http://developer.echonest.com/api/v4/song/search?api_key="+api_key+"&format=json&title="+title+"&sort=artist_familiarity-desc&results=10")
+    query_string = "api_key=#{api_key}&format=json&title=#{title}&sort=artist_familiarity-desc&results=10"
+    data = HTTParty.get("http://developer.echonest.com/api/v4/song/search?#{query_string}")
     songs = data['response']['songs']
     return songs
     ## songs.each will give us the ability to pull individual artist, title and id
@@ -12,14 +13,16 @@ class Echonest
 
   def self.find_song_by_artist(artist)
     artist = artist.gsub(" ", "%20").downcase
-    data = HTTParty.get("http://developer.echonest.com/api/v4/song/search?api_key="+api_key+"&artist="+artist+"results=20")
+    query_string = "api_key=#{api_key}&artist=#{artist}results=20"
+    data = HTTParty.get("http://developer.echonest.com/api/v4/song/search?#{query_string}")
     songs = data['response']['songs']
     return songs
     ## songs.each will allow us to list songs by the artist
   end
 
   def self.find_song_by_song_id(id)
-    data = HTTParty.get("http://developer.echonest.com/api/v4/song/profile?api_key="+api_key+"&format=json&id="+id+"&bucket=audio_summary")
+    query_string = "api_key=#{api_key}&format=json&id=#{id}&bucket=audio_summary"
+    data = HTTParty.get("http://developer.echonest.com/api/v4/song/profile?#{query_string}")
     song = data['response']['songs'][0]
     song_details = {
       :artist_name => song['artist_name'],
