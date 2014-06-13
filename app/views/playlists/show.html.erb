@@ -4,6 +4,25 @@
 
 <ul>
   <% @songs.each do |song| %>
-    <li><%= song.title %></li>
+    <li>
+      <%= song.title %>
+      <form action="/users/:user_id/playlists/<%= playlist.id %>/songs/:id" method='post'>
+      <%= token_tag %>
+      <input type="hidden" name='_method' value='delete'>
+      <button type='submit'>delete</button>
+    </li>
   <% end %>
 </ul>
+
+<div>
+  <a href="/users/:user_id/playlists">
+    see your playlists
+  </a>
+</div>
+
+<div>
+  <a href="/users/:user_id/playlists/new">
+    make a new playlist
+  </a>
+</div>
+

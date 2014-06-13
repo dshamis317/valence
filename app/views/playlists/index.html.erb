@@ -1,9 +1,21 @@
 <h2>playlists#index</h2>
 
-<% @playlists %>
+<% @playlists.all %>
 
 <ul>
   <% @playlists.each do |playlist| %>
-    <li><%= playlist.title %></li>
+    <li>
+      <a href="/users/:user_id/playlists/<%= playlist.id %>/edit"><%= playlist.title %></a>
+      <p>mood: <%= playlist.mood %></p>
+      <form action="/users/:user_id/playlists/<%= playlist.id %>" method='post'>
+        <%= token_tag %>
+        <input type="hidden" name='_method' value='delete'>
+        <button type='submit'>delete playlist</button>
+      </form>
+    </li>
   <% end %>
 </ul>
+
+<a href="/users/:user_id/playlists/new">
+  make a new playlist
+</a>
