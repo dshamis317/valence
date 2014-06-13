@@ -1,9 +1,36 @@
 <h2>playlists#show</h2>
 
 <h3><%= @playlist.title %><h3>
+<h4>mood: <%= @playlist.mood %></h4>
+<h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>"><%= @playlist.title %><h3>
 
 <ul>
   <% @songs.each do |song| %>
-    <li><%= song.title %></li>
+    <li>
+      <%= song.title %>
+      <form action="/users/:user_id/playlists/<%= playlist.id %>/songs/:id" method='post'>
+      <%= token_tag %>
+      <input type="hidden" name='_method' value='delete'>
+      <button type='submit'>delete song</button>
+    </li>
   <% end %>
 </ul>
+
+<div>
+  <form action="/users/:user_id/playlists/<%= @playlist.id %>/edit" method='get'>
+  <%= token_tag %>
+  <button type='submit'>edit playlist info</button>
+</div>
+
+<div>
+  <a href="/users/:user_id/playlists">
+    see your playlists
+  </a>
+</div>
+
+<div>
+  <a href="/users/:user_id/playlists/new">
+    make a new playlist
+  </a>
+</div>
+

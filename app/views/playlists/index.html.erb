@@ -1,9 +1,19 @@
 <h2>playlists#index</h2>
+<p>this will ultimately be the primary page where usres interact with playlists and song</p>
 
-<%= @playlists %>
+<% @playlists.all %>
 
 <ul>
   <% @playlists.each do |playlist| %>
-    <li><%= playlist.title %></li>
+    <li>
+      <a href="/users/:user_id/playlists/<%= playlist.id %>"><%= playlist.title %></a>
+      <form action="/users/:user_id/playlists/<%= playlist.id %>" method='post'>
+        <%= token_tag %>
+        <input type="hidden" name='_method' value='delete'>
+        <button type='submit'>delete playlist</button>
+      </form>
+    </li>
   <% end %>
 </ul>
+
+<%= link_to 'Home', root_path %>

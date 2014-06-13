@@ -1,0 +1,14 @@
+<h1>Edit Your Playlist</h1>
+
+<div>
+
+  <form action="/users/:user_id/playlists" method='post'>
+
+    <%= token_tag %>
+    <input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'>
+    <input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'>
+    <input type="submit">
+
+  </form>
+
+</div>
