@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:profile, :edit, :update, :show ]
 
   def index
-    
   end
 
   def new

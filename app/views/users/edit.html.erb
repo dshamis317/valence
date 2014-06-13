@@ -1,3 +1,7 @@
 <h2>users#edit</h2>
 
 <%= render 'form' %>
+
+<% if @user.errors.any? %>
+    <%= render 'errors' %>
+<% end %>
