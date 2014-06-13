@@ -85,6 +85,13 @@ https://trello.com/b/RMuqoudp/valence
 - D3
 - iTunes API
 
+##To Do Tomorrow
+- finish navigation between user pages
+- current_user can only edit their own page
+- email and password confirmation field
+- validations??
+- ajax?
+
 
 
 
