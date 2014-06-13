@@ -1,10 +1,12 @@
-class Echonest < ActiveRecord::Base
+class Echonest
 
-  api_key = ENV.fetch("ECHONEST_API_KEY")
+  def self.api_key
+    ENV.fetch("ECHONEST_API_KEY")
+  end
 
   def self.find_song_by_title(title)
     title = title.gsub(" ", "%20").downcase
-    query_string = "api_key=#{api_key}&format=json&title=#{title}&sort=artist_familiarity-desc&results=10"
+    query_string = "api_key=#{api_key}&format=json&title=#{title}&sort=song_hotttnesss-desc&results=10"
     data = HTTParty.get("http://developer.echonest.com/api/v4/song/search?#{query_string}")
     songs = data['response']['songs']
     return songs
@@ -30,7 +32,9 @@ class Echonest < ActiveRecord::Base
       :energy => song['audio_summary']['energy'],
       :liveliness => song['audio_summary']['liveliness'],
       :tempo => song['audio_summary']['tempo'],
+      :speechiness => song['audio_summary']['speechiness'],
       :acousticness => song['audio_summary']['acousticness'],
+      :time_signature => song['audio_summary']['time_signature'],
       :duration => song['audio_summary']['duration'],
       :loudness => song['audio_summary']['loudness'],
       :valence => song['audio_summary']['valence'],
