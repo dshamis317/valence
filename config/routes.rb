@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :users do 
+  resources :users do
     resources :playlists do
     end
   end
 
-  resources :songs do 
+  resources :songs do
   end
 
   root 'welcome#index'
@@ -18,5 +18,7 @@ Rails.application.routes.draw do
 
   get '/profile' => 'users#profile', as: 'profile'
 
+  get '/search' => 'welcome#search'
 
+  get '/song/:id' => 'welcome#song'
 end

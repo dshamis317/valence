@@ -30,7 +30,7 @@ class Echonest
       :artist_name => song['artist_name'],
       :title => song['title'],
       :energy => song['audio_summary']['energy'],
-      :liveliness => song['audio_summary']['liveliness'],
+      :liveness => song['audio_summary']['liveness'],
       :tempo => song['audio_summary']['tempo'],
       :speechiness => song['audio_summary']['speechiness'],
       :acousticness => song['audio_summary']['acousticness'],

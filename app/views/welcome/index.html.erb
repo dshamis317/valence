@@ -7,3 +7,9 @@
     <%= link_to 'Edit Profile', edit_user_path(current_user) %>
     <%= link_to 'View Playlists', user_playlists_path(current_user) %>
 <% end %>
+
+
+<form action="/search" method="get">
+  <input type="text" name="name" placeholder="Song">
+  <input type="submit">Search</input>
+</form>

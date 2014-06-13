@@ -1,0 +1,9 @@
+<h2>Search Results</h2>
+
+<ul>
+  <% @songs.each do |song| %>
+  <li>
+    <a href="/song/<%= song[:song_id] %>"><%= song[:title] %> by <%= song[:artist] %></a>
+  </li>
+  <% end %>
+</ul>

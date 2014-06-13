@@ -13,7 +13,7 @@ class MusicSearch
     song_echo = Echonest.find_song_by_title(title)
     en_id = []
     song_echo.each do |song|
-      if song['artist_name'] == artist && song['title'] == title
+      if song['artist_name'].downcase == artist.downcase && song['title'].downcase == title.downcase
         en_id << song['id']
       end
     end
@@ -22,7 +22,7 @@ class MusicSearch
       :title => title,
       :artist => artist,
       :energy => echo_details[:energy],
-      :liveliness => echo_details[:liveliness],
+      :liveness => echo_details[:liveness],
       :tempo => echo_details[:tempo],
       :speechiness => echo_details[:speechiness],
       :acousticness => echo_details[:acousticness],
