@@ -1,6 +1,7 @@
 <h2>playlists#show</h2>
 
 <h3><%= @playlist.title %><h3>
+<h4>mood: <%= @playlist.mood %></h4>
 
 <ul>
   <% @songs.each do |song| %>
@@ -9,10 +10,16 @@
       <form action="/users/:user_id/playlists/<%= playlist.id %>/songs/:id" method='post'>
       <%= token_tag %>
       <input type="hidden" name='_method' value='delete'>
-      <button type='submit'>delete</button>
+      <button type='submit'>delete song</button>
     </li>
   <% end %>
 </ul>
+
+<div>
+  <form action="/users/:user_id/playlists/<%= @playlist.id %>/edit" method='get'>
+  <%= token_tag %>
+  <button type='submit'>edit playlist info</button>
+</div>
 
 <div>
   <a href="/users/:user_id/playlists">
