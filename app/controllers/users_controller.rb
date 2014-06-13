@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:profile, :edit, :update, :show ]
 
   def index
-    
   end
 
   def new
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :username, :password)
+    params.require(:user).permit(:email, :username, :password, :email_confirmation, :password_confirmation)
   end
 
 

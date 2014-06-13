@@ -1,0 +1,9 @@
+<h2>playlists#index</h2>
+
+<%= @playlists %>
+
+<ul>
+  <% @playlists.each do |playlist| %>
+    <li><%= playlist.title %></li>
+  <% end %>
+</ul>

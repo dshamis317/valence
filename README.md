@@ -31,6 +31,7 @@ Valence is an interactive tool that allows anyone to visualize their music and s
 | loudness        |
 | valence         |
 | danceability    |
+| preview         |
 | url             |
 
 | Playlist        |
