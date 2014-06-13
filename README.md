@@ -67,3 +67,27 @@ http://valence.herokuapp.com/
 ##Trello:
 
 https://trello.com/b/RMuqoudp/valence
+
+
+##Questions and Ideas
+
+- single page CRUD functionality for song search and playlists creation
+- modal window?
+- comparing search results from two API sources – specifically iTunes and EchoNest
+- how to do form partial with Sorcery
+
+##Visualization Radicalness Ideas
+- vibrating blocks/playlist sculpture
+
+
+
+##Things To Address or Implement or Just Talk About a Bit More
+- D3
+- iTunes API
+
+
+
+
+
+
+

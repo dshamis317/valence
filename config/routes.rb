@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new', as: 'signup'
 
-  get '/profile' => 'wizards#profile', as: 'profile'
+  get '/profile' => 'users#profile', as: 'profile'
 
 
 end
