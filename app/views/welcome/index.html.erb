@@ -3,4 +3,7 @@
 <h3>Welcome <%= current_user ? 'Playlist Sculptor' : 'Person' %></h3>
 
 
-<%= link_to 'Edit Profile', edit_user_path(current_user) %>
+<% if current_user%>
+    <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+    <%= link_to 'View Playlist', user_playlist_path %>
+<% end %>
