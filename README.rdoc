@@ -1,28 +1,69 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# App Name: Valence
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## Research/Concept
+
+Valence is a way for people to discover new music, make playlist of their favorite songs and see their music in a new way. We all love our music but we don't have a good way of understaing what makes up a song: what makes it unique and what makes it appeal to us.
+
+Valence is an interactive tool that allows anyone to visualize their music and see the story of their own musical taste.
+
+
+## Data Model:
+
+| User             |
+| ---------------- |
+| email            |
+| crypted_password |
+| salt             |
+| username         |
+
+| Songs           |
+| ----------------|
+| title           |
+| artist          |
+| energy          |
+| liveness        |
+| tempo           |
+| speechiness     |
+| acousticness    |
+| time_signature  |
+| duration        |
+| loudness        |
+| valence         |
+| danceability    |
+| url             |
+
+| Playlist        |
+| --------------- |
+| title           |
+| mood            |
+| user_id         |
+
+| playlists_songs |
+| --------------- |
+| playlist_id     |
+| song_id         |
+
+
+##Sitemap
+
+
+
+##Wireframes
+
+
+
+#### Resources/Gems:
+
+EchoNest API: http://developer.echonest.com/
+iTunes API: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+
+
+##Heroku:
+
+http://valence.herokuapp.com/
+
+
+##Trello:
+
+https://trello.com/b/RMuqoudp/valence
