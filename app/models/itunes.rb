@@ -1,4 +1,4 @@
-class Itunes < ActiveRecord::Base
+class Itunes
 
   def self.itunes_search(search)
     search = search.downcase.gsub(" ", "+")
@@ -25,12 +25,10 @@ class Itunes < ActiveRecord::Base
     raw_song = response['results'].first
     song_hash = {
       title: raw_song['trackName'],
-      album: raw_song['collectionName'],
-      genre: raw_song['primaryGenreName'],
+      artist: raw_song['artistName'],
       preview_link: raw_song['previewUrl'],
       artwork_url: raw_song['artworkUrl100']
     }
-    Song.new(song_hash)
   end
 
 end
