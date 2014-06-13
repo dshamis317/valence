@@ -1,6 +1,6 @@
 <h2>playlists#show</h2>
 
-<h3><%= @playlist.title %><h3>
+<h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>"><%= @playlist.title %><h3>
 
 <ul>
   <% @songs.each do |song| %>
@@ -20,7 +20,7 @@
   </a>
 </div>
 
-<div>
+<div> 
   <a href="/users/:user_id/playlists/new">
     make a new playlist
   </a>

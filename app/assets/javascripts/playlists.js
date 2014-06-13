@@ -17,9 +17,9 @@ function PlaylistView (model) {
 PlaylistView.prototype.render = function() {
    var ul = $('<ul>');
    var div = $('<div>')
-      .addClass('playlistDisplay')
-      .html(this.model.title)
-      .append(ul);
+   .addClass('playlistDisplay')
+   .html(this.model.title)
+   .append(ul);
 
    this.el = div;
    return this;
@@ -33,9 +33,9 @@ function PlaylistCollection () {
 
 PlaylistCollection.prototype.fetch = function() {
    var that = this;
-
+   var $userId = $('.playlist-title').data('userId');
    $.ajax({
-      url: '/users/:user_id/playlists',
+      url: '/users/:'+$userId+'/playlists',
       method: 'get', 
       dataType: 'json',
       success: function(data) {
@@ -43,7 +43,7 @@ PlaylistCollection.prototype.fetch = function() {
             var playlist = new PlaylistModel(dataObject);
             that.playlists[playlist.id] = playlist;
          });
-         }
+      }
    })
 };
 
