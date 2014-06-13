@@ -6,7 +6,7 @@
 <ul>
   <% @playlists.each do |playlist| %>
     <li>
-      <a href="/users/:user_id/playlists/<%= playlist.id %>/edit"><%= playlist.title %></a>
+      <a href="/users/:user_id/playlists/<%= playlist.id %>"><%= playlist.title %></a>
       <p>mood: <%= playlist.mood %></p>
       <form action="/users/:user_id/playlists/<%= playlist.id %>" method='post'>
         <%= token_tag %>

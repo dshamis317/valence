@@ -10,7 +10,7 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    @playlist = Playlist.create(playlist_params)
+    @playlist = Playlist.new(playlist_params)
 
     if @playlist.save
       current_user.playlists << @playlist
