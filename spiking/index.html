@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
+   <title>Document</title>
+</head>
+<body>
+   
+  <svg class="canvas"></svg>
+
+  <script>
+
+    // pretend array of song energiness or whatever
+    var dataArray = [0.292945, 0.875926, 0.637502, 0.552958, 0.675926, 0.392945, 0.275926, 0.937502, 0.052958, 0.175926]
+
+
+    // set up variables for canvas size and borders
+    var margin = {top: 10, right: 10, bottom: 10, left: 10},
+        width = 80 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+
+    // vertical padding for song ojects
+    var padding = 20;
+
+
+    // height for song objects in relation to canvas height and number of objects in array
+    var songHeight = (height/dataArray.length - padding);
+
+
+    // sets the y attribute in relation to the number of data elements entered and the height of the canvas 
+    var y = d3.scale.ordinal()
+        .domain(d3.range(dataArray.length))
+        .rangePoints ([0, (height-songHeight)]);
+
+
+    // creates an automatic color spectrum
+    var z = d3.scale.linear()
+        .domain([10,0])
+        .range(["hsl(300, 100%, 46%)","hsl(74, 100%, 93%)" ])
+        .interpolate(d3.interpolateHcl);    
+
+
+    // sets canvas height and width, adds a "g" and offsets it according to margin size, g will house song object rectangles
+    var canvas = d3.select('.canvas')
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append('g')
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+    // creates songObjects as "g"s in "canvas" svg corresponding to the number of elements in data array   
+    canvas.selectAll('rect')
+      .data(dataArray)
+      .enter().append('rect')
+        .attr('width', 50)
+        .attr('height', songHeight)
+        .attr('x', width/2 - 25)
+        .attr('y', function(d, i){ return y(i)})
+        .style('fill', function(d) { return z(d * 10 ); })
+      .transition()
+        .duration(function(d) { return 975 - (1000*d) })
+        // .delay(function(d, i) { return i * 20; })
+        .each(slide);
+
+
+    // creates the lateral movement of the object
+    function slide () {
+      var rectangle = d3.select(this);
+      var that = this;
+      (function repeat() {
+        rectangle = rectangle.transition()
+          .attr('x', width - 50 )
+          .ease('linear')
+        .transition()
+          .attr('x', 0)
+          .ease('linear')
+          .each('end', repeat);
+          
+          // console.log(that);
+      }) ();
+    }
+
+
+
+  </script>
+   
+  
+   
+</body>
+</html>
+
