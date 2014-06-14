@@ -1,0 +1,20 @@
+<nav>
+  <%= link_to 'HOME', root_path %>
+
+    <span class="right">
+
+      <% if current_user %>
+
+        <%= current_user.email%>
+        <%= link_to 'logOut', logout_path, method: :delete %>
+
+      <% else %>
+
+        <%= link_to 'sign up', new_user_path %>
+
+        <!--  <%= link_to 'SignUp', signup_path, {class: 'signUp'} %> -->
+        <%= link_to 'logIn', login_path, {class: 'logIn'} %>
+      <% end %>
+
+    </span>
+</nav>

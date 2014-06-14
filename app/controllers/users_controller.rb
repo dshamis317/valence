@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :require_login, only: [:profile, :edit, :update, :show ]
 
   def index
+    @user = User.new
   end
 
   def new
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])    
+    @user = User.find(params[:id])
   end
 
   def update
@@ -46,8 +47,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :username, :password, :email_confirmation, :password_confirmation)
   end
-
-
-
 
 end

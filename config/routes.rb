@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   get '/search' => 'welcome#search'
 
   get '/song/:id' => 'welcome#song'
+
 end

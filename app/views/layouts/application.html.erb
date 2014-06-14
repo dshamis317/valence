@@ -8,19 +8,9 @@
 </head>
 <body>
   <div class="container">
+    <%= render "/shared/nav" %>
     <%= yield %>
-  
-    <p class="signUp">Sign Up</p>
-
-    <% if current_user %>
-        <p>Logged in as <%= current_user.email%></p>
-        <%= link_to 'LogOut', logout_path, method: :delete %>
-    <% else %>    
-       <!--  <%= link_to 'SignUp', signup_path, {class: 'signUp'} %> -->
-        <%= link_to 'LogIn', login_path, {class: 'logIn'} %>
-    <% end %>
-
+    <%= render "/shared/footer" %>
   </div>
-
 </body>
-</html> 
+</html>
