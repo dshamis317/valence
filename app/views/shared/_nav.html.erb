@@ -11,7 +11,22 @@
   </span>
 </nav>
 
+<<<<<<< HEAD
+    <span class="right">
 
+      <% if current_user %>
+
+        <%= current_user.email%>
+        <%= link_to 'logOut', logout_path, method: :delete %>
+
+      <% else %>
+
+        <%= link_to 'sign up', new_user_path %>
+
+        <!--  <%= link_to 'SignIn ', signup_path, {class: 'signUp'} %> -->
+        <%= link_to 'logIn', login_path, {class: 'logIn'} %>
+      <% end %>
+=======
 <div id="openSignupModal" class="modalDialog">
   <div class="form_center">
     <a href="#close" title="Close" class="close">x</a>
@@ -22,7 +37,7 @@
     <% end %>
   </div>
 </div>
-
+>>>>>>> bb93fa4db6ca546dc50ccfb7aef48e03b4d9b32d
 
 <div id="openLoginModal" class="modalDialog">
   <div class="form_center">
