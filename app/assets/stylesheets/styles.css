@@ -114,3 +114,18 @@ nav a:hover {
 }
 
 .close:hover { background: #00d9ff; }
+
+.playlist {
+  width: 500px;
+  /*min-height: 1000px;*/
+  float: left;
+}
+
+.viz {
+  width: 650px;
+  height: 500px;
+  position: fixed;
+  background-color: lightblue;
+  top: 50px;
+  right: 50px;
+}

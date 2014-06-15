@@ -13,7 +13,7 @@ class MusicSearch
     song_echo = Echonest.find_song_by_title(title)
     en_id = []
     song_echo.each do |song|
-      if song['artist_name'].downcase == artist.downcase && song['title'].downcase == title.downcase
+      if song['artist_name'].gsub(/[^a-zA-Z0-9]+/, "").downcase == artist.gsub(/[^a-zA-Z0-9]+/, "").downcase && song['title'].gsub(/[^a-zA-Z0-9]+/, "").downcase == title.gsub(/[^a-zA-Z0-9]+/, "").downcase
         en_id << song['id']
       end
     end

@@ -25,6 +25,7 @@ class Echonest
   def self.find_song_by_song_id(id)
     query_string = "api_key=#{api_key}&format=json&id=#{id}&bucket=audio_summary"
     data = HTTParty.get("http://developer.echonest.com/api/v4/song/profile?#{query_string}")
+    # binding.pry
     song = data['response']['songs'][0]
     song_details = {
       :artist_name => song['artist_name'],
