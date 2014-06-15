@@ -22,4 +22,5 @@ Rails.application.routes.draw do
 
   get '/song/:id' => 'welcome#song'
 
+  get '/user/:id/playlists/:id/songs' => 'playlists#songs', as: 'playlist'
 end
