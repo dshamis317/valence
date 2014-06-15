@@ -1,5 +1,5 @@
 <h2>playlists#index</h2>
-<p>this will ultimately be the primary page where usres interact with playlists and song</p>
+<p>this will ultimately be the primary page where users interact with playlists and songs</p>
 
 <% @playlists.all %>
 
@@ -17,4 +17,12 @@
   <% end %>
 </ul>
 
-<%= link_to 'Home', root_path %>
+<div>
+  <% @songs.each do |song| %>
+  <div class="song-result">
+    <a href="/song/<%= song[:song_id] %>">
+      <img src="<%= song[:artwork_url] %>"></a>
+      <p><%= song[:artist] %></p>
+  </div>
+  <% end %>
+</div>
