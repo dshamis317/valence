@@ -7,10 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render "/shared/nav" %>
+  <% if current_user %>
+    <%= render "/shared/user" %>
+  <% else %>
+    <%= render "/shared/not_user" %>
+  <% end %>
+
   <div class="container">
     <%= yield %>
   </div>
+
   <%= render "/shared/footer" %>
 </body>
 </html>
