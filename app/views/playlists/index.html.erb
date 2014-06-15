@@ -6,9 +6,9 @@
 <ul>
   <% @playlists.each do |playlist| %>
     <li>
-      <a href="/users/:user_id/playlists/<%= playlist.id %>"><%= playlist.title %></a>
+      <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
       <p>mood: <%= playlist.mood %></p>
-      <form action="/users/:user_id/playlists/<%= playlist.id %>" method='post'>
+      <form action="/users/<%= current_user.id %>/playlists/<%= playlist.id %>" method='post'>
         <%= token_tag %>
         <input type="hidden" name='_method' value='delete'>
         <button type='submit'>delete playlist</button>
@@ -17,12 +17,4 @@
   <% end %>
 </ul>
 
-<div>
-  <% @songs.each do |song| %>
-  <div class="song-result">
-    <a href="/song/<%= song[:song_id] %>">
-      <img src="<%= song[:artwork_url] %>"></a>
-      <p><%= song[:artist] %></p>
-  </div>
-  <% end %>
-</div>
+
