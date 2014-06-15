@@ -1,8 +1,10 @@
 <h2>users#edit</h2>
 <h1>Edit User Info</h1>
 
-<%= render 'form' %>
-
-<% if @user.errors.any? %>
-    <%= render 'errors' %>
-<% end %>
+<div class="form_center">
+  <h2>Edit Account</h2>
+  <%= render 'form' %>
+  <% if @user.errors.any? %>
+  <%= render 'errors' %>
+  <% end %>
+</div>

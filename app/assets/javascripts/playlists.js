@@ -34,7 +34,7 @@ PlaylistCollection.prototype.fetch = function() {
    var $userId = $('.playlist-title').data('userId');
    $.ajax({
       url: '/users/:'+$userId+'/playlists',
-      method: 'get', 
+      method: 'get',
       dataType: 'json',
       success: function(data) {
          $.each(data, function(i, dataObject) {
@@ -60,3 +60,28 @@ PlaylistCollection.prototype.add = function(playlist) {
    })
 };
 
+function addSongToPlaylist(song){
+  var song = new SongModel();
+  Playlist.add(song);
+}
+
+function setEventHandlers(){
+  $(".add-song").droppable({
+    drop: function(e, dropped){
+      addSongToPlaylist(dropped.draggable);
+    },
+    hoverClass: "drop-hover"
+  });
+  $(Playlist).on('change', function(){
+    $('.playlist').empty();
+    $.each(this.songs, function(i, song){
+      var SongView = new SongView(song);
+      $('.playlist').prepend(SongView.render().el);
+    });
+  })
+}
+
+$(function(){
+  setEventHandlers();
+  SongCollection.fetch();
+});
