@@ -7,7 +7,6 @@ class WelcomeController < ApplicationController
   def search
     @title = params[:name]
     @songs = MusicSearch.find_song(@title)
-    respond_to do |format
   end
 
   def song

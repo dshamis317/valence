@@ -5,7 +5,7 @@
   <div class="song-result">
     <a href="/song/<%= song[:song_id] %>">
       <img src="<%= song[:artwork_url] %>"></a><br>
-      <p><%= song[:artist] %></p>
+      <p><%= song[:title] %>, <%= song[:artist] %></p>
   </div>
   <% end %>
 </div>
