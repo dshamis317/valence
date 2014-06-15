@@ -7,21 +7,6 @@
   <%= link_to 'Edit Profile', edit_user_path(current_user) %>
   <%= link_to 'View Profile', user_path(current_user) %>
   <%= link_to 'View Playlists', user_playlists_path(current_user) %>
-<<<<<<< HEAD
-<% else %>
-  <a href="#openModal">sign up</a>
-  <div id="openModal" class="modalDialog">
-    <div class="form_center">
-      <a href="#close" title="Close" class="close">x</a>
-      <h2>New Account</h2>
-      <%= render 'users/form' %>
-      <% if @user.errors.any? %>
-        <%= render 'users/errors' %>
-      <% end %>
-    </div>
-  </div>
-=======
->>>>>>> bb93fa4db6ca546dc50ccfb7aef48e03b4d9b32d
 <% end %>
 
 <form action="/search" method="get">

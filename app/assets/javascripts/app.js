@@ -6,5 +6,3 @@ $(function() {
       $('.container').append($div);
    })
 })
-
-
