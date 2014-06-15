@@ -1,3 +1,7 @@
+h2 {
+  padding: 0;
+}
+
 span {
   display:inline;
   float:right;
@@ -19,7 +23,40 @@ nav a:hover {
   text-decoration: none;
 }
 
+#email {
+  width: 300px;
+  height: 30px;
+  font-size: 16px;
+  text-align: center;
+  margin:10px auto;
+  padding:0;
+}
+
+#password {
+  width: 300px;
+  height: 30px;
+  font-size: 16px;
+  text-align: center;
+  margin:10px auto;
+  padding:0;
+}
+
+.button {
+  padding: 20px;
+}
+
+.text_field {
+  width: 300px;
+  height: 30px;
+  font-size: 16px;
+  text-align: center;
+  margin:10px auto;
+  padding:0;
+}
+
 .form_center {
+  margin:0;
+  padding:0;
   text-align: center;
 }
 
@@ -35,7 +72,7 @@ nav a:hover {
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.5);
   z-index: 99999;
   opacity:0;
   -webkit-transition: opacity 400ms ease-in;
@@ -53,11 +90,8 @@ nav a:hover {
   width: 400px;
   position: relative;
   margin: 10% auto;
-  padding: 5px 20px 13px 20px;
-  background: #fff;
-  background: -moz-linear-gradient(#fff, #999);
-  background: -webkit-linear-gradient(#fff, #999);
-  background: -o-linear-gradient(#fff, #999);
+  padding: 5px 10px 0px 10px;
+  background: #ccc;
 }
 
 .close {

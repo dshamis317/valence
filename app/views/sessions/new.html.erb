@@ -1,11 +1,16 @@
 <h2>sessions#new</h2>
 
-<h2>Log-In</h2>
-
-<%= form_tag sessions_path do %>
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-    <%= submit_tag %>
-<% end %>
+<a href="#openModal">log in</a>
+<div id="openModal" class="modalDialog">
+  <div class="form_center">
+    <a href="#close" title="Close" class="close">x</a>
+    <h2>login</h2>
+    <%= form_tag sessions_path do %>
+      <%= label_tag :email %>
+      <%= text_field_tag :email %>
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+      <%= submit_tag %>
+    <% end %>
+  </div>
+</div>

@@ -1,7 +1,14 @@
 <h2>users#new</h2>
 
-<%= render 'form' %>
+<a href="#openModal">sign in</a>
+  <div id="openModal" class="modalDialog">
+    <div class="form_center">
+      <a href="#close" title="Close" class="close">x</a>
+      <h2>New Account</h2>
+      <%= render 'users/form' %>
+      <% if @user.errors.any? %>
+        <%= render 'users/errors' %>
+      <% end %>
+    </div>
+  </div>
 
-<% if @user.errors.any? %>
-    <%= render 'errors' %>
-<% end %>
