@@ -15,11 +15,9 @@ function PlaylistView (model) {
 };
 
 PlaylistView.prototype.render = function() {
-   var ul = $('<ul>');
    var div = $('<div>')
-   .addClass('playlistDisplay')
-   .html(this.model.title)
-   .append(ul);
+      .addClass('playlistDisplay')
+      .html(this.model.title);
 
    this.el = div;
    return this;

@@ -1,21 +1,21 @@
 // ***** MODEL *****
 
 function SongModel (dataObject) {
-  this.title = dataObject ? dataObject.title : undefined;
-  this.id = dataObject ? dataObject.id : undefined;
-  this.artist = dataObject ? dataObject.artist : undefined;
-  this.energy = dataObject ? dataObject.energy : undefined;
-  this.liveness = dataObject ? dataObject.liveness : undefined;
-  this.tempo = dataObject ? dataObject.tempo : undefined;
-  this.speechiness = dataObject ? dataObject.speechiness : undefined;
-  this.acousticness = dataObject ? dataObject.acousticness : undefined;
-  this.time_signature = dataObject ? dataObject.time_signature : undefined;
-  this.duration = dataObject ? dataObject.duration : undefined;
-  this.loudness = dataObject ? dataObject.loudness : undefined;
-  this.valence = dataObject ? dataObject.valence : undefined;
-  this.danceability = dataObject ? dataObject.danceability : undefined;
-  this.image_url = dataObject ? dataObject.image_url : undefined;
-  this.preview_url = dataObject ? dataObject.preview_url : undefined;
+   this.title = dataObject ? dataObject.title : undefined;
+   this.id = dataObject ? dataObject.id : undefined;
+   this.artist = dataObject ? dataObject.artist : undefined;
+   this.energy = dataObject ? dataObject.energy : undefined;
+   this.liveness = dataObject ? dataObject.liveness : undefined;
+   this.tempo = dataObject ? dataObject.tempo : undefined;
+   this.speechiness = dataObject ? dataObject.speechiness : undefined;
+   this.acousticness = dataObject ? dataObject.acousticness : undefined;
+   this.time_signature = dataObject ? dataObject.time_signature : undefined;
+   this.duration = dataObject ? dataObject.duration : undefined;
+   this.loudness = dataObject ? dataObject.loudness : undefined;
+   this.valence = dataObject ? dataObject.valence : undefined;
+   this.danceability = dataObject ? dataObject.danceability : undefined;
+   this.image_url = dataObject ? dataObject.image_url : undefined;
+   this.preview_url = dataObject ? dataObject.preview_url : undefined;
 };
 
 // ***** VIEW *****
@@ -26,11 +26,11 @@ function SongView (model) {
 };
 
 SongView.prototype.render = function() {
-   var ul = $('<ul>');
    var div = $('<div>')
    .addClass('songDisplay')
    .html(this.model.title)
-   .append(ul);
+   .appendTo$('.playlistDisplay');
+
    this.el = div;
    return this;
 };
@@ -45,6 +45,7 @@ SongCollection.prototype.fetch = function() {
    var that = this;
    var $userId = $('.playlist-title').data('userId');
    var songId = that.id
+   
    $.ajax({
       url: '/users/:'+$userId+'/playlists/'+$songId,
       method: 'get',
@@ -58,7 +59,7 @@ SongCollection.prototype.fetch = function() {
    })
 };
 
-SongCollection.prototype.add = function(song) {
+SongCollection.prototype.addSongToCollection = function(song) {
    var that = this;
    $.ajax({
       url: '/users/:'+$userId+'/playlists/',
@@ -71,4 +72,12 @@ SongCollection.prototype.add = function(song) {
       }
    })
 };
+
+
+
+
+
+
+
+
 

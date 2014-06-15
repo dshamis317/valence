@@ -7,10 +7,13 @@ $(function() {
    })
 })
 
+
 function addSongToPlaylist(song){
-  var song = new SongModel();
-  Playlist.add(song);
-}
+   var song = new SongModel();
+   Playlist.add(song);
+};
+
+
 
 function setEventHandlers(){
   $(".add-song").droppable({
