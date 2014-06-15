@@ -5,7 +5,8 @@ class WelcomeController < ApplicationController
   end
 
   def search
-    @songs = MusicSearch.find_song(params[:name])
+    @title = params[:name]
+    @songs = MusicSearch.find_song(@title)
   end
 
   def song
