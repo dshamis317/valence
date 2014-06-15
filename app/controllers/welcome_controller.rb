@@ -15,3 +15,10 @@ class WelcomeController < ApplicationController
 
 
 end
+
+
+# //     search_songs = MusicSearch.find_song(@title)
+#     binding.pry
+#     @songs = search_songs.each do |song|
+#       MusicSearch.get_song(song[:song_id])
+#     end
