@@ -1,11 +1,11 @@
 <h2>Results for "<%= @title %>"</h2>
 
-<div>
+<div class="search-results">
   <% @songs.each do |song| %>
   <div class="song-result">
     <a href="/song/<%= song[:song_id] %>">
-      <img src="<%= song[:artwork_url] %>"></a>
-      <p><%= song[:artist] %></p>
+      <img src="<%= song[:artwork_url] %>"></a><br>
+      <p><%= song[:title] %>, <%= song[:artist] %></p>
   </div>
   <% end %>
 </div>
