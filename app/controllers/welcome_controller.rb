@@ -12,6 +12,8 @@ class WelcomeController < ApplicationController
   def song
     @song = MusicSearch.get_song(params[:id])
   end
+
+
 end
 
 

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
+    binding.pry
     if @user.save
       redirect_to login_path
     else
@@ -32,8 +32,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-    user.update(user_params)
+    @user = User.find(params[:id])
+    @user.update(user_params)
     redirect_to user_path(current_user)
   end
 
