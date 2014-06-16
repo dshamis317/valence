@@ -22,6 +22,7 @@ function addSongToDatabase(index) {
 $(function() {
 
   $('.song-search').submit(function(e) {
+    $('.search-results').html('');
     e.preventDefault();
     var query = $('.song-text-field').val();
     songCollection.search(query);
