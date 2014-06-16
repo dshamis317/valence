@@ -32,7 +32,25 @@ nav a:hover {
   padding:0;
 }
 
+#email_confirmation {
+  width: 300px;
+  height: 30px;
+  font-size: 16px;
+  text-align: center;
+  margin:10px auto;
+  padding:0;
+}
+
 #password {
+  width: 300px;
+  height: 30px;
+  font-size: 16px;
+  text-align: center;
+  margin:10px auto;
+  padding:0;
+}
+
+#password_confirmation {
   width: 300px;
   height: 30px;
   font-size: 16px;
