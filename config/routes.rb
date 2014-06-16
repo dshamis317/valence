@@ -5,9 +5,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :songs do
-  end
-
   root 'welcome#index'
 
   get '/login' => 'sessions#new', as: 'login'
@@ -22,5 +19,5 @@ Rails.application.routes.draw do
 
   post '/users/:id/playlists/:playlist_id' => 'playlists#song'
 
-  get '/users/:id/playlists/:id/songs' => 'playlists#songs', as: 'playlist'
+  delete '/songs/:id' => 'songs#destroy'
 end

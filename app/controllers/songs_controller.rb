@@ -19,6 +19,8 @@ class SongsController < ApplicationController
   end
 
   def destroy
+    Song.delete(params[:id])
+    redirect_to user_playlists_path(current_user)
   end
 
 
