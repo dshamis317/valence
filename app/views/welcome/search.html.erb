@@ -3,7 +3,7 @@
   <% @songs.each do |song| %>
   <div class="song-result">
     <a href="/song/<%= song[:song_id] %>">
-      <img src="<%= song[:artwork_url] %>"></a>
+      <img src="<%= song[:image_url] %>"></a>
       <p><%= song[:artist] %></p>
   </div>
   <% end %>

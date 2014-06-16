@@ -6,19 +6,15 @@ class WelcomeController < ApplicationController
 
   def search
     @title = params[:name]
-    @songs = MusicSearch.find_song(@title)
-  end
-
-  def song
-    @song = MusicSearch.get_song(params[:id])
+    search_songs = MusicSearch.find_song(@title)
+    @songs = search_songs.map do |song|
+      MusicSearch.get_song(song[:song_id])
+    end
+    @songs = @songs.flatten
   end
 
 
 end
 
 
-# //     search_songs = MusicSearch.find_song(@title)
-#     binding.pry
-#     @songs = search_songs.each do |song|
-#       MusicSearch.get_song(song[:song_id])
-#     end
+
