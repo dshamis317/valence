@@ -1,6 +1,15 @@
 <h2>playlists#index</h2>
 <p>this will ultimately be the primary page where users interact with playlists and songs</p>
 
+<h2>Hi, <%= @user.email %></h2>
+
+<ul>
+    <li>
+        Number of Playlists: <%= @user.playlists.count%>
+    </li>
+</ul>
+
+
 <% @playlists.all %>
 
 <ul>
