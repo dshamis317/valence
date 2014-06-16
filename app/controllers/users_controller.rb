@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login, only: [:profile, :edit, :update, :show ]
+  
 
   def index
     @user = User.new
