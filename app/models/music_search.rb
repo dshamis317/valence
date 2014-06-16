@@ -10,8 +10,8 @@ class MusicSearch
     song_itunes = Itunes.itunes_lookup(id)
     title = song_itunes[:title]
     artist = song_itunes[:artist]
-    title = title.downcase.gsub(/\s+/, '-').gsub(/[^a-zA-Z0-9_-]+/, '')
-    song_echo = Echonest.find_song_by_title(title)
+    search_title = title.downcase.gsub(/\s+/, '-').gsub(/[^a-zA-Z0-9_-]+/, '')
+    song_echo = Echonest.find_song_by_title(search_title)
     echonest_ids = []
     song_echo.each do |song|
       if song['artist_name'].gsub(/[^a-zA-Z0-9]+/, "").downcase == artist.gsub(/[^a-zA-Z0-9]+/, "").downcase && song['title'].gsub(/[^a-zA-Z0-9]+/, "").downcase == title.gsub(/[^a-zA-Z0-9]+/, "").downcase

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   # get '/profile' => 'users#profile', as: 'profile'
 
-  get '/search' => 'welcome#search'
+  get '/search' => 'playlists#search'
 
   get '/song/:id' => 'welcome#song'
 

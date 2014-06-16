@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create # login
     user = login(params[:email], params[:password])
     if user
-      redirect_to root_path
+      redirect_to user_playlists_path(user)
     else
       render :new
     end
