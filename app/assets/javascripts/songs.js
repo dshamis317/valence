@@ -1,21 +1,21 @@
 // ***** MODEL *****
 
 function SongModel (dataObject) {
-  this.title = dataObject ? dataObject.title : undefined;
-  this.id = dataObject ? dataObject.id : undefined;
-  this.artist = dataObject ? dataObject.artist : undefined;
-  this.energy = dataObject ? dataObject.energy : undefined;
-  this.liveness = dataObject ? dataObject.liveness : undefined;
-  this.tempo = dataObject ? dataObject.tempo : undefined;
-  this.speechiness = dataObject ? dataObject.speechiness : undefined;
-  this.acousticness = dataObject ? dataObject.acousticness : undefined;
-  this.time_signature = dataObject ? dataObject.time_signature : undefined;
-  this.duration = dataObject ? dataObject.duration : undefined;
-  this.loudness = dataObject ? dataObject.loudness : undefined;
-  this.valence = dataObject ? dataObject.valence : undefined;
-  this.danceability = dataObject ? dataObject.danceability : undefined;
-  this.image_url = dataObject ? dataObject.image_url : undefined;
-  this.preview_url = dataObject ? dataObject.preview_url : undefined;
+  this.title = dataObject.title;
+  this.id = dataObject.id;
+  this.artist = dataObject.artist;
+  this.energy = dataObject.energy;
+  this.liveness = dataObject.liveness;
+  this.tempo = dataObject.tempo;
+  this.speechiness = dataObject.speechiness;
+  this.acousticness = dataObject.acousticness;
+  this.time_signature = dataObject.time_signature;
+  this.duration = dataObject.duration;
+  this.loudness = dataObject.loudness;
+  this.valence = dataObject.valence;
+  this.danceability = dataObject.danceability;
+  this.image_url = dataObject.image_url;
+  this.preview_url = dataObject.preview_url;
 };
 
 // ***** VIEW *****
