@@ -150,7 +150,7 @@ nav a:hover {
 
 .search-results {
   width: 650px;
-  height: 100%;
+  height: auto;
   position: fixed;
   background-color: lightblue;
   top: 50px;

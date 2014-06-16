@@ -39,6 +39,7 @@ SongView.prototype.render = function() {
 
 function SongCollection () {
    this.songs = [];
+   this.searchResults = [];
 };
 
 SongCollection.prototype.fetch = function() {
@@ -81,7 +82,8 @@ SongCollection.prototype.search = function(query) {
   dataType: 'json',
   success: function(data) {
     $.each(data, function(i, datum){
-      songCollection.displayResults(datum);
+      that.searchResults.push(datum)
+      songCollection.displayResults(i, datum);
       console.log(datum)
     })
     $('.song-text-field').val('');
@@ -89,12 +91,13 @@ SongCollection.prototype.search = function(query) {
 })
 }
 
-SongCollection.prototype.displayResults = function(songObject) {
+SongCollection.prototype.displayResults = function(i, songObject) {
   var $searchResults = $('.search-results');
   var $songResult = $('<div>').addClass('song-object');
   var $songImage = $('<img>').attr('src', songObject.image_url);
   var $songTitle = $('<p>').html(songObject.title);
   var $songArtist = $('<p>').html(songObject.artist);
-  $songResult.append($songImage, $songTitle, $songArtist);
+  var $songData = $('<data>').attr('index', i)
+  $songResult.append($songImage, $songTitle, $songArtist, $songData);
   $searchResults.append($songResult)
 }
