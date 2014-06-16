@@ -1,8 +1,8 @@
 class MusicSearch
 
   def self.find_song(query)
-    itunes = Itunes.itunes_search(query)
-    return itunes
+    itunes_results = Itunes.itunes_search(query)
+    return itunes_results
   end
 
   def self.get_song(id)
