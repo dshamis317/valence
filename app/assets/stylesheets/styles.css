@@ -160,3 +160,11 @@ nav a:hover {
 .song-object {
   display: inline-block;
 }
+
+.playlist-index {
+  width: 30%;
+  height: 100px;
+  border: 3px solid black;
+  display: block;
+  margin-bottom: 5px;
+}
