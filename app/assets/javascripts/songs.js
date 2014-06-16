@@ -38,7 +38,7 @@ SongView.prototype.render = function() {
 // ***** COLLECTION *****
 
 function SongCollection () {
-   this.songs = {};
+   this.songs = [];
 };
 
 SongCollection.prototype.fetch = function() {
@@ -72,3 +72,29 @@ SongCollection.prototype.add = function(song) {
    })
 };
 
+SongCollection.prototype.search = function(query) {
+  var that = this;
+  $.ajax({
+  url: '/search',
+  method: 'get',
+  data: {name: query},
+  dataType: 'json',
+  success: function(data) {
+    $.each(data, function(i, datum){
+      songCollection.displayResults(datum);
+      console.log(datum)
+    })
+    $('.song-text-field').val('');
+  }
+})
+}
+
+SongCollection.prototype.displayResults = function(songObject) {
+  var $searchResults = $('.search-results');
+  var $songResult = $('<div>').addClass('song-object');
+  var $songImage = $('<img>').attr('src', songObject.image_url);
+  var $songTitle = $('<p>').html(songObject.title);
+  var $songArtist = $('<p>').html(songObject.artist);
+  $songResult.append($songImage, $songTitle, $songArtist);
+  $searchResults.append($songResult)
+}

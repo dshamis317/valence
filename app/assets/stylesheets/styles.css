@@ -147,3 +147,16 @@ nav a:hover {
   top: 50px;
   right: 50px;
 }
+
+.search-results {
+  width: 650px;
+  height: 100%;
+  position: fixed;
+  background-color: lightblue;
+  top: 50px;
+  right: 50px;
+}
+
+.song-object {
+  display: inline-block;
+}

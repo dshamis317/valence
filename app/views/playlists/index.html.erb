@@ -19,8 +19,9 @@
   <% end %>
 </ul>
 
-<form action="/search" method="get">
-  <input type="text" name="name" placeholder="Song">
-  <input type="submit" value="Search"></input>
+<form action="/search" method="get" class="song-search">
+  <input type="text" name="name" placeholder="Song" class="song-text-field">
+  <input type="submit" value="Search" class="song-search-submit"></input>
 </form>
 
+<div class="search-results"></div>
