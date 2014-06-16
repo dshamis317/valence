@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   get '/search' => 'playlists#search'
 
-  get '/song/:id' => 'welcome#song'
+  post '/users/:id/playlists/:playlist_id' => 'playlists#song'
 
-  get '/user/:id/playlists/:id/songs' => 'playlists#songs', as: 'playlist'
+  get '/users/:id/playlists/:id/songs' => 'playlists#songs', as: 'playlist'
 end

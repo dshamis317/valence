@@ -9,7 +9,7 @@
         <% @songs.each do |song| %>
         <li>
           <%= song.title %>
-          <form action="/users/<%= current_user.id %>/playlists/<%= playlist.id %>/songs/:id" method='post'>
+          <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>/songs/:id" method='post'>
             <%= token_tag %>
             <input type="hidden" name='_method' value='delete'>
             <button type='submit'>delete song</button>

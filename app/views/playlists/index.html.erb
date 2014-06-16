@@ -7,7 +7,7 @@
 <%= link_to 'Create a new Playlist', new_user_playlist_path(@user) %>
 <ul>
   <% @playlists.each do |playlist| %>
-  <div class="playlist-index">
+  <div class="playlist-index" data-user-id="<%= current_user.id %>" data-playlist-id="<%= playlist.id %>">
   <li>
     <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
     <p>mood: <%= playlist.mood %></p>
