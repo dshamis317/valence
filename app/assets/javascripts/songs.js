@@ -86,6 +86,7 @@ SongCollection.prototype.search = function(query) {
       songCollection.displayResults(i, datum);
       console.log(datum)
     })
+
     $('.song-text-field').val('');
   }
 })
