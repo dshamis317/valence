@@ -7,6 +7,7 @@
 <%= link_to 'Create a new Playlist', new_user_playlist_path(@user) %>
 <ul>
   <% @playlists.each do |playlist| %>
+  <div class="playlist-index">
   <li>
     <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
     <p>mood: <%= playlist.mood %></p>
@@ -16,11 +17,13 @@
       <button type='submit'>delete playlist</button>
     </form>
   </li>
+  </div>
   <% end %>
 </ul>
 
-<form action="/search" method="get">
-  <input type="text" name="name" placeholder="Song">
-  <input type="submit" value="Search"></input>
+<form action="/search" method="get" class="song-search">
+  <input type="text" name="name" placeholder="Song" class="song-text-field">
+  <input type="submit" value="Search" class="song-search-submit"></input>
 </form>
 
+<div class="search-results"></div>

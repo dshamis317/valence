@@ -2,7 +2,7 @@ class Itunes
 
   def self.itunes_search(search)
     search = search.downcase.gsub(" ", "+")
-    query_string = "entity=musicTrack&limit=20&term=#{search}"
+    query_string = "entity=musicTrack&limit=12&term=#{search}"
     url = "http://itunes.apple.com/search?#{query_string}"
     raw_response = HTTParty.get(url)
     response = JSON.parse(raw_response)

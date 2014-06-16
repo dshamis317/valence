@@ -1,8 +1,31 @@
+var songCollection = new SongCollection();
+
+
+function setDroppableHandlers() {
+  $('.playlist-index').droppable({
+    drop: function(e, dropped) {
+      shrinkArtwork(dropped.draggable)
+      console.log('BOOM')
+    }
+  })
+}
+
+
+
+function shrinkArtwork(el) {
+  el.toggle('scale')
+}
+
+
+
 $(function() {
-   var $signUp = $('.signUp');
-   $signUp.click(function() {
-      var $div = $('<div>');
-      $div.addClass('signUpModal').css({'height': '500px', 'width': '500px', 'background-color': 'steelblue'}).html('Sign Up Here');
-      $('.container').append($div);
-   })
+
+  $('.song-search').submit(function(e) {
+    e.preventDefault();
+    var query = $('.song-text-field').val();
+    songCollection.search(query);
+  })
+
+  setDroppableHandlers()
+
 })
