@@ -5,11 +5,9 @@
   <h4>mood: <%= @playlist.mood %></h4>
   <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>"><%= @playlist.title %><h3>
 
-<div class="playlist" data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
-
   <div class="playlist-songs"></div>
 
-    <ul>
+   <!--  <ul>
       <% @songs.each do |song| %>
       <li>
         <%= song.title %>
@@ -19,7 +17,7 @@
           <button type='submit'>delete song</button>
         </li>
         <% end %>
-      </ul>
+      </ul> -->
 
       <div>
         <a href="/users/<%= current_user.id %>/playlists">
@@ -32,7 +30,7 @@
           make a new playlist
         </a>
       </div>
-      
+
       <div class="viz">VISUALIZATION</div>
 
 
