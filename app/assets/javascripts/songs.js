@@ -83,7 +83,7 @@ SongCollection.prototype.search = function(query) {
   dataType: 'json',
   success: function(data) {
     $.each(data, function(i, datum){
-      that.searchResults.push(datum)
+      that.searchResults.push(datum);
       songCollection.displayResults(i, datum);
       console.log(datum)
     })
@@ -101,17 +101,8 @@ SongCollection.prototype.displayResults = function(i, songObject) {
   var $songTitle = $('<p>').html(songObject.title);
   var $songArtist = $('<p>').html(songObject.artist);
   // var $songData = $('<data>').attr('index', i)
-  $songResult.append($songImage, $songTitle, $songArtist)
-             .draggable({revert: 'invalid'})
-  $searchResults.append($songResult)
-}
-
-
-
-
-
-
-
-
-
+  $songResult.append($songImage, $songTitle, $songArtist);
+             .draggable({revert: 'invalid'});
+  $searchResults.append($songResult);
+};
 

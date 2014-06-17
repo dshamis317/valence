@@ -28,6 +28,6 @@ $(function() {
     songCollection.search(query);
   })
 
-  setDroppableHandlers()
+  setDroppableHandlers();
 
 })
