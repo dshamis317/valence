@@ -1,40 +1,38 @@
 <h2>playlists#show</h2>
 <h1>All Your Playlists</h1>
-<div class="playlist">
-  <h3><%= @playlist.title %><h3>
-    <h4>mood: <%= @playlist.mood %></h4>
-    <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>"><%= @playlist.title %><h3>
+<div class="playlist" data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
+  
+    <ul>
+      <% @songs.each do |song| %>
+      <li>
+        <%= song.title %>
+        <form action="/playlists/<%= @playlist.id %>/songs/<%= song.id %>" method='post'>
+          <%= token_tag %>
+          <input type="hidden" name='_method' value='delete'>
+          <button type='submit'>delete song</button>
+        </form>
+        </li>
+        <% end %>
+      </ul>
 
-      <ul>
-        <% @songs.each do |song| %>
-        <li>
-          <%= song.title %>
-          <form action="/songs/<%= song.id %>" method='post'>
-            <%= token_tag %>
-            <input type="hidden" name='_method' value='delete'>
-            <button type='submit'>delete song</button>
-          </li>
-          <% end %>
-        </ul>
+      <div>
+        <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>/edit" method='get'>
+          <%= token_tag %>
+          <button type='submit'>edit playlist info</button>
+        </div>
 
         <div>
-          <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>/edit" method='get'>
-            <%= token_tag %>
-            <button type='submit'>edit playlist info</button>
-          </div>
-
-          <div>
-            <a href="/users/<%= current_user.id %>/playlists">
-              see your playlists
-            </a>
-          </div>
-
-          <div>
-            <a href="/users/<%= current_user.id %>/playlists/new">
-              make a new playlist
-            </a>
-          </div>
-
-          <%= link_to 'Edit Playlist', edit_user_playlist_path(current_user, @playlist.id) %>
+          <a href="/users/<%= current_user.id %>/playlists">
+            see your playlists
+          </a>
         </div>
-        <div class="viz">VISUALIZATION</div>
+
+        <div>
+          <a href="/users/<%= current_user.id %>/playlists/new">
+            make a new playlist
+          </a>
+        </div>
+
+        <%= link_to 'Edit Playlist', edit_user_playlist_path(current_user, @playlist.id) %>
+      </div>
+      <div class="viz">VISUALIZATION</div>

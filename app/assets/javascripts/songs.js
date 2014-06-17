@@ -47,7 +47,7 @@ SongCollection.prototype.fetchToPlaylistIndex = function() {
  $.each($playlistIDArray, function(i, element) {
   var $playlistId = $(element).data('playlistId');
   $.ajax({
-    url: '/users/'+$userId+'/playlists/'+$playlistId+'/songs',
+    url: '/users/'+$userId+'/playlists/'+$playlistId+'/thumbnails',
     method: 'get',
     dataType: 'json',
     success: function(data) {

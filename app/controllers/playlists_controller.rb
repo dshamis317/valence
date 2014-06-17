@@ -5,6 +5,17 @@ class PlaylistsController < ApplicationController
     @playlists = User.find(current_user).playlists
   end
 
+  def songs
+    playlist = Playlist.find(params[:playlist_id])
+
+    @playlistContentHash = {title: playlist.title, mood: playlist.mood, id: playlist.id, songs: playlist.songs}
+
+    respond_to do |format|
+      # format.html
+      format.json { render json: @playlistContentHash.to_json}
+    end
+  end
+
   def thumbnails
     user = User.find(params[:id])
     playlist = Playlist.find(params[:playlist_id])

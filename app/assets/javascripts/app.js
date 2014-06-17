@@ -1,4 +1,6 @@
+var playlistCollection = new PlaylistCollection();
 var songCollection = new SongCollection();
+
 
 function setDroppableHandlers() {
   $('.playlist-index').droppable({
