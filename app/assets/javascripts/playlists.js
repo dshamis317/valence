@@ -25,13 +25,38 @@ function PlaylistView (model) {
 }
 
 PlaylistView.prototype.render = function() {
-   var playlist = $('<div>').addClass('songs-container');
+   var playlist = $('.playlist-songs');
    for (var i in this.model.songs){
       var songDiv = $('<div>')
          .addClass('playlist-song')
-         .html(this.model.songs[i].title);
+         .html(this.model.songs[i].title+", "+this.model.songs[i].artist)
+         .data('songId', this.model.songs[i].id)
+         .data('playlistId', $('.playlist-title').data('playlistId'));
+      var imgDiv = $('<img>')
+         .addClass('song-show-image')
+         .attr('src', this.model.songs[i].image_url);
+      var deleteButton = $('<button>')
+         .addClass('delete-button')
+         .html("Delete");
 
-         $(playlist).append(songDiv);
+      $(deleteButton).on('click', function(e) {
+         var that = this
+         var songId = $(e.target.parentElement).data('songId')
+         var playlistId = $(e.target.parentElement).data('playlistId')
+         $.ajax({
+            url: '/playlists/'+playlistId+'/songs/'+songId,
+            type: 'post',
+            dataType: 'json',
+            data: {"_method":"delete"},
+            success: function() {
+               console.log(that.parentElement)
+               $(that.parentElement).remove();
+            }
+         })
+      })
+
+      $(songDiv).append(imgDiv, deleteButton)
+      $(playlist).append(songDiv);
    }
 
    this.el = playlist;
@@ -46,8 +71,8 @@ function PlaylistCollection () {
 
 PlaylistCollection.prototype.fetch = function(callback) {
    var that = this;
-   var $userId = $('.playlist').data('userId');
-   var $playlistId = $('.playlist').data('playlistId');
+   var $userId = $('.playlist-title').data('userId');
+   var $playlistId = $('.playlist-title').data('playlistId');
    $.ajax({
       url: '/users/'+$userId+'/playlists/'+$playlistId+'/songs',
       method: 'get',
