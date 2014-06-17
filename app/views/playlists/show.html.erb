@@ -1,52 +1,25 @@
-<h2>playlists#show</h2>
-<h1>All Your Playlists</h1>
-
 <div class="playlist">
-  <h4>mood: <%= @playlist.mood %></h4>
   <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>"><%= @playlist.title %><h3>
+    <h4>Mood: <%= @playlist.mood %></h4>
 
-  <div class="playlist-songs"></div>
+    <div class="playlist-songs"></div>
 
-   <!--  <ul>
-      <% @songs.each do |song| %>
-      <li>
-        <%= song.title %>
-        <form action="/songs/<%= song.id %>" method='post'>
-          <%= token_tag %>
-          <input type="hidden" name='_method' value='delete'>
-          <button type='submit'>delete song</button>
-        </li>
-        <% end %>
-      </ul> -->
-
-      <div>
-        <a href="/users/<%= current_user.id %>/playlists">
-          see your playlists
-        </a>
-      </div>
-
-      <div>
-        <a href="/users/<%= current_user.id %>/playlists/new">
-          make a new playlist
-        </a>
-      </div>
-
-      <div class="viz">VISUALIZATION</div>
+    <div class="viz">VISUALIZATION</div>
 
 
-<script>
+    <script>
 
-  var playlistCollection = new PlaylistCollection();
+    var playlistCollection = new PlaylistCollection();
 
 
-  function greg(){
-    playlistCollection.fetch(displaySongsOnShow);
-  }
+    function greg(){
+      playlistCollection.fetch(displaySongsOnShow);
+    }
 
-  $(document).on('page:change', function() {
-    greg();
-    $(document).unbind();
-  });
+    $(document).on('page:change', function() {
+      greg();
+      $(document).unbind();
+    });
 
-</script>
+    </script>
 
