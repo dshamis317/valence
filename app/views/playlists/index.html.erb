@@ -38,8 +38,8 @@
 </ul> -->
 
 <script>
-  
-  
+
+
   var songCollection = new SongCollection();
 
 
@@ -48,6 +48,8 @@
       drop: function(e, dropped) {
         var index = dropped.draggable.data('index');
         shrinkArtwork(dropped.draggable);
+        var playlistID = parseInt(e.target.attributes[2].value)
+        debugger
         addSongToDatabase(index);
       }
     })
