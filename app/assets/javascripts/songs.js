@@ -68,19 +68,21 @@ SongCollection.prototype.fetchToPlaylistIndex = function() {
    })
 }
 
-SongCollection.prototype.addToDB = function(song) {
-   var that = this;
-   var $userId = $('.playlist-index').data('userId');
-   var $playlistId = $('.playlist-index').data('playlistId');
-   $.ajax({
-      url: '/users/'+$userId+'/playlists/'+$playlistId,
-      method: 'post',
-      dataType: 'json',
-      data: {song: song},
-      success: function(data) {
-         console.log(song);
-      }  
-   })
+
+SongCollection.prototype.addToDB = function(playlistID, song) {
+ var that = this;
+ var $userId = $('.playlist-index').data('userId');
+ var $playlistId = playlistID;
+ $.ajax({
+  url: '/users/'+$userId+'/playlists/'+$playlistId,
+  method: 'post',
+  dataType: 'json',
+  data: {song: song},
+  success: function(data) {
+   console.log(song);
+ }
+})
+
 }
 
 SongCollection.prototype.search = function(query) {
