@@ -24,14 +24,54 @@ function PlaylistView (model) {
    this.el = undefined;
 }
 
-PlaylistView.prototype.render = function() {
-   var playlist = $('<div>').addClass('songs-container');
-   for (var i in this.model.songs){
-      var songDiv = $('<div>')
-         .addClass('playlist-song')
-         .html(this.model.songs[i].title);
+PlaylistView.prototype.attachHoverEvent = function attachHoverEvent(img, song) {
+      img.hover(function() {
+         song.play();
+      }, function(){
+         song.pause();
+      });
+};
 
-         $(playlist).append(songDiv);
+PlaylistView.prototype.render = function() {
+   var playlist = $('.playlist-songs');
+   for (var i in this.model.songs){
+      var songDiv = $('<div>').
+      addClass('playlist-song').
+      html(this.model.songs[i].title+", "+this.model.songs[i].artist).
+      data('songId', this.model.songs[i].id).
+      data('playlistId', $('.playlist-title').data('playlistId'));
+
+      var imgDiv = $('<img>')
+      .addClass('song-show-image')
+      .attr('src', this.model.songs[i].image_url);
+
+      var previewHover = $('<audio>')
+      .addClass('preview-song')
+      .attr('src', this.model.songs[i].preview_url);
+      var deleteButton = $('<button>')
+      .addClass('delete-button')
+      .html("Delete");
+
+      $(deleteButton).on('click', function(e) {
+         var that = this;
+         var songId = $(e.target.parentElement).data('songId')
+         var playlistId = $(e.target.parentElement).data('playlistId')
+         $.ajax({
+            url: '/playlists/'+playlistId+'/songs/'+songId,
+            type: 'post',
+            dataType: 'json',
+            data: {"_method":"delete"},
+            success: function() {
+               console.log(that.parentElement)
+               $(that.parentElement).remove();
+            }
+         })
+      });
+
+      this.attachHoverEvent(imgDiv, previewHover[0]);
+
+      $(songDiv).append(imgDiv, deleteButton, previewHover)
+      $(playlist).append(songDiv);
    }
 
    this.el = playlist;
@@ -46,8 +86,8 @@ function PlaylistCollection () {
 
 PlaylistCollection.prototype.fetch = function(callback) {
    var that = this;
-   var $userId = $('.playlist').data('userId');
-   var $playlistId = $('.playlist').data('playlistId');
+   var $userId = $('.playlist-title').data('userId');
+   var $playlistId = $('.playlist-title').data('playlistId');
    $.ajax({
       url: '/users/'+$userId+'/playlists/'+$playlistId+'/songs',
       method: 'get',
@@ -61,10 +101,10 @@ PlaylistCollection.prototype.fetch = function(callback) {
 }
 
 function displaySongsOnShow () {
-  var model = playlistCollection.playlists[0];
-  var playlistView = new PlaylistView(model);
+ var model = playlistCollection.playlists[0];
+ var playlistView = new PlaylistView(model);
 
-  playlistView.render().el.appendTo($('.playlist-songs'));
+ playlistView.render().el.appendTo($('.playlist-songs'));
 }
 
 // $(function() {

@@ -73,7 +73,7 @@ SongCollection.prototype.addToDB = function(playlistID, song) {
  var $userId = $('.playlist-index').data('userId');
  var $playlistId = playlistID;
  $.ajax({
-  url: '/users/'+$userId+'/playlists/'+$playlistId,
+  url: '/users/'+$userId+'/playlists/'+$playlistId+'/new',
   method: 'post',
   dataType: 'json',
   data: {song: song},
