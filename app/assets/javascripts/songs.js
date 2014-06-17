@@ -105,3 +105,13 @@ SongCollection.prototype.displayResults = function(i, songObject) {
              .draggable({revert: 'invalid'})
   $searchResults.append($songResult)
 }
+
+
+
+
+
+
+
+
+
+
