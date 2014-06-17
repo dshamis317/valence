@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   post '/users/:id/playlists/:playlist_id' => 'playlists#song'
 
   delete '/songs/:id' => 'songs#destroy'
+
+  get '/users/:id/playlists/:playlist_id/songs' => 'playlists#thumbnails'
 end

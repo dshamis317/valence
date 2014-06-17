@@ -7,10 +7,11 @@
 <%= link_to 'Create a new Playlist', new_user_playlist_path(@user) %>
 <ul>
   <% @playlists.each do |playlist| %>
-  <div class="playlist-index" data-user-id="<%= current_user.id %>" data-playlist-id="<%= playlist.id %>">
+  <div class="playlist-index <%= playlist.id %>" data-user-id="<%= current_user.id %>" data-playlist-id="<%= playlist.id %>">
   <li>
     <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
     <p>mood: <%= playlist.mood %></p>
+    <div class="playlist-songs-index"></div>
     <form action="/users/<%= current_user.id %>/playlists/<%= playlist.id %>" method='post'>
       <%= token_tag %>
       <input type="hidden" name='_method' value='delete'>

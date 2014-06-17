@@ -19,6 +19,12 @@ function addSongToDatabase(index) {
   songCollection.addToDB(resultsArray[index]);
 }
 
+function renderMiniArtworkWithinPlaylist() {
+  var songModel = new SongModel();
+  var songView = new SongView(songModel);
+  songView.render().el.hide().appendTo($('.playlist-songs-index')).fadeIn(1000)
+}
+
 $(function() {
 
   $('.song-search').submit(function(e) {
@@ -28,6 +34,7 @@ $(function() {
     songCollection.search(query);
   })
 
-  setDroppableHandlers()
-
+  setDroppableHandlers();
+  songCollection.fetchToPlaylistIndex();
+  renderMiniArtworkWithinPlaylist();
 })

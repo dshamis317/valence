@@ -5,6 +5,16 @@ class PlaylistsController < ApplicationController
     @playlists = User.find(current_user).playlists
   end
 
+  def thumbnails
+    user = User.find(params[:id])
+    playlist = Playlist.find(params[:playlist_id])
+    @songs = playlist.songs
+    respond_to do |format|
+      format.html
+      format.json{render json: @songs.to_json}
+    end
+  end
+
   def search
     @title = params[:name]
     search_songs = MusicSearch.find_song(@title)
