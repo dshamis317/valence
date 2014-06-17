@@ -101,7 +101,7 @@ SongCollection.prototype.displayResults = function(i, songObject) {
   var $songTitle = $('<p>').html(songObject.title);
   var $songArtist = $('<p>').html(songObject.artist);
   // var $songData = $('<data>').attr('index', i)
-  $songResult.append($songImage, $songTitle, $songArtist);
+  $songResult.append($songImage, $songTitle, $songArtist)
              .draggable({revert: 'invalid'});
   $searchResults.append($songResult);
 };
