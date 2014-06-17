@@ -49,8 +49,7 @@
         var index = dropped.draggable.data('index');
         shrinkArtwork(dropped.draggable);
         var playlistID = parseInt(e.target.attributes[2].value)
-        debugger
-        addSongToDatabase(index);
+        addSongToDatabase(playlistID, index);
       }
     })
   }
@@ -59,9 +58,9 @@
     el.toggle('scale');
   }
 
-  function addSongToDatabase(index) {
+  function addSongToDatabase(playlistID, index) {
     var resultsArray = songCollection.searchResults;
-    songCollection.addToDB(resultsArray[index]);
+    songCollection.addToDB(playlistID, resultsArray[index]);
   }
 
   function renderMiniArtworkWithinPlaylist() {

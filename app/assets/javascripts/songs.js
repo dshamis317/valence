@@ -68,10 +68,10 @@ SongCollection.prototype.fetchToPlaylistIndex = function() {
 })
 }
 
-SongCollection.prototype.addToDB = function(song) {
+SongCollection.prototype.addToDB = function(playlistID, song) {
  var that = this;
  var $userId = $('.playlist-index').data('userId');
- var $playlistId = $('.playlist-index').data('playlistId');
+ var $playlistId = playlistID;
  $.ajax({
   url: '/users/'+$userId+'/playlists/'+$playlistId,
   method: 'post',
