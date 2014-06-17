@@ -1,3 +1,12 @@
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require jquery.ui.all
+//= require songs
+
+
+
+
 // ***** MODEL *****
 
 function PlaylistModel (dataObject) {
@@ -46,23 +55,14 @@ PlaylistCollection.prototype.fetch = function(callback) {
       success: function(data) {
          var playlist = new PlaylistModel(data);
          that.playlists.push(playlist);
-         // callback();
+         callback();
       }
    })
 }
 
+function displaySongsOnShow () {
+  var model = playlistCollection.playlists[0];
+  var playlistView = new PlaylistView(model);
 
-// PlaylistCollection.prototype.add = function(playlist) {
-//    var that = this;
-
-//    $.ajax({
-//       url: '/playlists',
-//       method: 'post',
-//       dataType: 'json',
-//       data: {playlist: playlist},
-//       success: function(data) {
-//          var playlist = new PlaylistModel(data);
-//          that.playlists[playlist.id]=playlist;
-//       }
-//    })
-// };
+  playlistView.render().el.appendTo($('.playlist-songs'));
+}

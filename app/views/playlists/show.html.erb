@@ -32,20 +32,23 @@
           make a new playlist
         </a>
       </div>
+      
+      <div class="viz">VISUALIZATION</div>
 
-      <%= link_to 'Edit Playlist', edit_user_playlist_path(current_user, @playlist.id) %>
 
-      <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
-        <%= token_tag %>
-        <input type="hidden" name='_method' value='delete'>
-        <button type='submit'>delete playlist</button>
-      </form>
+<script>
 
-    </div>
-    <div class="viz">VISUALIZATION</div>
+  var playlistCollection = new PlaylistCollection();
 
-<!-- <ul class="sortable">
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 1</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 2</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 3</li>
-</ul> -->
+
+  function greg(){
+    playlistCollection.fetch(displaySongsOnShow);
+  }
+
+  $(document).on('page:change', function() {
+    greg();
+    $(document).unbind();
+  });
+
+</script>
+

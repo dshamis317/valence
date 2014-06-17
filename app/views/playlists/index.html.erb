@@ -30,9 +30,61 @@
 
 <div class="search-results"></div>
 
+
 <!-- <ul class="sortable">
   <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 1</li>
   <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 2</li>
   <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 3</li>
 </ul> -->
+
+<script>
+  
+  
+  var songCollection = new SongCollection();
+
+
+  function setDroppableHandlers() {
+    $('.playlist-index').droppable({
+      drop: function(e, dropped) {
+        var index = dropped.draggable.data('index');
+        shrinkArtwork(dropped.draggable);
+        addSongToDatabase(index);
+      }
+    })
+  }
+
+  function shrinkArtwork(el) {
+    el.toggle('scale');
+  }
+
+  function addSongToDatabase(index) {
+    var resultsArray = songCollection.searchResults;
+    songCollection.addToDB(resultsArray[index]);
+  }
+
+  function renderMiniArtworkWithinPlaylist() {
+    var songModel = new SongModel();
+    var songView = new SongView(songModel);
+    songView.render().el.hide().appendTo($('.playlist-songs-index')).fadeIn(1000)
+  }
+
+
+  $(document).on('ready page:change', function() {
+
+  $('.song-search').submit(function(e) {
+    $('.search-results').html('');
+    e.preventDefault();
+    var query = $('.song-text-field').val();
+    songCollection.search(query);
+  })
+
+  setDroppableHandlers();
+  // songCollection.fetchToPlaylistIndex();
+  // renderMiniArtworkWithinPlaylist();
+  })
+
+</script>
+
+
+
 
