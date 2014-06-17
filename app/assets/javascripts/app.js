@@ -27,6 +27,13 @@ function renderMiniArtworkWithinPlaylist() {
   songView.render().el.hide().appendTo($('.playlist-songs-index')).fadeIn(1000)
 }
 
+function displaySongsOnShow () {
+  var model = playlistCollection.playlists[0];
+  var playlistView = new PlaylistView(model);
+
+  playlistView.render().el.appendTo($('.playlist-songs'));
+}
+
 $(function() {
 
   $('.song-search').submit(function(e) {
@@ -36,6 +43,10 @@ $(function() {
     songCollection.search(query);
   })
 
+
+  playlistCollection.fetch(displaySongsOnShow);
+
+  // displaySongsOnShow();
   setDroppableHandlers();
   // songCollection.fetchToPlaylistIndex();
   // renderMiniArtworkWithinPlaylist();
