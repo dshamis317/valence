@@ -21,13 +21,16 @@ function addSongToDatabase(index) {
 
 $(function() {
 
+  $(".sortable").sortable();
+  $(".sortable").disableSelection();
+
   $('.song-search').submit(function(e) {
     $('.search-results').html('');
     e.preventDefault();
     var query = $('.song-text-field').val();
     songCollection.search(query);
-  })
+  });
 
-  setDroppableHandlers()
+  setDroppableHandlers();
 
-})
+});

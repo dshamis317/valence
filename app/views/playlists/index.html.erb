@@ -11,11 +11,6 @@
   <li>
     <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
     <p>mood: <%= playlist.mood %></p>
-    <form action="/users/<%= current_user.id %>/playlists/<%= playlist.id %>" method='post'>
-      <%= token_tag %>
-      <input type="hidden" name='_method' value='delete'>
-      <button type='submit'>delete playlist</button>
-    </form>
   </li>
   </div>
   <% end %>
@@ -27,3 +22,10 @@
 </form>
 
 <div class="search-results"></div>
+
+<!-- <ul class="sortable">
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 1</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 2</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 3</li>
+</ul> -->
+

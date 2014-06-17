@@ -44,3 +44,4 @@ gem 'rails_12factor', group: :production
 gem 'pry'
 gem 'httparty'
 gem 'jquery-ui-rails'
+gem 'x-editable-rails'
