@@ -16,23 +16,26 @@ function PlaylistView (model) {
 };
 
 PlaylistView.prototype.render = function() {
-   var ul = $('<ul>');
-   var div = $('<div>')
-   .addClass('playlistDisplay')
-   .html(this.model.title)
-   .append(ul);
+   var playlist = $('<div>').addClass('songs-container');
+   for (var i in this.model.songs){
+      var songDiv = $('<div>')
+         .addClass('playlist-song')
+         .html(this.model.songs[i].title); 
 
-   this.el = div;
+         $(playlist).append(songDiv);
+   }
+      
+   this.el = playlist;
    return this;
 };
 
 // ***** COLLECTION *****
 
 function PlaylistCollection () {
-   this.playlists = {};
+   this.playlists = [];
 };
 
-PlaylistCollection.prototype.fetch = function() {
+PlaylistCollection.prototype.fetch = function(callback) {
    var that = this;
    var $userId = $('.playlist').data('userId');
    var $playlistId = $('.playlist').data('playlistId');
@@ -42,25 +45,24 @@ PlaylistCollection.prototype.fetch = function() {
       dataType: 'json',
       success: function(data) {
          var playlist = new PlaylistModel(data);
-         that.playlists[playlist.id] = playlist;
-         console.log(playlist.id);
-         }
-      
-   })
-};
-
-
-PlaylistCollection.prototype.add = function(playlist) {
-   var that = this;
-
-   $.ajax({
-      url: '/playlists',
-      method: 'post',
-      dataType: 'json',
-      data: {playlist: playlist},
-      success: function(data) {
-         var playlist = new PlaylistModel(data);
-         that.playlists[playlist.id]=playlist;
+         that.playlists.push(playlist);
+         callback();
       }
    })
 };
+
+
+// PlaylistCollection.prototype.add = function(playlist) {
+//    var that = this;
+
+//    $.ajax({
+//       url: '/playlists',
+//       method: 'post',
+//       dataType: 'json',
+//       data: {playlist: playlist},
+//       success: function(data) {
+//          var playlist = new PlaylistModel(data);
+//          that.playlists[playlist.id]=playlist;
+//       }
+//    })
+// };

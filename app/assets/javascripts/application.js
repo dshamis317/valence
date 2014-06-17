@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.ui.all
-//= require songs.js
 //= require playlists.js
+//= require songs.js
 //= require app.js
 //= require_tree .
