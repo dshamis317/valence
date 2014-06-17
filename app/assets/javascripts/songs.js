@@ -38,7 +38,7 @@ SongView.prototype.render = function() {
 function SongCollection () {
  this.songs = [];
  this.searchResults = [];
-};
+}
 
 SongCollection.prototype.fetchToPlaylistIndex = function() {
  var that = this;
@@ -57,9 +57,9 @@ SongCollection.prototype.fetchToPlaylistIndex = function() {
     });
      $(that).trigger('change');
    }
- });
+ })
 })
-};
+}
 
 SongCollection.prototype.addToDB = function(song) {
  var that = this;
@@ -74,7 +74,7 @@ SongCollection.prototype.addToDB = function(song) {
    console.log(song);
  }
 })
-};
+}
 
 SongCollection.prototype.search = function(query) {
   var that = this;

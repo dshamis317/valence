@@ -5,7 +5,7 @@ function PlaylistModel (dataObject) {
    this.mood = dataObject.mood;
    this.id = dataObject.id;
    this.songs = dataObject.songs;
-};
+}
 
 
 // ***** VIEW *****
@@ -13,7 +13,7 @@ function PlaylistModel (dataObject) {
 function PlaylistView (model) {
    this.model = model;
    this.el = undefined;
-};
+}
 
 PlaylistView.prototype.render = function() {
    var playlist = $('<div>').addClass('songs-container');
@@ -27,13 +27,13 @@ PlaylistView.prototype.render = function() {
       
    this.el = playlist;
    return this;
-};
+}
 
 // ***** COLLECTION *****
 
 function PlaylistCollection () {
    this.playlists = [];
-};
+}
 
 PlaylistCollection.prototype.fetch = function(callback) {
    var that = this;
@@ -49,7 +49,7 @@ PlaylistCollection.prototype.fetch = function(callback) {
          callback();
       }
    })
-};
+}
 
 
 // PlaylistCollection.prototype.add = function(playlist) {
