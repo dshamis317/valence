@@ -34,7 +34,7 @@ function displaySongsOnShow () {
   playlistView.render().el.appendTo($('.playlist-songs'));
 }
 
-$(function() {
+$(document).on('ready page:change', function() {
 
   $('.song-search').submit(function(e) {
     $('.search-results').html('');
@@ -44,8 +44,8 @@ $(function() {
   })
 
 
-  playlistCollection.fetch(displaySongsOnShow);
-
+  playlistCollection.fetch();
+  displaySongsOnShow();
   // displaySongsOnShow();
   setDroppableHandlers();
   // songCollection.fetchToPlaylistIndex();

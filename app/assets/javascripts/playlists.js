@@ -20,11 +20,11 @@ PlaylistView.prototype.render = function() {
    for (var i in this.model.songs){
       var songDiv = $('<div>')
          .addClass('playlist-song')
-         .html(this.model.songs[i].title); 
+         .html(this.model.songs[i].title);
 
          $(playlist).append(songDiv);
    }
-      
+
    this.el = playlist;
    return this;
 };
@@ -46,7 +46,7 @@ PlaylistCollection.prototype.fetch = function(callback) {
       success: function(data) {
          var playlist = new PlaylistModel(data);
          that.playlists.push(playlist);
-         callback();
+         // callback();
       }
    })
 };
