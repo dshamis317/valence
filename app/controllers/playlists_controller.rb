@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-
+  respond_to :html, :json
   def index
     @user = current_user
     @playlists = User.find(current_user).playlists
@@ -66,7 +66,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
     @songs = @playlist.songs
 
-    
+
   end
 
   def edit
@@ -74,8 +74,9 @@ class PlaylistsController < ApplicationController
   end
 
   def update
-    playlist = Playlist.find(params[:id])
-    playlist.update(playlist_params)
+    @playlist = Playlist.find(params[:id])
+    @playlist.update(playlist_params)
+    respond_with @playlist
     redirect_to user_playlist_path(current_user, playlist)
   end
 

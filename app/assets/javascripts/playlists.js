@@ -66,3 +66,17 @@ function displaySongsOnShow () {
 
   playlistView.render().el.appendTo($('.playlist-songs'));
 }
+
+// $(function() {
+//   $('.best_in_place').best_in_place();
+// });
+
+
+// $(function() {
+//   $( ".open-text-edit" ).show();
+// });
+
+$( "button" ).click(function() {
+  $( "p" ).show( "slow" );
+});
+

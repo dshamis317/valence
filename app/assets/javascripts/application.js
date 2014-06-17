@@ -12,10 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.purr
+//= require best_in_place
+//= require best_in_place.purr
 //= require turbolinks
 //= require jquery.ui.all
 //= require playlists.js
 //= require songs.js
 //= require app.js
 //= require_tree .
+
 

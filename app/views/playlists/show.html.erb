@@ -1,9 +1,51 @@
 <h2>playlists#show</h2>
-<h1>All Your Playlists</h1>
+<h1>Individual Playlist Page</h1>
+
+<div>
+  <button class="open">Edit Playlist Info</button>
+  <div class="edit-form" style="display: none">
+
+    <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
+
+      <%= token_tag %>
+      <input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'>
+      <input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'>
+<!--       <button class="close">Done</button>-->
+      <input type="submit">
+
+    </form>
+
+  </div>
+</div>
+<!-- <a href="#" class="close">close</a> -->
+
+<script>
+$( ".open" ).click(function() {
+  $( ".edit-form" ).show( "slow" );
+});
+$( ".close" ).click(function() {
+  // $( ".edit-form" ).hide( "slow" );
+});
+</script>
+<!-- p class="text-to-edit">test<input type="submit" class="open-text-edit"></p> -->
+
+<!--
+<p>
+  <b>test playlist title:</b>
+  <%= best_in_place @playlist, :title, :path => edit_user_playlist_path %>
+</p>
+
+<p>
+  <b>test playlist mood:</b>
+  <%= best_in_place @playlist, :mood, :path => edit_user_playlist_path %>
+</p>
+ -->
 
 <div class="playlist">
+  <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
+    playlist: <%= @playlist.title %>
+  <h3>
   <h4>mood: <%= @playlist.mood %></h4>
-  <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>"><%= @playlist.title %><h3>
 
 <div class="playlist" data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
 
@@ -34,7 +76,6 @@
       </div>
 
       <div class="viz">VISUALIZATION</div>
-
 
 <script>
 
