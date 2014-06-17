@@ -13,7 +13,7 @@
   <div class="playlist-index <%= playlist.id %>" data-user-id="<%= current_user.id %>" data-playlist-id="<%= playlist.id %>">
   <li>
     <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
-    <p>mood: <%= playlist.mood %></p>
+    <p>Mood: <%= playlist.mood %></p>
 
     <div class="playlist-songs-index"></div>
     <form action="/users/<%= current_user.id %>/playlists/<%= playlist.id %>" method='post'>
