@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :users do
-    resources :playlists do 
+    resources :playlists do
     end
   end
 
