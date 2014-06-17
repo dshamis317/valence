@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-user = User.create(email: "bilbert@example.com", password: "password", username: "username")
+user = User.create(email: "bilbert@example.com", password: "password")
 
 
 britney = Song.create(title: "Hit Me Baby One More Time", artist: "Britney, bitch")
