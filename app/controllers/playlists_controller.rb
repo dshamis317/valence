@@ -34,14 +34,12 @@ class PlaylistsController < ApplicationController
     end
   end
 
-  # def song
-  #   song = Song.find_or_create_by(song_params)
-  #   playlist = params[:playlist_id]
-  #   if song.save
-  #     playlist.songs << song
-  #     redirect_to user_playlist_path(current_user, playlist)
-  #   end
-  # end
+  def song
+    song = Song.new(song_params)
+    render :json => song.to_json
+    playlist = Playlist.find(params[:playlist_id])
+    playlist.songs << song
+  end
 
   def show
     @playlist = Playlist.find(params[:id])
@@ -69,23 +67,23 @@ class PlaylistsController < ApplicationController
     params.require(:playlist).permit(:title, :mood)
   end
 
-  # def song_params
-  #   params.require(:song).permit(:title,
-  #     :artist,
-  #     :energy,
-  #     :liveness,
-  #     :tempo,
-  #     :speechiness,
-  #     :acousticness,
-  #     :time_signature,
-  #     :duration,
-  #     :loudness,
-  #     :valence,
-  #     :danceability,
-  #     :preview_link,
-  #     :image_url
-  #     )
-  # end
+  def song_params
+    params.require(:song).permit(:title,
+      :artist,
+      :energy,
+      :liveness,
+      :tempo,
+      :speechiness,
+      :acousticness,
+      :time_signature,
+      :duration,
+      :loudness,
+      :valence,
+      :danceability,
+      :preview_url,
+      :image_url
+      )
+  end
 
 end
 

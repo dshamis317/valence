@@ -35,7 +35,7 @@ class MusicSearch
         :loudness => echo_details[:loudness],
         :valence => echo_details[:valence],
         :danceability => echo_details[:danceability],
-        :preview_link => song_itunes[:preview_link],
+        :preview_url => song_itunes[:preview_link],
         :image_url => song_itunes[:artwork_url]
       }
       if echo_details[:energy]

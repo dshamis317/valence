@@ -1,26 +1,28 @@
 var songCollection = new SongCollection();
 
-
 function setDroppableHandlers() {
   $('.playlist-index').droppable({
     drop: function(e, dropped) {
-      shrinkArtwork(dropped.draggable)
-      console.log('BOOM')
+      var index = dropped.draggable.data('index');
+      shrinkArtwork(dropped.draggable);
+      addSongToDatabase(index);
     }
   })
 }
 
-
-
 function shrinkArtwork(el) {
-  el.toggle('scale')
+  el.toggle('scale');
 }
 
-
+function addSongToDatabase(index) {
+  var resultsArray = songCollection.searchResults;
+  songCollection.addToDB(resultsArray[index]);
+}
 
 $(function() {
 
   $('.song-search').submit(function(e) {
+    $('.search-results').html('');
     e.preventDefault();
     var query = $('.song-text-field').val();
     songCollection.search(query);

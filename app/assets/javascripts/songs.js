@@ -59,16 +59,17 @@ SongCollection.prototype.fetch = function() {
    })
 };
 
-SongCollection.prototype.add = function(song) {
+SongCollection.prototype.addToDB = function(song) {
    var that = this;
+   var $userId = $('.playlist-index').data('userId');
+   var $playlistId = $('.playlist-index').data('playlistId');
    $.ajax({
-      url: '/users/:'+$userId+'/playlists/',
+      url: '/users/'+$userId+'/playlists/'+$playlistId,
       method: 'post',
       dataType: 'json',
       data: {song: song},
       success: function(data) {
-         var song = new SongModel(data);
-         that.songs[song.id]=song;
+         console.log(song);
       }
    })
 };
@@ -95,11 +96,12 @@ SongCollection.prototype.search = function(query) {
 SongCollection.prototype.displayResults = function(i, songObject) {
   var $searchResults = $('.search-results');
   var $songResult = $('<div>').addClass('song-object');
+  $songResult.data('index', i);
   var $songImage = $('<img>').attr('src', songObject.image_url);
   var $songTitle = $('<p>').html(songObject.title);
   var $songArtist = $('<p>').html(songObject.artist);
-  var $songData = $('<data>').attr('index', i)
-  $songResult.append($songImage, $songTitle, $songArtist, $songData)
+  // var $songData = $('<data>').attr('index', i)
+  $songResult.append($songImage, $songTitle, $songArtist)
              .draggable({revert: 'invalid'})
   $searchResults.append($songResult)
 }
