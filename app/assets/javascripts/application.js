@@ -16,6 +16,5 @@
 //= require jquery.ui.all
 //= require playlists.js
 //= require songs.js
-//= require app.js
 //= require_tree .
 
