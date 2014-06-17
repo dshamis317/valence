@@ -1,9 +1,8 @@
 class SongsController < ApplicationController
 
   def destroy
-    Song.delete(params[:id])
-    redirect_to user_playlists_path(current_user)
+    playlist = Playlist.find(params[:id])
+    Song.delete(params[:song_id])
+    redirect_to user_playlist_path(current_user, playlist)
   end
-
-
 end

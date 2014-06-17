@@ -3,8 +3,8 @@
 function PlaylistModel (dataObject) {
    this.title = dataObject.title;
    this.mood = dataObject.mood;
-   this.user_id = dataObject.user_id;
-   this.songs = undefined;
+   this.id = dataObject.id;
+   this.songs = dataObject.songs;
 };
 
 
@@ -34,19 +34,21 @@ function PlaylistCollection () {
 
 PlaylistCollection.prototype.fetch = function() {
    var that = this;
-   var $userId = $('.playlist-title').data('userId');
+   var $userId = $('.playlist').data('userId');
+   var $playlistId = $('.playlist').data('playlistId');
    $.ajax({
-      url: '/users/:'+$userId+'/playlists',
+      url: '/users/'+$userId+'/playlists/'+$playlistId+'/songs',
       method: 'get',
       dataType: 'json',
       success: function(data) {
-         $.each(data, function(i, dataObject) {
-            var playlist = new PlaylistModel(dataObject);
-            that.playlists[playlist.id] = playlist;
-         });
-      }
+         var playlist = new PlaylistModel(data);
+         that.playlists[playlist.id] = playlist;
+         console.log(playlist.id);
+         }
+      
    })
 };
+
 
 PlaylistCollection.prototype.add = function(playlist) {
    var that = this;
