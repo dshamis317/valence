@@ -35,6 +35,6 @@ $(function() {
   })
 
   setDroppableHandlers();
-  songCollection.fetchToPlaylistIndex();
-  renderMiniArtworkWithinPlaylist();
+  // songCollection.fetchToPlaylistIndex();
+  // renderMiniArtworkWithinPlaylist();
 })
