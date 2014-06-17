@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :users do
-    resources :playlists do
+    resources :playlists do 
     end
   end
 
@@ -19,5 +19,9 @@ Rails.application.routes.draw do
 
   post '/users/:id/playlists/:playlist_id' => 'playlists#song'
 
-  delete '/songs/:id' => 'songs#destroy'
+  delete '/playlists/:id/songs/:song_id' => 'songs#destroy'
+
+  get '/users/:id/playlists/:playlist_id/thumbnails' => 'playlists#thumbnails'
+
+  get '/users/:id/playlists/:playlist_id/songs' => 'playlists#songs'
 end

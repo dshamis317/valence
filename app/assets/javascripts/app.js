@@ -1,4 +1,6 @@
+var playlistCollection = new PlaylistCollection();
 var songCollection = new SongCollection();
+
 
 function setDroppableHandlers() {
   $('.playlist-index').droppable({
@@ -19,6 +21,19 @@ function addSongToDatabase(index) {
   songCollection.addToDB(resultsArray[index]);
 }
 
+function renderMiniArtworkWithinPlaylist() {
+  var songModel = new SongModel();
+  var songView = new SongView(songModel);
+  songView.render().el.hide().appendTo($('.playlist-songs-index')).fadeIn(1000)
+}
+
+function displaySongsOnShow () {
+  var model = playlistCollection.playlists[0];
+  var playlistView = new PlaylistView(model);
+
+  playlistView.render().el.appendTo($('.playlist-songs'));
+}
+
 $(function() {
 
   $(".sortable").sortable();
@@ -31,6 +46,10 @@ $(function() {
     songCollection.search(query);
   });
 
-  setDroppableHandlers();
+  playlistCollection.fetch(displaySongsOnShow);
 
-});
+  // displaySongsOnShow();
+  setDroppableHandlers();
+  // songCollection.fetchToPlaylistIndex();
+  // renderMiniArtworkWithinPlaylist();
+})

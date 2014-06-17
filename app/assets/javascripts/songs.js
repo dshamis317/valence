@@ -21,76 +21,77 @@ function SongModel (dataObject) {
 // ***** VIEW *****
 
 function SongView (model) {
-   this.model = model;
-   this.el = undefined;
+ this.model = model;
+ this.el = undefined;
 };
 
 SongView.prototype.render = function() {
-   var ul = $('<ul>');
-   var div = $('<div>')
-   .addClass('songDisplay')
-   .html(this.model.title)
-   .append(ul);
-   this.el = div;
-   return this;
+ var $div = $('<div>').addClass('playlist-song-display')
+ var $img = $('<img>').addClass('playlist-index-artwork').attr('src', this.model.image_url)
+ $div.append($img)
+ this.el = $div;
+ return this;
 };
 
 // ***** COLLECTION *****
 
 function SongCollection () {
-   this.songs = [];
-   this.searchResults = [];
-};
+ this.songs = [];
+ this.searchResults = [];
+}
 
-SongCollection.prototype.fetch = function() {
-   var that = this;
-   var $userId = $('.playlist-title').data('userId');
-   var songId = that.id
-   $.ajax({
-      url: '/users/:'+$userId+'/playlists/'+$songId,
-      method: 'get',
-      dataType: 'json',
-      success: function(data) {
-         $.each(data, function(i, dataObject) {
-            var song = new SongModel(dataObject);
-            that.songs[song.id] = song;
-         });
-      }
-   })
-};
+SongCollection.prototype.fetchToPlaylistIndex = function() {
+ var that = this;
+ var $userId = $('.playlist-index').data('userId');
+ var $playlistIDArray = $('.playlist-index')
+ $.each($playlistIDArray, function(i, element) {
+  var $playlistId = $(element).data('playlistId');
+  $.ajax({
+    url: '/users/'+$userId+'/playlists/'+$playlistId+'/thumbnails',
+    method: 'get',
+    dataType: 'json',
+    success: function(data) {
+     $.each(data, function(i, dataObject) {
+      var song = new SongModel(dataObject);
+      that.songs[song.id] = song;
+    });
+     $(that).trigger('change');
+   }
+ })
+})
+}
 
 SongCollection.prototype.addToDB = function(song) {
-   var that = this;
-   var $userId = $('.playlist-index').data('userId');
-   var $playlistId = $('.playlist-index').data('playlistId');
-   $.ajax({
-      url: '/users/'+$userId+'/playlists/'+$playlistId,
-      method: 'post',
-      dataType: 'json',
-      data: {song: song},
-      success: function(data) {
-         console.log(song);
-      }
-   })
-};
+ var that = this;
+ var $userId = $('.playlist-index').data('userId');
+ var $playlistId = $('.playlist-index').data('playlistId');
+ $.ajax({
+  url: '/users/'+$userId+'/playlists/'+$playlistId,
+  method: 'post',
+  dataType: 'json',
+  data: {song: song},
+  success: function(data) {
+   console.log(song);
+ }
+})
+}
 
 SongCollection.prototype.search = function(query) {
   var that = this;
   $.ajax({
-  url: '/search',
-  method: 'get',
-  data: {name: query},
-  dataType: 'json',
-  success: function(data) {
-    $.each(data, function(i, datum){
-      that.searchResults.push(datum)
-      songCollection.displayResults(i, datum);
-      console.log(datum)
-    })
-
-    $('.song-text-field').val('');
-  }
-})
+    url: '/search',
+    method: 'get',
+    data: {name: query},
+    dataType: 'json',
+    success: function(data) {
+      $.each(data, function(i, datum){
+        that.searchResults.push(datum);
+        songCollection.displayResults(i, datum);
+        console.log(datum);
+      })
+      $('.song-text-field').val('');
+    }
+  })
 }
 
 SongCollection.prototype.displayResults = function(i, songObject) {
@@ -102,16 +103,7 @@ SongCollection.prototype.displayResults = function(i, songObject) {
   var $songArtist = $('<p>').html(songObject.artist);
   // var $songData = $('<data>').attr('index', i)
   $songResult.append($songImage, $songTitle, $songArtist)
-             .draggable({revert: 'invalid'})
+  .draggable({revert: 'invalid'})
   $searchResults.append($songResult)
 }
-
-
-
-
-
-
-
-
-
 

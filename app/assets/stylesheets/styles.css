@@ -169,6 +169,11 @@ nav a:hover {
   margin-bottom: 5px;
 }
 
+.playlist-index-artwork {
+  width: 20px;
+  height: 20px;
+}
+
 .sortable {
   list-style-type: none;
   margin: 0;

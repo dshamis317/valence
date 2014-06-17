@@ -5,6 +5,10 @@
   <h4>mood: <%= @playlist.mood %></h4>
   <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>"><%= @playlist.title %><h3>
 
+<div class="playlist" data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
+
+  <div class="playlist-songs"></div>
+
     <ul>
       <% @songs.each do |song| %>
       <li>
@@ -45,4 +49,3 @@
   <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 2</li>
   <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 3</li>
 </ul> -->
-
