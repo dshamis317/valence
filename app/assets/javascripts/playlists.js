@@ -4,6 +4,7 @@ function PlaylistModel (dataObject) {
    this.title = dataObject.title;
    this.mood = dataObject.mood;
    this.user_id = dataObject.user_id;
+   this.songs = undefined;
 };
 
 
