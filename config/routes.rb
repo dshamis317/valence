@@ -20,7 +20,11 @@ Rails.application.routes.draw do
 
   get '/search' => 'playlists#search'
 
+<<<<<<< HEAD
 
+=======
+  post 'user/:id/playlists/:playlist_id' => 'playlist#song'
+>>>>>>> 6b44c6332b061b2199234a92531115ba1d556ff6
 
   get '/user/:id/playlists/:id/songs' => 'playlists#songs', as: 'playlist'
 end
