@@ -233,3 +233,25 @@ ul {
   text-align:center;
   z-index:1;
 }
+
+.menu {
+  width: 150px;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.heading {
+  font-size: 18px;
+  font-family: sans-serif;
+  font-style: bold;
+  margin-bottom: 0px;
+}
+
+.menu-items:hover {
+  background-color: lightgrey;
+}
+
+.menu-items:active {
+  background-color: steelblue;
+  color: white;
+}
