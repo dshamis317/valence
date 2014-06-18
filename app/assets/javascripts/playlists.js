@@ -1,8 +1,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require d3
 //= require jquery.ui.all
 //= require songs
+
 
 
 // ***** MODEL *****
@@ -92,6 +94,8 @@ PlaylistCollection.prototype.fetch = function(callback) {
          var playlist = new PlaylistModel(data);
          that.playlists.push(playlist);
          callback();
+         visualizePlaylist(playlistSongsAttributes);
+
       }
    })
 }
@@ -104,7 +108,7 @@ PlaylistCollection.prototype.fetch = function(callback) {
 function displaySongsOnShow () {
   var model = playlistCollection.playlists[0];
   var playlistView = new PlaylistView(model);
-
+  createPlaylistSongsAttrArr(model);
   playlistView.render().el.appendTo($('.playlist-songs'));
 }
 
@@ -133,7 +137,7 @@ function createPlaylistSongsAttrArr(playlistCollectionObject){
    
    // gets array of song objects from playlistCollection
    var playlistCollection = playlistCollectionObject;
-   var playlist = playlistCollection.playlists[0].songs;
+   var playlist = playlistCollection.songs;
 
    // creates empty arrays for all song attributes
         var titleArr = [], 
@@ -190,18 +194,82 @@ function createPlaylistSongsAttrArr(playlistCollectionObject){
    return playlistSongsAttributes;
 }
 
-function visualizePlaylist (playlistSongsAttributes) {
+var d3Margin = {top: 10, right: 10, bottom: 10, left: 10};
+
+var d3Var = {
+      width: 650 - d3Margin.left - d3Margin.right,
+      height: 720 - d3Margin.top - d3Margin.bottom,
+      padding: 5,
+};
+
+
+function visualizePlaylist(playlistSongsAttributes) {
    
    // these are the data arrays used in the visualization
    var energy = playlistSongsAttributes.energy;
    var danceability = playlistSongsAttributes.danceability;
 
-   // vertical padding for song ojects
-    var padding = 5;
 
 
-    // height for song objects in relation to canvas height and number of objects in array
-    var songHeight = (height/dataArray.length - padding);
+   // height for song objects in relation to canvas height and number of objects in array
+   var songHeight = (d3Var.height/energy.length - d3Var.padding);
 
+// sets the y attribute in relation to the number of data elements entered and the height of the canvas 
+   var y = d3.scale.ordinal()
+        .domain(d3.range(energy.length))
+        .rangePoints ([0, (d3Var.height-songHeight)]);
+
+
+   // creates an automatic color spectrum
+   var z = d3.scale.linear()
+        .domain([10,0])
+        .range(["hsl(300, 100%, 46%)","hsl(74, 100%, 93%)" ])
+        .interpolate(d3.interpolateHcl); 
+
+   var canvas = d3.select('.canvas')
+           .attr("width", d3Var.width + d3Margin.left + d3Margin.right)
+           .attr("height", d3Var.height + d3Margin.top + d3Margin.bottom)
+           .append('g')
+           .attr("transform", "translate(" + d3Margin.left + "," + d3Margin.top + ")");
+
+
+   // creates songObjects as "g"s in "canvas" svg corresponding to the number of elements in data array, adds height and width and sets up a call back to slide function  
+   canvas.selectAll('rect')
+      .data(energy)
+      .enter().append('rect')
+         .attr('width', d3Var.width*0.8)
+         .attr('height', songHeight)
+         .attr('x', d3Var.width/2 - 25)
+         .attr('y', function(d, i){ return y(i)})
+         .attr('rx', '2')
+         .attr('ry', '2')
+         .style('stroke-width', '2')
+         .style('stroke', 'darkgrey')
+      .transition()
+         .duration(function(d) { return 1100 - (1000*d) })
+         .each(function() {slide(danceability, z)});
 
 }
+
+// creates the lateral movement of the object according to dataArray
+function slide (danceability, z) {
+   var rectangle = d3.selectAll('rect');
+   (function repeat() {
+     rectangle = rectangle.transition()
+         .attr('x', d3Var.width - d3Var.width*0.8 )
+         .ease('linear')
+      .transition()
+         .attr('x', 0)
+         .ease('linear')
+         .each('end', repeat);
+   }) ();
+
+// sets color according to danceArray
+d3.select('.canvas').selectAll('rect')
+   .data(danceability)
+   .style('fill', function(d) { return z(d * 10 ); });
+}
+
+
+
+
