@@ -129,7 +129,7 @@ function displaySongsOnShow () {
 
 
 // constructs an object of all the song attributes of a given playlist's songs
-function createPlaylistSongsAttributeArray(playlistCollectionObject){
+function createPlaylistSongsAttrArr(playlistCollectionObject){
    
    // gets array of song objects from playlistCollection
    var playlistCollection = playlistCollectionObject;
@@ -188,4 +188,20 @@ function createPlaylistSongsAttributeArray(playlistCollectionObject){
    };
 
    return playlistSongsAttributes;
+}
+
+function visualizePlaylist (playlistSongsAttributes) {
+   
+   // these are the data arrays used in the visualization
+   var energy = playlistSongsAttributes.energy;
+   var danceability = playlistSongsAttributes.danceability;
+
+   // vertical padding for song ojects
+    var padding = 5;
+
+
+    // height for song objects in relation to canvas height and number of objects in array
+    var songHeight = (height/dataArray.length - padding);
+
+
 }
