@@ -24,4 +24,7 @@ Rails.application.routes.draw do
   get '/users/:id/playlists/:playlist_id/thumbnails' => 'playlists#thumbnails'
 
   get '/users/:id/playlists/:playlist_id/songs' => 'playlists#songs'
+
+  # get '/playlists/:playlist_id' => 'playlists#update'
+
 end

@@ -76,8 +76,7 @@ class PlaylistsController < ApplicationController
   def update
     @playlist = Playlist.find(params[:id])
     @playlist.update(playlist_params)
-    respond_with @playlist
-    redirect_to user_playlist_path(current_user, playlist)
+    redirect_to user_playlist_path(current_user, @playlist)
   end
 
   def destroy

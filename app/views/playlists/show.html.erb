@@ -6,25 +6,26 @@
   <div class="edit-form" style="display: none">
 
     <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
-
+      <input type='hidden' name='_method' value='put'>
       <%= token_tag %>
       <input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'>
       <input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'>
-<!--       <button class="close">Done</button>-->
-      <input type="submit">
-
+      <p>
+        <button type="submit" class="go-away">save changes</button>
+        <button type="reset">reset</button>
+        <button type="cancel" class="go-away">cancel</button>
+      </p>
     </form>
 
   </div>
 </div>
-<!-- <a href="#" class="close">close</a> -->
 
 <script>
 $( ".open" ).click(function() {
   $( ".edit-form" ).show( "slow" );
 });
-$( ".close" ).click(function() {
-  // $( ".edit-form" ).hide( "slow" );
+$( ".go-away" ).click(function() {
+  $( ".edit-form" ).hide( "slow" );
 });
 </script>
 <!-- p class="text-to-edit">test<input type="submit" class="open-text-edit"></p> -->
