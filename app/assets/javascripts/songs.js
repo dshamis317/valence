@@ -3,8 +3,6 @@
 //= require turbolinks
 //= require jquery.ui.all
 
-
-
 // ***** MODEL *****
 
 function SongModel (dataObject) {

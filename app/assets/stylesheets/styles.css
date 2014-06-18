@@ -1,3 +1,21 @@
+.container {
+  margin: 0;
+  padding:50px;
+}
+
+.edit-form {
+  background-color: lightblue;
+  margin:20px;
+  padding: 20px;
+  width: 350px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
 h2 {
   padding: 0;
 }
@@ -8,18 +26,26 @@ span {
 }
 
 nav {
+  width: 100%;
+  z-index: 1000;
+  position: fixed;
   display:inline;
-  color: lightgray;
+  color: slategray;
+  background-color: lightgray;
+  height: 20px;
   margin: 0 auto;
+  padding: 10px;
 }
 
 nav a {
-  color: lightgray;
+  color: slategray;
   text-decoration: none;
+  padding: 10px;
+  margin-right: 20px;
 }
 
 nav a:hover {
-  color: gray;
+  color: darkgray;
   text-decoration: none;
 }
 
@@ -79,9 +105,10 @@ nav a:hover {
 }
 
 .footer {
- color: lightgray;
- text-align: center;
- margin: 0 auto;
+  color: lightgray;
+  text-align: center;
+  height:50px;
+  margin: 2000px auto 0px auto;
 }
 
 .modalDialog {
@@ -186,7 +213,8 @@ nav a:hover {
   padding: 0.4em;
   padding-left: 1.5em;
   font-size: 1.4em;
-  height: 18px; }
+  height: 18px;
+}
 
 .sortable li span {
   position: absolute;
@@ -194,5 +222,16 @@ nav a:hover {
 }
 
 ul {
-list-style-type: none;
+  list-style-type: none;
+}
+
+.spinner {
+  /*display: none;*/
+  position: fixed;
+  top: 50%;
+  left: 65%;
+  margin-left: -50px;
+  margin-top: -50px;
+  text-align:center;
+  z-index:1;
 }

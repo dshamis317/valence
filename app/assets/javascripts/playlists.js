@@ -5,8 +5,6 @@
 //= require songs
 
 
-
-
 // ***** MODEL *****
 
 function PlaylistModel (dataObject) {
@@ -15,7 +13,6 @@ function PlaylistModel (dataObject) {
    this.id = dataObject.id;
    this.songs = dataObject.songs;
 }
-
 
 // ***** VIEW *****
 
@@ -111,16 +108,22 @@ function displaySongsOnShow () {
   playlistView.render().el.appendTo($('.playlist-songs'));
 }
 
-// $(function() {
-//   $('.best_in_place').best_in_place();
-// });
 
-
-// $(function() {
-//   $( ".open-text-edit" ).show();
-// });
-
-$( "button" ).click(function() {
- $( "p" ).show( "slow" );
-});
+function updatePlaylistInfo(){
+   var userId = $('.edit-form').data('userID');
+   var playlistId = $('.edit-form').data('playlistId');
+   var newTitle = $(.field).val();
+   var newMood = $(.field).val();
+   // need to update class names in jquery selector
+   // change class of text field in form
+   // create data object for post to db
+   $.ajax({
+      url: '/users/'+$userId+'/playlists/'+$playlistId
+      method: 'put',
+      dataType: 'json',
+      success: function(data) {
+         console.log('something')
+      }
+   })
+}
 
