@@ -14,20 +14,24 @@
         <button type="submit" class="go-away">save changes</button>
         <button type="reset">reset</button>
         <button type="cancel" class="go-away">cancel</button>
+
       </p>
     </form>
 
+    <script>
+
+      $( ".open" ).click(function() {
+        $( ".edit-form" ).show( "slow" );
+      });
+
+      $( ".go-away" ).click(function() {
+        $( ".edit-form" ).hide( "slow" );
+      });
+
+    </script>
+
   </div>
 </div>
-
-<script>
-$( ".open" ).click(function() {
-  $( ".edit-form" ).show( "slow" );
-});
-$( ".go-away" ).click(function() {
-  $( ".edit-form" ).hide( "slow" );
-});
-</script>
 
 <div class="playlist">
   <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
@@ -35,27 +39,18 @@ $( ".go-away" ).click(function() {
   <h3>
   <h4>mood: <%= @playlist.mood %></h4>
 
-<div class="playlist">
-  <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>"><%= @playlist.title %><h3>
-    <h4>Mood: <%= @playlist.mood %></h4>
+  <div class="playlist-songs"></div>
 
-    <div class="playlist-songs"></div>
+  <div class="viz">DATA VIZ HERE</div>
 
-    <div class="viz">VISUALIZATION</div>
-
-    <script>
-
-    var playlistCollection = new PlaylistCollection();
-
-
-    function greg(){
-      playlistCollection.fetch(displaySongsOnShow);
-    }
-
-    $(document).on('page:change', function() {
-      greg();
-      $(document).unbind();
-    });
-
-    </script>
+<script>
+  var playlistCollection = new PlaylistCollection();
+  function greg(){
+    playlistCollection.fetch(displaySongsOnShow);
+  }
+  $(document).on('page:change', function() {
+   greg();
+  $(document).unbind();
+  });
+</script>
 
