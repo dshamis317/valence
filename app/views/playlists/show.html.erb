@@ -8,13 +8,12 @@
     <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
       <input type='hidden' name='_method' value='put'>
       <%= token_tag %>
-      <input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'>
-      <input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'>
+      <p>title<input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'></input></p>
+      <p>mood<input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'></input></p>
       <p>
         <button type="submit" class="go-away">save changes</button>
         <button type="reset">reset</button>
-        <button type="cancel" class="go-away">cancel</button>
-
+        <input type="button" value="cancel" class="go-away"></input>
       </p>
     </form>
 
