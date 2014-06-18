@@ -64,6 +64,8 @@ SongCollection.prototype.addToDB = function(playlistID, song) {
 
 SongCollection.prototype.search = function(query) {
    var that = this;
+   that.searchResults = [];
+   $('.search-results').html('');
    $.ajax({
       url: '/search',
       method: 'get',

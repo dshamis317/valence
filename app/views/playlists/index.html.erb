@@ -1,6 +1,12 @@
 <h2>Hi, <%= @user.email %>. Welcome to Valence</h2>
 
-<h4>You currently have <%= @user.playlists.count%> playlists. <a class="open" href="">Create Another?</a></h4>
+<h4>You currently have <%= @user.playlists.count%> playlists.
+  <% if @user.playlists.count.zero? %>
+  <a class="open" href="">Would you like to create one?</a>
+  <% else %>
+  <a class="open" href="">Create Another?</a>
+  <% end %>
+</h4>
 
 <div class="edit-form" style="display: none">
 
@@ -50,8 +56,9 @@ $( ".go-away" ).click(function() {
   <% end %>
 </ul>
 
+<img src="<%= asset_path 'drums.gif' %>" alt="" class="spinner">
+
 <div class="search-results">
-  <img src="<%= asset_path 'drums.gif' %>" alt="" class="spinner">
 </div>
 
 <!-- <ul class="sortable">
