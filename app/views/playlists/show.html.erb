@@ -1,3 +1,40 @@
+<h2>playlists#show</h2>
+<h1>Individual Playlist Page</h1>
+
+<div>
+  <button class="open">Edit Playlist Info</button>
+  <div class="edit-form" style="display: none">
+
+    <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
+      <input type='hidden' name='_method' value='put'>
+      <%= token_tag %>
+      <input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'>
+      <input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'>
+      <p>
+        <button type="submit" class="go-away">save changes</button>
+        <button type="reset">reset</button>
+        <button type="cancel" class="go-away">cancel</button>
+      </p>
+    </form>
+
+  </div>
+</div>
+
+<script>
+$( ".open" ).click(function() {
+  $( ".edit-form" ).show( "slow" );
+});
+$( ".go-away" ).click(function() {
+  $( ".edit-form" ).hide( "slow" );
+});
+</script>
+
+<div class="playlist">
+  <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
+    playlist: <%= @playlist.title %>
+  <h3>
+  <h4>mood: <%= @playlist.mood %></h4>
+
 <div class="playlist">
   <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>"><%= @playlist.title %><h3>
     <h4>Mood: <%= @playlist.mood %></h4>
@@ -5,7 +42,6 @@
     <div class="playlist-songs"></div>
 
     <div class="viz">VISUALIZATION</div>
-
 
     <script>
 
