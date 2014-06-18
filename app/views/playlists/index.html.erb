@@ -1,4 +1,4 @@
-<h2>Hi, <%= @user.email %>. Welcome to Valence</h2>
+<h2><div class="highlight">hi, <%= @user.email %></div></h2>
 
 <h4>You currently have <%= @user.playlists.count%> playlists.
   <% if @user.playlists.count.zero? %>
@@ -22,29 +22,20 @@
   </form>
 </div>
 
-<script>
-$( ".open" ).click(function(e) {
-  e.preventDefault();
-  $( ".edit-form" ).show( "slow" );
-});
-$( ".go-away" ).click(function() {
-  $( ".edit-form" ).hide( "slow" );
-});
-</script>
-
 <form action="/search" method="get" class="song-search">
   <label for="">Song Search: </label>
   <input type="text" name="name" placeholder="Song" class="song-text-field">
   <input type="submit" value="Search" class="song-search-submit"></input>
 </form>
 
-<ul>
+<ul id="sortable">
   <% @playlists.each do |playlist| %>
+  <div class="sort-me">
+  <i class="fa fa-arrows-v fa-2x"></i>
   <div class="playlist-index <%= playlist.id %>" data-user-id="<%= current_user.id %>" data-playlist-id="<%= playlist.id %>">
     <li>
       <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
       <p>Mood: <%= playlist.mood %></p>
-
       <div class="playlist-songs-index"></div>
       <form action="/users/<%= current_user.id %>/playlists/<%= playlist.id %>" method='post'>
         <%= token_tag %>
@@ -53,6 +44,7 @@ $( ".go-away" ).click(function() {
       </form>
     </li>
   </div>
+</div>
   <% end %>
 </ul>
 
@@ -61,51 +53,64 @@ $( ".go-away" ).click(function() {
 <div class="search-results">
 </div>
 
-
 <script>
 
-var songCollection = new SongCollection();
-
-function setDroppableHandlers() {
-  $('.playlist-index').droppable({
-    drop: function(e, dropped) {
-      var index = dropped.draggable.data('index');
-      shrinkArtwork(dropped.draggable);
-      var playlistID = parseInt(e.target.attributes[2].value)
-      addSongToDatabase(playlistID, index);
-    }
-  })
-}
-
-function shrinkArtwork(el) {
-  el.toggle('scale');
-}
-
-function addSongToDatabase(playlistID, index) {
-  var resultsArray = songCollection.searchResults;
-  songCollection.addToDB(playlistID, resultsArray[index]);
-}
-
-$(function() {
-  $('.song-search').submit(function(e) {
-    // $('.search-results').html('');
+  $( ".open" ).click(function(e) {
     e.preventDefault();
-    var query = $('.song-text-field').val();
-    songCollection.search(query);
-  })
-
-  $(document).ajaxStart(function() {
-    console.log('BOOM')
-    $('.spinner').show();
-  }).ajaxStop(function() {
-    console.log('STOP')
-    $('.spinner').hide();
-  }).ajaxError(function() {
-    $('.spinner').hide();
+    $( ".edit-form" ).show( "slow" );
+  });
+  $( ".go-away" ).click(function() {
+    $( ".edit-form" ).hide( "slow" );
+  });
+  $(function() {
+    $( "#sortable" ).sortable(function (e) {
+      e.stopImmediatePropagation();
+    });
+    $( "#sortable" ).disableSelection();
   });
 
-  setDroppableHandlers();
-})
+  var songCollection = new SongCollection();
+
+  function setDroppableHandlers() {
+    $('.playlist-index').droppable({
+      drop: function(e, dropped) {
+        var index = dropped.draggable.data('index');
+        shrinkArtwork(dropped.draggable);
+        var playlistID = parseInt(e.target.attributes[2].value)
+        addSongToDatabase(playlistID, index);
+      }
+    })
+  }
+
+  function shrinkArtwork(el) {
+    el.toggle('scale');
+  }
+
+  function addSongToDatabase(playlistID, index) {
+    var resultsArray = songCollection.searchResults;
+    songCollection.addToDB(playlistID, resultsArray[index]);
+  }
+
+  $(function() {
+    $('.song-search').submit(function(e) {
+      // $('.search-results').html('');
+      e.preventDefault();
+      var query = $('.song-text-field').val();
+      songCollection.search(query);
+    })
+
+    $(document).ajaxStart(function() {
+      console.log('BOOM')
+      $('.spinner').show();
+    }).ajaxStop(function() {
+      console.log('STOP')
+      $('.spinner').hide();
+    }).ajaxError(function() {
+      $('.spinner').hide();
+    });
+
+    setDroppableHandlers();
+  })
 
 </script>
 
