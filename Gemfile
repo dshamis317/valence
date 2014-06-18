@@ -43,12 +43,14 @@ gem 'sorcery'
 gem 'rails_12factor', group: :production
 gem 'httparty'
 gem 'jquery-ui-rails'
+
 gem 'best_in_place'
-
-
 
 group :development, :test do 
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails', '~> 2.14.2'
 end
+
+gem 'font-awesome-rails'
+

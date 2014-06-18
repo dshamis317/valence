@@ -49,8 +49,7 @@ PlaylistView.prototype.render = function() {
       .addClass('preview-song')
       .attr('src', this.model.songs[i].preview_url);
       var deleteButton = $('<button>')
-      .addClass('delete-button')
-      .html("Delete");
+      .addClass('fa fa-trash-o')
 
       $(deleteButton).on('click', function(e) {
          var that = this;
@@ -106,3 +105,17 @@ function displaySongsOnShow () {
 
  playlistView.render().el.appendTo($('.playlist-songs'));
 }
+
+// $(function() {
+//   $('.best_in_place').best_in_place();
+// });
+
+
+// $(function() {
+//   $( ".open-text-edit" ).show();
+// });
+
+$( "button" ).click(function() {
+  $( "p" ).show( "slow" );
+});
+

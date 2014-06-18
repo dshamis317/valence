@@ -1,52 +1,61 @@
 <h2>playlists#show</h2>
-<h1>All Your Playlists</h1>
+<h1>Individual Playlist Page</h1>
 
-<div class="playlist">
-  <h4>mood: <%= @playlist.mood %></h4>
-  <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>"><%= @playlist.title %><h3>
+<div>
+  <button class="open">Edit Playlist Info</button>
+  <div class="edit-form" style="display: none">
 
-  <div class="playlist-songs"></div>
+    <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
+      <input type='hidden' name='_method' value='put'>
+      <%= token_tag %>
+      <input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'>
+      <input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'>
+      <p>
+        <button type="submit" class="go-away">save changes</button>
+        <button type="reset">reset</button>
+        <button type="cancel" class="go-away">cancel</button>
+      </p>
+    </form>
 
-   <!--  <ul>
-      <% @songs.each do |song| %>
-      <li>
-        <%= song.title %>
-        <form action="/songs/<%= song.id %>" method='post'>
-          <%= token_tag %>
-          <input type="hidden" name='_method' value='delete'>
-          <button type='submit'>delete song</button>
-        </li>
-        <% end %>
-      </ul> -->
-
-      <div>
-        <a href="/users/<%= current_user.id %>/playlists">
-          see your playlists
-        </a>
-      </div>
-
-      <div>
-        <a href="/users/<%= current_user.id %>/playlists/new">
-          make a new playlist
-        </a>
-      </div>
-
-      <div class="viz">VISUALIZATION</div>
-
+  </div>
+</div>
 
 <script>
-
-  var playlistCollection = new PlaylistCollection();
-
-
-  function greg(){
-    playlistCollection.fetch(displaySongsOnShow);
-  }
-
-  $(document).on('page:change', function() {
-    greg();
-    $(document).unbind();
-  });
-
+$( ".open" ).click(function() {
+  $( ".edit-form" ).show( "slow" );
+});
+$( ".go-away" ).click(function() {
+  $( ".edit-form" ).hide( "slow" );
+});
 </script>
+
+<div class="playlist">
+  <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
+    playlist: <%= @playlist.title %>
+  <h3>
+  <h4>mood: <%= @playlist.mood %></h4>
+
+<div class="playlist">
+  <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>"><%= @playlist.title %><h3>
+    <h4>Mood: <%= @playlist.mood %></h4>
+
+    <div class="playlist-songs"></div>
+
+    <div class="viz">VISUALIZATION</div>
+
+    <script>
+
+    var playlistCollection = new PlaylistCollection();
+
+
+    function greg(){
+      playlistCollection.fetch(displaySongsOnShow);
+    }
+
+    $(document).on('page:change', function() {
+      greg();
+      $(document).unbind();
+    });
+
+    </script>
 

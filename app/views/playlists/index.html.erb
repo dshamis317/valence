@@ -1,34 +1,34 @@
-<h2>playlists#index</h2>
-<p>this will ultimately be the primary page where users interact with playlists and songs</p>
+<h2>Hi, <%= @user.email %>. Welcome to Valence</h2>
 
-<h2>Hi, <%= @user.email %></h2>
+<h4>You currently have <%= @user.playlists.count%> playlists. <%= link_to 'Create another?', new_user_playlist_path(@user) %></h4>
 
-<h4>Number of Playlists: <%= @user.playlists.count%></h4>
-<%= link_to 'Create a new Playlist', new_user_playlist_path(@user) %>
+<form action="/search" method="get" class="song-search">
+  <label for="">Song Search: </label>
+  <input type="text" name="name" placeholder="Song" class="song-text-field">
+  <input type="submit" value="Search" class="song-search-submit"></input>
+</form>
+
 <ul>
   <% @playlists.each do |playlist| %>
   <div class="playlist-index <%= playlist.id %>" data-user-id="<%= current_user.id %>" data-playlist-id="<%= playlist.id %>">
   <li>
     <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
-    <p>mood: <%= playlist.mood %></p>
+    <p>Mood: <%= playlist.mood %></p>
 
     <div class="playlist-songs-index"></div>
     <form action="/users/<%= current_user.id %>/playlists/<%= playlist.id %>" method='post'>
       <%= token_tag %>
       <input type="hidden" name='_method' value='delete'>
-      <button type='submit'>delete playlist</button>
+      <button type='submit'><i class="fa fa-trash-o fa-2x"></i></button>
     </form>
   </li>
   </div>
   <% end %>
 </ul>
 
-<form action="/search" method="get" class="song-search">
-  <input type="text" name="name" placeholder="Song" class="song-text-field">
-  <input type="submit" value="Search" class="song-search-submit"></input>
-</form>
-
-<div class="search-results"></div>
+<div class="search-results">
+  <img src="<%= asset_path 'drums.gif' %>" alt="" id="loading-image">
+</div>
 
 
 <!-- <ul class="sortable">
@@ -63,12 +63,6 @@
     songCollection.addToDB(playlistID, resultsArray[index]);
   }
 
-  function renderMiniArtworkWithinPlaylist() {
-    var songModel = new SongModel();
-    var songView = new SongView(songModel);
-    songView.render().el.hide().appendTo($('.playlist-songs-index')).fadeIn(1000)
-  }
-
 
   $(document).on('ready page:change', function() {
 
@@ -80,8 +74,6 @@
   })
 
   setDroppableHandlers();
-  // songCollection.fetchToPlaylistIndex();
-  // renderMiniArtworkWithinPlaylist();
   })
 
 </script>

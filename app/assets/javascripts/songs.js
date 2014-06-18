@@ -47,27 +47,6 @@ function SongCollection () {
    this.searchResults = [];
 }
 
-SongCollection.prototype.fetchToPlaylistIndex = function() {
-   var that = this;
-   var $userId = $('.playlist-index').data('userId');
-   var $playlistIDArray = $('.playlist-index')
-   $.each($playlistIDArray, function(i, element) {
-      var $playlistId = $(element).data('playlistId');
-      $.ajax({
-         url: '/users/'+$userId+'/playlists/'+$playlistId+'/thumbnails',
-         method: 'get',
-         dataType: 'json',
-         success: function(data) {
-            $.each(data, function(i, dataObject) {
-            var song = new SongModel(dataObject);
-            that.songs[song.id] = song;
-            });
-         $(that).trigger('change');
-         }  
-      })
-   })
-}
-
 
 SongCollection.prototype.addToDB = function(playlistID, song) {
  var that = this;
