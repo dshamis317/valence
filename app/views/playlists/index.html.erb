@@ -51,9 +51,7 @@ $( ".go-away" ).click(function() {
 </ul>
 
 <div class="search-results">
-  <div class="spinner">
-    <img src="<%= asset_path 'drums.gif' %>" alt="" id="loading-image">
-  </div>
+  <img src="<%= asset_path 'drums.gif' %>" alt="" class="spinner">
 </div>
 
 
@@ -89,28 +87,28 @@ function addSongToDatabase(playlistID, index) {
   songCollection.addToDB(playlistID, resultsArray[index]);
 }
 
-$(document).on('ready page:change', function() {
- $("#spinner").bind("ajaxSend", function() {
-  $(this).show();
-}).bind("ajaxStop", function() {
-  $(this).hide();
-}).bind("ajaxError", function() {
-  $(this).hide();
-});
+$(function() {
+  $('.song-search').submit(function(e) {
+    // $('.search-results').html('');
+    e.preventDefault();
+    var query = $('.song-text-field').val();
+    songCollection.search(query);
+  })
 
+  $(document).ajaxStart(function() {
+    console.log('BOOM')
+    $('.spinner').show();
+  }).ajaxStop(function() {
+    console.log('STOP')
+    $('.spinner').hide();
+  }).ajaxError(function() {
+    $('.spinner').hide();
+  });
 
-$('.song-search').submit(function(e) {
-  $('.search-results').html('');
-  e.preventDefault();
-  var query = $('.song-text-field').val();
-  songCollection.search(query);
-})
-
-setDroppableHandlers();
+  setDroppableHandlers();
 })
 
 </script>
-
 
 
 
