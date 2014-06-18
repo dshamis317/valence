@@ -1,9 +1,15 @@
 <h2><div class="highlight">Your Playlists</div></h2>
+<h3 class="heading">Visualizer</h3>
+<ul class="menu">
+   <li class='blank'><strong>Select A Visualizer From Below</strong></li>
+   <li class='colored-bars'>Colored Bars</li>
+   <li class='pulsing-circles'>Pulsing Circles</li>
+   <li class='playlist-map'>Playlist Map</li>
+   <li class='radicalness'>Radicalness</li>
+</ul>
 
 <div class="svg-container">
-
    <svg class="canvas"></svg>
-
 </div>
 
 <ul id="sortable">
@@ -17,9 +23,8 @@
 
 <div class='update-playlist-container'>
 
- <button class="open">Edit Playlist Info</button>
+   <button class="open">Edit Playlist Info</button>
    <div class="edit-form" style="display: none">
-
       <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
          <input type='hidden' name='_method' value='put'>
          <%= token_tag %>
@@ -29,20 +34,18 @@
            <button type="submit" class="go-away">save changes</button>
            <button type="reset">reset</button>
            <input type="button" value="cancel" class="go-away"></input>
-        </p>
+         </p>
       </form>
+   </div>
+</div>
 
-<script>
-
-$( ".open" ).click(function() {
-   $( ".edit-form" ).show( "slow" );
-});
-
-$( ".go-away" ).click(function() {
-   $( ".edit-form" ).hide( "slow" );
-});
-
-</script>
+<div class="playlist">
+   <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
+      <%= @playlist.title %>
+   <h3>
+   <h4>mood: <%= @playlist.mood %></h4>
+   <div class="playlist-songs"></div>
+</div>
 
 <div class="playlist">
   <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
@@ -51,19 +54,40 @@ $( ".go-away" ).click(function() {
   <h4>mood: <%= @playlist.mood %></h4>
   <div class="playlist-songs"></div>
 
-<script>
+  <script>
+
+  $(".open").click(function() {
+    $(".edit-form").show("slow");
+  });
+
+  $(".go-away").click(function() {
+    $(".edit-form").hide("slow");
+  });
+
   $(function() {
     $( "#sortable" ).sortable(function (e) {
     });
     $( "#sortable" ).disableSelection();
   });
+
+  $(function() {
+    $('.colored-bars').on("click", function(){
+      visualizePlaylist(playlistSongsAttributes, coloredBars);
+    });
+    console.log('loaded')
+  });
+
   var playlistCollection = new PlaylistCollection();
-  function greg(){
+
+  function getPlaylistSongs(){
     playlistCollection.fetch(displaySongsOnShow);
   }
-  $(document).on('page:change', function() {
-    greg();
-  $(document).unbind();
-  });
-</script>
 
+  $(document).on('page:change', function() {
+    getPlaylistSongs();
+    $(document).unbind();
+  });
+
+
+
+  </script>

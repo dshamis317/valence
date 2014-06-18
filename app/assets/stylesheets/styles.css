@@ -319,3 +319,33 @@ ul {
   text-align:center;
   z-index:1;
 }
+
+.menu {
+  width: 150px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.menu li {
+  font-family: 'Helvetica';
+}
+
+.menu li:hover {
+  background-color: lightgrey;
+  color: white;
+}
+.menu li:active {
+  background-color: steelblue; 
+  color: white;
+}
+
+.heading {
+  font-size: 18px;
+  font-family: sans-serif;
+  font-style: bold;
+  margin-bottom: 0px;
+}
+
+svg{
+  z-index: -2;
+}
