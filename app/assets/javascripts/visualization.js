@@ -12,7 +12,7 @@ var svgWindow     = {
                   };
 
  
-function getCanvas(){
+function makeCanvas(){
   var canvas = d3.select('.canvas') 
       .attr("width", svgWindow.width + svgMargin.left + svgMargin.right)
       .attr("height", svgWindow.height + svgMargin.top + svgMargin.bottom)
@@ -21,7 +21,11 @@ function getCanvas(){
 
   return canvas;
 }
-  
+
+function getCanvas(){
+  var canvas = d3.select('.canvas');  
+  return canvas;
+}
 
 
 // constructs an object of all the song attributes of a given playlist's songs
@@ -86,14 +90,11 @@ function songsAttrArr(playlistCollectionObject){
 } // end of songsAttrArr
 
 
+  
+function coloredBars(playlistSongsAttributes){
 
-function visualizePlaylist(playlistSongsAttributes) {
-
-  // these are the data arrays used in the visualization
   var energy = playlistSongsAttributes.energy;
   var danceability = playlistSongsAttributes.danceability;
-
-
 
   // height for song objects in relation to canvas height and number of objects in array
   var songHeight = (svgWindow.height/energy.length - svgWindow.padding);
@@ -103,10 +104,9 @@ function visualizePlaylist(playlistSongsAttributes) {
       .domain(d3.range(energy.length))
       .rangePoints ([0, (svgWindow.height-songHeight)]);
 
-debugger;
 
-     // creates songObjects as "g"s in "canvas" svg corresponding to the number of elements in data array, adds height and width and sets up a call back to slide function
-  getCanvas().selectAll('rect')
+  // creates songObjects as "g"s in "canvas" svg corresponding to the number of elements in data array, adds height and width and sets up a call back to slide function
+  makeCanvas().selectAll('rect')
     .data(energy)
     .enter().append('rect')
       .attr('width', svgWindow.width*0.8)
@@ -121,7 +121,7 @@ debugger;
       .duration(function(d) { return 1100 - (1000*d) })
       .each(function() {slide(danceability)});
 
-} // end of visualizePlaylist
+} // end of coloredBars
 
 
 function slide(danceability){
@@ -135,6 +135,7 @@ function slide(danceability){
       .range(["hsl(300, 100%, 46%)","hsl(74, 100%, 93%)" ])
       .interpolate(d3.interpolateHcl);
 
+
   // creates the lateral movement of the object according to energy array
   (function repeat() {
     rectangle = rectangle.transition()
@@ -147,13 +148,19 @@ function slide(danceability){
   }) ();
 
 
+
 // sets color according to danceability array
-d3.select('.canvas').selectAll('rect')
+getCanvas().selectAll('rect')
   .data(danceability)
-  .style('fill', function(d) { return z(d * 10 ); });
+  .style('fill', function(d) { return z(d * 10); });
+
 
 } // end of slide
 
 
 
+function visualizePlaylist(playlistSongsAttributes, callback) {
 
+  callback(playlistSongsAttributes);
+
+} // end of visualizePlaylist

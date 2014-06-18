@@ -95,8 +95,6 @@ PlaylistCollection.prototype.fetch = function(callback) {
          var playlist = new PlaylistModel(data);
          that.playlists.push(playlist);
          callback();
-         visualizePlaylist(playlistSongsAttributes);
-
       }
    })
 }
