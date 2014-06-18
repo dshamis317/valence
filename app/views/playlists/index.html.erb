@@ -26,7 +26,9 @@
   <% end %>
 </ul>
 
-<div class="search-results"></div>
+<div class="search-results">
+  <img src="<%= asset_path 'drums.gif' %>" alt="" id="loading-image">
+</div>
 
 
 <!-- <ul class="sortable">
@@ -61,12 +63,6 @@
     songCollection.addToDB(playlistID, resultsArray[index]);
   }
 
-  function renderMiniArtworkWithinPlaylist() {
-    var songModel = new SongModel();
-    var songView = new SongView(songModel);
-    songView.render().el.hide().appendTo($('.playlist-songs-index')).fadeIn(1000)
-  }
-
 
   $(document).on('ready page:change', function() {
 
@@ -78,8 +74,6 @@
   })
 
   setDroppableHandlers();
-  // songCollection.fetchToPlaylistIndex();
-  // renderMiniArtworkWithinPlaylist();
   })
 
 </script>
