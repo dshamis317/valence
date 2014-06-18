@@ -2,13 +2,13 @@
   <h1>WELCOME TO VALENCE</h1>
   <h2><div class="highlight"> A new way to see your music </div></h2>
 
+  <br><br>
   <% if current_user%>
     <h3>
       You're already signed in.
       <%= link_to 'View Your Playlists', user_playlists_path(current_user) %>
     </h3>
   <% else %>
-    <br><br>
     <h4><a href="#openSignupModal">Sign up today to see your favorite songs brought to life.</a><h4>
   <% end %>
 </div>

@@ -3,9 +3,18 @@
 <div class="svg-container">
 
    <svg class="canvas"></svg>
-   
+
 </div>
-   
+
+<ul id="sortable">
+  <div class="sort-me">
+    <i class="fa fa-arrows-v fa-2x"></i>
+  </div>
+  <div class="sort-me">
+    <i class="fa fa-arrows-v fa-2x"></i>
+  </div>
+<ul>
+
 <div class='update-playlist-container'>
 
  <button class="open">Edit Playlist Info</button>
@@ -35,27 +44,26 @@ $( ".go-away" ).click(function() {
 
 </script>
 
-   </div>
-</div>
-
 <div class="playlist">
- <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
-  <%= @playlist.title %>
+  <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
+    <%= @playlist.title %>
   <h3>
-   <h4>mood: <%= @playlist.mood %></h4>
+  <h4>mood: <%= @playlist.mood %></h4>
+  <div class="playlist-songs"></div>
 
-   <div class="playlist-songs"></div>
-
-
-
-   <script>
-   var playlistCollection = new PlaylistCollection();
-   function greg(){
+<script>
+  $(function() {
+    $( "#sortable" ).sortable(function (e) {
+    });
+    $( "#sortable" ).disableSelection();
+  });
+  var playlistCollection = new PlaylistCollection();
+  function greg(){
     playlistCollection.fetch(displaySongsOnShow);
- }
- $(document).on('page:change', function() {
-  greg();
+  }
+  $(document).on('page:change', function() {
+    greg();
   $(document).unbind();
-});
- </script>
+  });
+</script>
 
