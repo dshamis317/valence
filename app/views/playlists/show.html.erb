@@ -4,11 +4,11 @@
 
 <h3 class="heading">Visualizer</h3>
 <ul class="menu">
-   <li class='menu-items blank'><strong>Select A Visualizer From Below</strong></li>
-   <li class='menu-items colored-bars'>Colored Bars</li>
-   <li class='menu-items pulsing-circles'>Pulsing Circles</li>
-   <li class='menu-items playlist-map'>Playlist Map</li>
-   <li class='menu-items radicalness'>Radicalness</li>
+   <li class='blank'><strong>Select A Visualizer From Below</strong></li>
+   <li class='colored-bars'>Colored Bars</li>
+   <li class='pulsing-circles'>Pulsing Circles</li>
+   <li class='playlist-map'>Playlist Map</li>
+   <li class='radicalness'>Radicalness</li>
 </ul>
 
 
@@ -56,8 +56,16 @@
 
 
    $(function() {
-      $(".menu").menu();
+     
+      $('.heading').click(function(){
+         console.log('boom');
+      });
+
+      console.log('loaded')
+ 
+
    });
+
 
 
    var playlistCollection = new PlaylistCollection();
@@ -68,11 +76,12 @@
 
    $(document).on('page:change', function() {
       getPlaylistSongs();
-      $(document).unbind();
+      $(document).unbind(); 
+
    });
 
 
-   
+
 
  </script>
 

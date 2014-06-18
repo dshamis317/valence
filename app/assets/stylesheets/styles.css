@@ -236,8 +236,16 @@ ul {
 
 .menu {
   width: 150px;
-  font-size: 12px;
+  font-size: 16px;
   margin-bottom: 20px;
+}
+
+.menu li {
+  font-family: 'Helvetica';
+}
+
+.menu li:active {
+  background-color: steelblue; 
 }
 
 .heading {
@@ -247,11 +255,3 @@ ul {
   margin-bottom: 0px;
 }
 
-.menu-items:hover {
-  background-color: lightgrey;
-}
-
-.menu-items:active {
-  background-color: steelblue;
-  color: white;
-}
