@@ -341,6 +341,11 @@ ul {
   color: white;
 }
 
+.down {
+  background-color: steelblue;
+  color: white;
+}
+
 .heading {
   font-size: 18px;
   font-family: sans-serif;

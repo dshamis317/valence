@@ -129,7 +129,7 @@ function slide(danceability){
   var rectangle = d3.selectAll('rect');
 
 
-  // creates an automatic color spectrum
+  // creates color spectrum
   var z = d3.scale.linear()
       .domain([10,0])
       .range(["hsl(300, 100%, 46%)","hsl(74, 100%, 93%)" ])
@@ -148,19 +148,20 @@ function slide(danceability){
   }) ();
 
 
-
 // sets color according to danceability array
 getCanvas().selectAll('rect')
   .data(danceability)
   .style('fill', function(d) { return z(d * 10); });
 
-
 } // end of slide
 
 
 
-function visualizePlaylist(playlistSongsAttributes, callback) {
 
+
+function visualizePlaylist(playlistSongsAttributes, callback) {
+  
+  $('g').remove();
   callback(playlistSongsAttributes);
 
 } // end of visualizePlaylist
