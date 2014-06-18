@@ -1,6 +1,30 @@
 <h2>Hi, <%= @user.email %>. Welcome to Valence</h2>
 
-<h4>You currently have <%= @user.playlists.count%> playlists. <%= link_to 'Create another?', new_user_playlist_path(@user) %></h4>
+<h4>You currently have <%= @user.playlists.count%> playlists. <a class="open" href="">Create Another?</a></h4>
+
+<div class="edit-form" style="display: none">
+
+  <form action="/users/<%= current_user.id %>/playlists/" method='post'>
+    <%= token_tag %>
+    <input class='field' type="text" name='playlist[title]'>
+    <input class='field' type="text" name='playlist[mood]'>
+    <p>
+      <button type="submit" class="go-away">Create Playlist</button>
+      <button type="reset">Reset</button>
+      <button type="cancel" class="go-away">Cancel</button>
+    </p>
+  </form>
+</div>
+
+<script>
+$( ".open" ).click(function(e) {
+  e.preventDefault();
+  $( ".edit-form" ).show( "slow" );
+});
+$( ".go-away" ).click(function() {
+  $( ".edit-form" ).hide( "slow" );
+});
+</script>
 
 <form action="/search" method="get" class="song-search">
   <label for="">Song Search: </label>
@@ -11,23 +35,25 @@
 <ul>
   <% @playlists.each do |playlist| %>
   <div class="playlist-index <%= playlist.id %>" data-user-id="<%= current_user.id %>" data-playlist-id="<%= playlist.id %>">
-  <li>
-    <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
-    <p>Mood: <%= playlist.mood %></p>
+    <li>
+      <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
+      <p>Mood: <%= playlist.mood %></p>
 
-    <div class="playlist-songs-index"></div>
-    <form action="/users/<%= current_user.id %>/playlists/<%= playlist.id %>" method='post'>
-      <%= token_tag %>
-      <input type="hidden" name='_method' value='delete'>
-      <button type='submit'><i class="fa fa-trash-o fa-2x"></i></button>
-    </form>
-  </li>
+      <div class="playlist-songs-index"></div>
+      <form action="/users/<%= current_user.id %>/playlists/<%= playlist.id %>" method='post'>
+        <%= token_tag %>
+        <input type="hidden" name='_method' value='delete'>
+        <button type='submit'><i class="fa fa-trash-o fa-2x"></i></button>
+      </form>
+    </li>
   </div>
   <% end %>
 </ul>
 
 <div class="search-results">
-  <img src="<%= asset_path 'drums.gif' %>" alt="" id="loading-image">
+  <div class="spinner">
+    <img src="<%= asset_path 'drums.gif' %>" alt="" id="loading-image">
+  </div>
 </div>
 
 <!-- <ul class="sortable">
@@ -38,41 +64,48 @@
 
 <script>
 
-  var songCollection = new SongCollection();
+var songCollection = new SongCollection();
 
 
-  function setDroppableHandlers() {
-    $('.playlist-index').droppable({
-      drop: function(e, dropped) {
-        var index = dropped.draggable.data('index');
-        shrinkArtwork(dropped.draggable);
-        var playlistID = parseInt(e.target.attributes[2].value)
-        addSongToDatabase(playlistID, index);
-      }
-    })
-  }
-
-  function shrinkArtwork(el) {
-    el.toggle('scale');
-  }
-
-  function addSongToDatabase(playlistID, index) {
-    var resultsArray = songCollection.searchResults;
-    songCollection.addToDB(playlistID, resultsArray[index]);
-  }
-
-
-  $(document).on('ready page:change', function() {
-
-  $('.song-search').submit(function(e) {
-    $('.search-results').html('');
-    e.preventDefault();
-    var query = $('.song-text-field').val();
-    songCollection.search(query);
+function setDroppableHandlers() {
+  $('.playlist-index').droppable({
+    drop: function(e, dropped) {
+      var index = dropped.draggable.data('index');
+      shrinkArtwork(dropped.draggable);
+      var playlistID = parseInt(e.target.attributes[2].value)
+      addSongToDatabase(playlistID, index);
+    }
   })
+}
 
-  setDroppableHandlers();
-  })
+function shrinkArtwork(el) {
+  el.toggle('scale');
+}
+
+function addSongToDatabase(playlistID, index) {
+  var resultsArray = songCollection.searchResults;
+  songCollection.addToDB(playlistID, resultsArray[index]);
+}
+
+$(document).on('ready page:change', function() {
+ $("#spinner").bind("ajaxSend", function() {
+  $(this).show();
+}).bind("ajaxStop", function() {
+  $(this).hide();
+}).bind("ajaxError", function() {
+  $(this).hide();
+});
+
+
+$('.song-search').submit(function(e) {
+  $('.search-results').html('');
+  e.preventDefault();
+  var query = $('.song-text-field').val();
+  songCollection.search(query);
+})
+
+setDroppableHandlers();
+})
 
 </script>
 

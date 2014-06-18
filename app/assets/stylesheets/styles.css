@@ -213,7 +213,8 @@ nav a:hover {
   padding: 0.4em;
   padding-left: 1.5em;
   font-size: 1.4em;
-  height: 18px; }
+  height: 18px;
+}
 
 .sortable li span {
   position: absolute;
@@ -221,5 +222,16 @@ nav a:hover {
 }
 
 ul {
-list-style-type: none;
+  list-style-type: none;
+}
+
+.spinner {
+  /*display: none;*/
+  position: fixed;
+  top: 50%;
+  left: 65%;
+  margin-left: -50px;
+  margin-top: -50px;
+  text-align:center;
+  z-index:1;
 }
