@@ -1,9 +1,9 @@
-body, label, input, form {
+body {
   display: inline;
   font-family: 'Titillium Web', sans-serif;
   font-weight: 300;
   font-size: 16px;
-  margin-right: 0;
+  margin: 0;
 }
 
 .welcome {
@@ -151,18 +151,30 @@ ul {
 
 .edit-form {
   background-color: lightblue;
-  margin:20px;
-  padding: 20px;
+  margin:10px;
+  padding: 10px;
   width: 350px;
 }
 
 .button {
+  background-color: lightgray;
+  background: transparent none;
+  box-shadow: none;
+  border:none;
   padding: 20px;
+}
+
+input {
+  text-align:center;
+  margin: 0 auto;
+  border: none;
+  padding:10px;
+  margin: 10px auto 40px auto;
 }
 
 .text_field {
   width: 300px;
-  height: 30px;
+  height: 20px;
   font-size: 16px;
   text-align: center;
   margin:10px auto;
@@ -172,7 +184,15 @@ ul {
 .form_center {
   margin:0;
   padding:0;
+  display: block;
   text-align: center;
+}
+
+#user_email, #user_email_confirmation, #user_password, #user_password_confirmation {
+  display: block;
+  width: 300px;
+  height: 15px;
+  margin: 10px auto 10px auto;
 }
 
 .footer {
@@ -254,15 +274,32 @@ ul {
 
 .song-object {
   display: inline-block;
+  background-color: lightgray;
+  width: 400px;
+  height: 100px;
+  margin: 5px;
+}
+
+.fa-trash-o {
+  font-size: 1.25em;
+  color: gray;
+  padding: 5px;
+  margin: 5px;
 }
 
 .fa-arrows-v {
   color: white;
   background-color: gray;
-  height: 20px;
-  width:20px;
-  padding:20px;
+  height: 65px;
+  width: 20px;
+  display: inline;
+  padding: 35px 0 0 5px;
   float: left;
+}
+
+.song-show-image {
+  width: 100px;
+  height: 100px;
 }
 
 .playlist-index {
@@ -282,31 +319,24 @@ ul {
 
 .sort-me {
   background-color: lightgray;
-  width: 200px;
+  width: 400px;
   height: 100px;
   margin: 5px;
-  padding: 5px;
 }
 
 .sortable {
   list-style-type: none;
-  margin: 5px;
-  padding: 5px;
-  width: 300px;
-  height: 200px;
+  margin: auto;
+  width: 500px;
+  height: 100px;
 }
 
 .sortable li {
-  margin: 0 3px 3px 3px;
-  padding: 0.4em;
-  padding-left: 1.5em;
-  font-size: 1.4em;
-  height: 18px;
+  height: 50px;
 }
 
 .sortable li span {
   position: absolute;
-  margin-left: -1.3em;
 }
 
 .spinner {
@@ -335,7 +365,7 @@ ul {
   color: white;
 }
 .menu li:active {
-  background-color: steelblue; 
+  background-color: steelblue;
   color: white;
 }
 

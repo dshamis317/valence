@@ -31,9 +31,9 @@ function SongView (model) {
 };
 
 SongView.prototype.render = function() {
-   var $div = $('<div>').addClass('playlist-song-display')
    var $img = $('<img>').addClass('playlist-index-artwork').attr('src', this.model.image_url)
    $div.append($img)
+   var $div = $('<div>').addClass('playlist-song-display')
    this.el = $div;
    return this;
 };

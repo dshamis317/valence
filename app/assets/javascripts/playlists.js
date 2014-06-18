@@ -35,11 +35,6 @@ PlaylistView.prototype.attachHoverEvent = function attachHoverEvent(img, song) {
 PlaylistView.prototype.render = function() {
    var playlist = $('.playlist-songs');
    for (var i in this.model.songs){
-      var songDiv = $('<div>').
-      addClass('playlist-song').
-      html(this.model.songs[i].title+", "+this.model.songs[i].artist).
-      data('songId', this.model.songs[i].id).
-      data('playlistId', $('.playlist-title').data('playlistId'));
 
       var imgDiv = $('<img>')
       .addClass('song-show-image')
@@ -50,6 +45,12 @@ PlaylistView.prototype.render = function() {
       .attr('src', this.model.songs[i].preview_url);
       var deleteButton = $('<button>')
       .addClass('fa fa-trash-o')
+
+      var songDiv = $('<div>').
+      addClass('playlist-song').
+      html(this.model.songs[i].title+", "+this.model.songs[i].artist).
+      data('songId', this.model.songs[i].id).
+      data('playlistId', $('.playlist-title').data('playlistId'));
 
       $(deleteButton).on('click', function(e) {
          var that = this;
@@ -108,7 +109,7 @@ function displaySongsOnShow () {
   var model = playlistCollection.playlists[0];
   var playlistView = new PlaylistView(model);
   songsAttrArr(model);
-  playlistView.render().el.appendTo($('.playlist-songs'));
+  playlistView.render().el.appendTo($('.playlist-songs')).addClass('.sort-me');
 }
 
 
