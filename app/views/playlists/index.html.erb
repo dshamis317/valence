@@ -1,5 +1,4 @@
-<h2>Hi, <%= @user.email %>. Welcome to Valence</h2>
-
+<h2><div class="highlight">hi, <%= @user.email %></div></h2>
 <h4>You currently have <%= @user.playlists.count%> playlists. <a class="open" href="">Create Another?</a></h4>
 
 <div class="edit-form" style="display: none">
@@ -16,29 +15,20 @@
   </form>
 </div>
 
-<script>
-$( ".open" ).click(function(e) {
-  e.preventDefault();
-  $( ".edit-form" ).show( "slow" );
-});
-$( ".go-away" ).click(function() {
-  $( ".edit-form" ).hide( "slow" );
-});
-</script>
-
 <form action="/search" method="get" class="song-search">
   <label for="">Song Search: </label>
   <input type="text" name="name" placeholder="Song" class="song-text-field">
   <input type="submit" value="Search" class="song-search-submit"></input>
 </form>
 
-<ul>
+<ul id="sortable">
   <% @playlists.each do |playlist| %>
+  <div class="sort-me">
+  <i class="fa fa-arrows-v fa-2x"></i>
   <div class="playlist-index <%= playlist.id %>" data-user-id="<%= current_user.id %>" data-playlist-id="<%= playlist.id %>">
     <li>
       <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
       <p>Mood: <%= playlist.mood %></p>
-
       <div class="playlist-songs-index"></div>
       <form action="/users/<%= current_user.id %>/playlists/<%= playlist.id %>" method='post'>
         <%= token_tag %>
@@ -47,6 +37,7 @@ $( ".go-away" ).click(function() {
       </form>
     </li>
   </div>
+</div>
   <% end %>
 </ul>
 
@@ -56,16 +47,23 @@ $( ".go-away" ).click(function() {
   </div>
 </div>
 
-<!-- <ul class="sortable">
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 1</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 2</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 3</li>
-</ul> -->
-
 <script>
 
-var songCollection = new SongCollection();
+  $( ".open" ).click(function(e) {
+    e.preventDefault();
+    $( ".edit-form" ).show( "slow" );
+  });
+  $( ".go-away" ).click(function() {
+    $( ".edit-form" ).hide( "slow" );
+  });
+  $(function() {
+    $( "#sortable" ).sortable(function (e) {
+      e.stopImmediatePropagation();
+    });
+    $( "#sortable" ).disableSelection();
+  });
 
+var songCollection = new SongCollection();
 
 function setDroppableHandlers() {
   $('.playlist-index').droppable({
