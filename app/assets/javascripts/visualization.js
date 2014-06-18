@@ -159,6 +159,7 @@ function slide(danceability){
 function pulsingCircles(playlistSongsAttributes){
   
   var tempo = playlistSongsAttributes.tempo;
+  var valence = playlistSongsAttributes.valence;
 
   // vertical padding for songObject
   var padding = 10;
@@ -176,7 +177,6 @@ function pulsingCircles(playlistSongsAttributes){
     .data(tempo)
       .enter().append('circle')
       .attr('r', songRadius)
-      .attr('cx', svgWindow.width/2 - 25) // 
       .attr('cy', function(d, i){ return y(i)})
       .style('stroke-width', '2')
       .style('stroke', 'darkgrey')
@@ -184,9 +184,12 @@ function pulsingCircles(playlistSongsAttributes){
     .transition()
       .duration(function(d) { return ((60/d)*1000)/2 })
       .each(function(){
-        pulse(songRadius);
+        pulse(songRadius, valence);
       });
 
+  d3.selectAll('circle')
+    .data(valence)
+      .attr('cx', function(d){return svgWindow.width*d}); 
 }
 
 function pulse(songRadius){

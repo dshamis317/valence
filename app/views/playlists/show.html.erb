@@ -5,7 +5,7 @@
 <ul class="menu">
    <li class='blank'><strong>Select A Visualizer From Below</strong></li>
    <li class='menu-items' data-callback='coloredBars'>Colored Bars</li>
-   <li class='menu-items' data-callback='pulsingCircles'>Pulsing Circles</li>
+   <li class='menu-items'  data-callback='pulsingCircles'>Pulsing Circles</li>
    <li class='menu-items playlist-map'>Playlist Map</li>
    <li class='menu-items radicalness'>Radicalness</li>
 </ul>
@@ -57,16 +57,16 @@
    $(function() {
       $('.menu-items').on("click", function(){
 
-         if ($(this).hasClass('down')){  
-            $(this).removeClass('down')
-            $('g').remove();
-            return 'good job';
+        if ($(this).hasClass('down')){  
+          $(this).removeClass('down')
+          $('g').remove();
+          return 'good job';
          } 
          
-         $(this).siblings().removeClass('down');
-         $(this).toggleClass('down');
-         var callback = window[$(this).data('callback')];
-         visualizePlaylist(playlistSongsAttributes, callback);
+        $(this).siblings().removeClass('down');
+        $(this).toggleClass('down');
+        var callback = window[$(this).data('callback')];
+        visualizePlaylist(playlistSongsAttributes, callback);
       });
 
       console.log('loaded')
