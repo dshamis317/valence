@@ -11,9 +11,9 @@ var svgWindow     = {
                   padding: 5
                   };
 
- 
+
 function makeCanvas(){
-  var canvas = d3.select('.canvas') 
+  var canvas = d3.select('.canvas')
       .attr("width", svgWindow.width + svgMargin.left + svgMargin.right)
       .attr("height", svgWindow.height + svgMargin.top + svgMargin.bottom)
       .append('g')
@@ -23,7 +23,7 @@ function makeCanvas(){
 }
 
 function getCanvas(){
-  var canvas = d3.select('.canvas');  
+  var canvas = d3.select('.canvas');
   return canvas;
 }
 
@@ -90,7 +90,7 @@ function songsAttrArr(playlistCollectionObject){
 } // end of songsAttrArr
 
 
-  
+
 function coloredBars(playlistSongsAttributes){
 
   var energy = playlistSongsAttributes.energy;
