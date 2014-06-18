@@ -55,9 +55,8 @@
 
 
    $(function() {
-     
-      $('.heading').click(function(){
-         console.log('boom');
+      $('.colored-bars').on("click", function(){
+         visualizePlaylist(playlistSongsAttributes, coloredBars);
       });
 
       console.log('loaded')

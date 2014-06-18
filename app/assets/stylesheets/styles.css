@@ -332,8 +332,13 @@ ul {
   font-family: 'Helvetica';
 }
 
+.menu li:hover {
+  background-color: lightgrey;
+  color: white;
+}
 .menu li:active {
   background-color: steelblue; 
+  color: white;
 }
 
 .heading {
@@ -343,3 +348,6 @@ ul {
   margin-bottom: 0px;
 }
 
+svg{
+  z-index: -2;
+}
