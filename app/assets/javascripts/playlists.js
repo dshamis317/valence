@@ -196,9 +196,11 @@ function createPlaylistSongsAttrArr(playlistCollectionObject){
 
 var d3Margin = {top: 10, right: 10, bottom: 10, left: 10};
 
+var windowHeight = $(window).height();
+
 var d3Var = {
       width: 650 - d3Margin.left - d3Margin.right,
-      height: 720 - d3Margin.top - d3Margin.bottom,
+      height: (windowHeight * 0.9) - d3Margin.top - d3Margin.bottom,
       padding: 5,
 };
 

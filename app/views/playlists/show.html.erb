@@ -1,58 +1,62 @@
 <h2>playlists#show</h2>
 <h1>Individual Playlist Page</h1>
 
+<div class="svg-container">
 
-<svg class="canvas">DATA VIZ HERE</svg>
+   <svg class="canvas"></svg>
+   
+</div>
+   
+<div class='update-playlist-container'>
 
-<div>
-  <button class="open">Edit Playlist Info</button>
-  <div class="edit-form" style="display: none">
+ <button class="open">Edit Playlist Info</button>
+   <div class="edit-form" style="display: none">
 
-    <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
-      <input type='hidden' name='_method' value='put'>
-      <%= token_tag %>
-      <p>title<input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'></input></p>
-      <p>mood<input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'></input></p>
-      <p>
-        <button type="submit" class="go-away">save changes</button>
-        <button type="reset">reset</button>
-        <input type="button" value="cancel" class="go-away"></input>
-      </p>
-    </form>
+      <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
+         <input type='hidden' name='_method' value='put'>
+         <%= token_tag %>
+         <p>title<input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'></input></p>
+         <p>mood<input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'></input></p>
+         <p>
+           <button type="submit" class="go-away">save changes</button>
+           <button type="reset">reset</button>
+           <input type="button" value="cancel" class="go-away"></input>
+        </p>
+      </form>
 
-    <script>
+<script>
 
-    $( ".open" ).click(function() {
-      $( ".edit-form" ).show( "slow" );
-    });
+$( ".open" ).click(function() {
+   $( ".edit-form" ).show( "slow" );
+});
 
-    $( ".go-away" ).click(function() {
-      $( ".edit-form" ).hide( "slow" );
-    });
+$( ".go-away" ).click(function() {
+   $( ".edit-form" ).hide( "slow" );
+});
 
-    </script>
+</script>
 
-  </div>
+   </div>
 </div>
 
 <div class="playlist">
-  <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
-    <%= @playlist.title %>
-    <h3>
-      <h4>mood: <%= @playlist.mood %></h4>
+ <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
+  <%= @playlist.title %>
+  <h3>
+   <h4>mood: <%= @playlist.mood %></h4>
 
-      <div class="playlist-songs"></div>
+   <div class="playlist-songs"></div>
 
 
 
-      <script>
-      var playlistCollection = new PlaylistCollection();
-      function greg(){
-        playlistCollection.fetch(displaySongsOnShow);
-      }
-      $(document).on('page:change', function() {
-       greg();
-       $(document).unbind();
-     });
-      </script>
+   <script>
+   var playlistCollection = new PlaylistCollection();
+   function greg(){
+    playlistCollection.fetch(displaySongsOnShow);
+ }
+ $(document).on('page:change', function() {
+  greg();
+  $(document).unbind();
+});
+ </script>
 
