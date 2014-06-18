@@ -25,11 +25,11 @@ function PlaylistView (model) {
 }
 
 PlaylistView.prototype.attachHoverEvent = function attachHoverEvent(img, song) {
-      img.hover(function() {
-         song.play();
-      }, function(){
-         song.pause();
-      });
+   img.hover(function() {
+      song.play();
+   }, function(){
+      song.pause();
+   });
 };
 
 PlaylistView.prototype.render = function() {
@@ -99,11 +99,16 @@ PlaylistCollection.prototype.fetch = function(callback) {
    })
 }
 
-function displaySongsOnShow () {
- var model = playlistCollection.playlists[0];
- var playlistView = new PlaylistView(model);
 
- playlistView.render().el.appendTo($('.playlist-songs'));
+
+
+// ***** OTHER *****
+
+function displaySongsOnShow () {
+  var model = playlistCollection.playlists[0];
+  var playlistView = new PlaylistView(model);
+
+  playlistView.render().el.appendTo($('.playlist-songs'));
 }
 
 // $(function() {
@@ -116,6 +121,6 @@ function displaySongsOnShow () {
 // });
 
 $( "button" ).click(function() {
-  $( "p" ).show( "slow" );
+ $( "p" ).show( "slow" );
 });
 
