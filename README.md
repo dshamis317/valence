@@ -56,7 +56,7 @@ Valence is an interactive tool that allows anyone to visualize their music and s
 
 #### Resources/Gems:
 
-EchoNest API: http://developer.echonest.com/
+EchoNest API: http://developer.echonest.com/  
 iTunes API: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
 
 
