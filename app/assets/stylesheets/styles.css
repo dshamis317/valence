@@ -1,9 +1,12 @@
 body, label, input, form {
+  margin: 0;
+  padding: 0;
   display: inline;
   font-family: 'Titillium Web', sans-serif;
   font-weight: 300;
   font-size: 16px;
-  margin-right: 0;
+  margin: 5px;
+  padding: 5px;
 }
 
 .welcome {
@@ -258,9 +261,9 @@ ul {
 
 .fa-arrows-v {
   color: white;
-  background-color: gray;
-  height: 20px;
-  width:20px;
+  background-color: navy;
+  height: 100px;
+  width:50px;
   padding:20px;
   float: left;
 }
@@ -281,19 +284,18 @@ ul {
 }
 
 .sort-me {
-  background-color: lightgray;
-  width: 200px;
-  height: 100px;
-  margin: 5px;
-  padding: 5px;
+  background-color: lightblue;
+  width: 300px;
+  height: 220px;
+  margin: 10px;
+  padding: 10px;
 }
 
 .sortable {
   list-style-type: none;
-  margin: 5px;
-  padding: 5px;
-  width: 300px;
-  height: 200px;
+  margin: 0;
+  padding: 0;
+  width: 60%;
 }
 
 .sortable li {
