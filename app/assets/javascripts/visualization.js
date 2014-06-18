@@ -1,7 +1,7 @@
 // ***** VISUALIZATION *****
 
 
-var svgMargin     = {top: 10, right: 10, bottom: 10, left: 10};
+var svgMargin     = {top: 40, right: 40, bottom: 40, left: 40};
 
 var windowHeight  = $(window).height();
 
@@ -11,9 +11,9 @@ var svgWindow     = {
                   padding: 5
                   };
 
- 
+
 function makeCanvas(){
-  var canvas = d3.select('.canvas') 
+  var canvas = d3.select('.canvas')
       .attr("width", svgWindow.width + svgMargin.left + svgMargin.right)
       .attr("height", svgWindow.height + svgMargin.top + svgMargin.bottom)
       .append('g')
@@ -23,7 +23,7 @@ function makeCanvas(){
 }
 
 function getCanvas(){
-  var canvas = d3.select('.canvas');  
+  var canvas = d3.select('.canvas');
   return canvas;
 }
 
@@ -90,20 +90,23 @@ function songsAttrArr(playlistCollectionObject){
 } // end of songsAttrArr
 
 
-  
+
+
+// ***** VISUALIZATION FUNCTIONS *****
+
 function coloredBars(playlistSongsAttributes){
 
   var energy = playlistSongsAttributes.energy;
   var danceability = playlistSongsAttributes.danceability;
 
   // height for song objects in relation to canvas height and number of objects in array
-  var songHeight = (svgWindow.height/energy.length - svgWindow.padding);
+  var padding = 5;
+  var songHeight = (svgWindow.height/energy.length - padding);
 
   // sets the y attribute in relation to the number of data elements entered and the height of the canvas
   var y = d3.scale.ordinal()
       .domain(d3.range(energy.length))
       .rangePoints ([0, (svgWindow.height-songHeight)]);
-
 
   // creates songObjects as "g"s in "canvas" svg corresponding to the number of elements in data array, adds height and width and sets up a call back to slide function
   makeCanvas().selectAll('rect')
@@ -119,7 +122,9 @@ function coloredBars(playlistSongsAttributes){
       .style('stroke', 'darkgrey')
     .transition()
       .duration(function(d) { return 1100 - (1000*d) })
-      .each(function() {slide(danceability)});
+      .each(function(){
+        slide(danceability);
+      });
 
 } // end of coloredBars
 
@@ -128,13 +133,11 @@ function slide(danceability){
 
   var rectangle = d3.selectAll('rect');
 
-
-  // creates an automatic color spectrum
+  // creates color spectrum
   var z = d3.scale.linear()
       .domain([10,0])
       .range(["hsl(300, 100%, 46%)","hsl(74, 100%, 93%)" ])
       .interpolate(d3.interpolateHcl);
-
 
   // creates the lateral movement of the object according to energy array
   (function repeat() {
@@ -147,20 +150,69 @@ function slide(danceability){
       .each('end', repeat);
   }) ();
 
-
-
-// sets color according to danceability array
-getCanvas().selectAll('rect')
-  .data(danceability)
-  .style('fill', function(d) { return z(d * 10); });
-
+  // sets color according to danceability array
+  getCanvas().selectAll('rect')
+    .data(danceability)
+    .style('fill', function(d) { return z(d * 10); });
 
 } // end of slide
 
+function pulsingCircles(playlistSongsAttributes){
 
+  var tempo = playlistSongsAttributes.tempo;
+  var valence = playlistSongsAttributes.valence;
 
+  // vertical padding for songObject
+  var padding = 10;
+
+  // height for song objects in relation to canvas height and number of objects in array
+  var songRadius = (svgWindow.height/tempo.length - padding)/2;
+
+  // sets the y attribute in relation to the number of data elements entered and the height of the canvas
+  var y = d3.scale.ordinal()
+    .domain(d3.range(tempo.length))
+    .rangePoints ([0, (svgWindow.height-(songRadius*2))]);
+
+  // creates songObjects as "g"s in "canvas" svg corresponding to the number of elements in data array, adds radius and x,y and sets up a call back to pulse function
+  makeCanvas().selectAll('circle')
+    .data(tempo)
+      .enter().append('circle')
+      .attr('r', songRadius)
+      .attr('cy', function(d, i){ return y(i)})
+      .style('stroke-width', '2')
+      .style('stroke', 'darkgrey')
+      .style('fill', 'chartreuse')
+    .transition()
+      .duration(function(d) { return ((60/d)*1000)/2 })
+      .each(function(){
+        pulse(songRadius, valence);
+      });
+
+  d3.selectAll('circle')
+    .data(valence)
+      .attr('cx', function(d){return svgWindow.width*d}); 
+}
+
+function pulse(songRadius){
+  var circle = d3.selectAll('circle');
+
+  (function repeat() {
+    circle = circle.transition()
+      .attr('r', songRadius)
+      .ease('linear')
+    .transition()
+      .attr('r', songRadius*3)
+      .each('end', repeat);
+  }) ();
+
+}
+
+// ***** VISUALIZATION LOADER *****
 function visualizePlaylist(playlistSongsAttributes, callback) {
 
+  $('g').remove();
   callback(playlistSongsAttributes);
 
 } // end of visualizePlaylist
+
+
