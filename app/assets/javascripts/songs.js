@@ -47,23 +47,25 @@ function SongCollection () {
 
 
 SongCollection.prototype.addToDB = function(playlistID, song) {
- var that = this;
- var $userId = $('.playlist-index').data('userId');
- var $playlistId = playlistID;
- $.ajax({
-  url: '/users/'+$userId+'/playlists/'+$playlistId+'/new',
-  method: 'post',
-  dataType: 'json',
-  data: {song: song},
-  success: function(data) {
-   console.log(song);
- }
+  var that = this;
+  var $userId = $('.playlist-index').data('userId');
+  var $playlistId = playlistID;
+  $.ajax({
+    url: '/users/'+$userId+'/playlists/'+$playlistId+'/new',
+    method: 'post',
+    dataType: 'json',
+    data: {song: song},
+    success: function(data) {
+     console.log(song);
+  }
 })
 
 }
 
 SongCollection.prototype.search = function(query) {
    var that = this;
+   that.searchResults = [];
+   $('.search-results').html('');
    $.ajax({
       url: '/search',
       method: 'get',

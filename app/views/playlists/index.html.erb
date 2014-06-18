@@ -1,5 +1,12 @@
 <h2><div class="highlight">hi, <%= @user.email %></div></h2>
-<h4>You currently have <%= @user.playlists.count%> playlists. <a class="open" href="">Create Another?</a></h4>
+
+<h4>You currently have <%= @user.playlists.count%> playlists.
+  <% if @user.playlists.count.zero? %>
+  <a class="open" href="">Would you like to create one?</a>
+  <% else %>
+  <a class="open" href="">Create Another?</a>
+  <% end %>
+</h4>
 
 <div class="edit-form" style="display: none">
 
@@ -41,10 +48,9 @@
   <% end %>
 </ul>
 
+<img src="<%= asset_path 'drums.gif' %>" alt="" class="spinner">
+
 <div class="search-results">
-  <div class="spinner">
-    <img src="<%= asset_path 'drums.gif' %>" alt="" id="loading-image">
-  </div>
 </div>
 
 <script>
@@ -63,50 +69,50 @@
     $( "#sortable" ).disableSelection();
   });
 
-var songCollection = new SongCollection();
+  var songCollection = new SongCollection();
 
-function setDroppableHandlers() {
-  $('.playlist-index').droppable({
-    drop: function(e, dropped) {
-      var index = dropped.draggable.data('index');
-      shrinkArtwork(dropped.draggable);
-      var playlistID = parseInt(e.target.attributes[2].value)
-      addSongToDatabase(playlistID, index);
-    }
+  function setDroppableHandlers() {
+    $('.playlist-index').droppable({
+      drop: function(e, dropped) {
+        var index = dropped.draggable.data('index');
+        shrinkArtwork(dropped.draggable);
+        var playlistID = parseInt(e.target.attributes[2].value)
+        addSongToDatabase(playlistID, index);
+      }
+    })
+  }
+
+  function shrinkArtwork(el) {
+    el.toggle('scale');
+  }
+
+  function addSongToDatabase(playlistID, index) {
+    var resultsArray = songCollection.searchResults;
+    songCollection.addToDB(playlistID, resultsArray[index]);
+  }
+
+  $(function() {
+    $('.song-search').submit(function(e) {
+      // $('.search-results').html('');
+      e.preventDefault();
+      var query = $('.song-text-field').val();
+      songCollection.search(query);
+    })
+
+    $(document).ajaxStart(function() {
+      console.log('BOOM')
+      $('.spinner').show();
+    }).ajaxStop(function() {
+      console.log('STOP')
+      $('.spinner').hide();
+    }).ajaxError(function() {
+      $('.spinner').hide();
+    });
+
+    setDroppableHandlers();
   })
-}
-
-function shrinkArtwork(el) {
-  el.toggle('scale');
-}
-
-function addSongToDatabase(playlistID, index) {
-  var resultsArray = songCollection.searchResults;
-  songCollection.addToDB(playlistID, resultsArray[index]);
-}
-
-$(document).on('ready page:change', function() {
- $("#spinner").bind("ajaxSend", function() {
-  $(this).show();
-}).bind("ajaxStop", function() {
-  $(this).hide();
-}).bind("ajaxError", function() {
-  $(this).hide();
-});
-
-
-$('.song-search').submit(function(e) {
-  $('.search-results').html('');
-  e.preventDefault();
-  var query = $('.song-text-field').val();
-  songCollection.search(query);
-})
-
-setDroppableHandlers();
-})
 
 </script>
-
 
 
 
