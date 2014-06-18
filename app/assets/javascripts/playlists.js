@@ -22,11 +22,11 @@ function PlaylistView (model) {
 }
 
 PlaylistView.prototype.attachHoverEvent = function attachHoverEvent(img, song) {
-      img.hover(function() {
-         song.play();
-      }, function(){
-         song.pause();
-      });
+   img.hover(function() {
+      song.play();
+   }, function(){
+      song.pause();
+   });
 };
 
 PlaylistView.prototype.render = function() {
@@ -97,26 +97,88 @@ PlaylistCollection.prototype.fetch = function(callback) {
 }
 
 function displaySongsOnShow () {
- var model = playlistCollection.playlists[0];
- var playlistView = new PlaylistView(model);
-
- playlistView.render().el.appendTo($('.playlist-songs'));
+  var model = playlistCollection.playlists[0];
+  var playlistView = new PlaylistView(model);
+  createPlaylistSongsAttrArr(model)
+  playlistView.render().el.appendTo($('.playlist-songs'));
 }
 
-function updatePlaylistInfo(){
-   var userId = $('.edit-form').data('userID');
-   var playlistId = $('.edit-form').data('playlistId');
-   var newTitle = $(.field).val();
-   var newMood = $(.field).val();
-   // need to update class names in jquery selector
-   // change class of text field in form
-   // create data object
-   $.ajax({
-      url: '/users/'+$userId+'/playlists/'+$playlistId
-      method: 'put',
-      dataType: 'json',
-      success: function(data) {
-         console.log('something')
-      }
-   })
+// function updatePlaylistInfo(){
+//    var userId = $('.edit-form').data('userID');
+//    var playlistId = $('.edit-form').data('playlistId');
+//    var newTitle = $(.field).val();
+//    var newMood = $(.field).val();
+//    // need to update class names in jquery selector
+//    // change class of text field in form
+//    // create data object
+//    $.ajax({
+//       url: '/users/'+$userId+'/playlists/'+$playlistId
+//       method: 'put',
+//       dataType: 'json',
+//       success: function(data) {
+//          console.log('something')
+//       }
+//    })
+// }
+
+// constructs an object of all the song attributes of a given playlist's songs
+function createPlaylistSongsAttrArr(playlistCollectionObject){
+
+   // gets array of song objects from playlistCollection
+   var playlistCollection = playlistCollectionObject;
+   var playlist = playlistCollection.songs;
+
+   // creates empty arrays for all song attributes
+   var titleArr = [],
+   artistArr = [],
+   energyArr = [],
+   livenessArr = [],
+   tempoArr = [],
+   speechinessArr = [],
+   acousticnessArr = [],
+   time_signatureArr = [],
+   durationArr = [],
+   loudnessArr = [],
+   valenceArr = [],
+   danceabilityArr = [],
+   image_urlArr = [],
+   preview_urlArr = [];
+
+   // goes through song array and pushes each attribute into its corresponding attribute array
+   $.each(playlist, function(i, song){
+      titleArr.            push(song.title);
+      artistArr.           push(song.artist);
+      energyArr.           push(song.energy);
+      livenessArr.         push(song.liveness);
+      tempoArr.            push(song.tempo);
+      speechinessArr.      push(song.speechiness);
+      acousticnessArr.     push(song.acousticness);
+      time_signatureArr.   push(song.time_signature);
+      durationArr.         push(song.duration);
+      loudnessArr.         push(song.loudness);
+      valenceArr.          push(song.valence);
+      danceabilityArr.     push(song.danceability);
+      image_urlArr.        push(song.image_url);
+      preview_urlArr.      push(song.preview_url);
+   });
+
+   //creates  songsAttributes object literal
+   playlistSongsAttributes = {
+      title : titleArr,
+      artist : artistArr,
+      energy : energyArr,
+      liveness : livenessArr,
+      tempo : tempoArr,
+      speechiness : speechinessArr,
+      acousticness : acousticnessArr,
+      time_signature : time_signatureArr,
+      duration : durationArr,
+      loudness : loudnessArr,
+      valence : valenceArr,
+      danceability : danceabilityArr,
+      image_url : image_urlArr,
+      preview_url : preview_urlArr
+   };
+
+   return playlistSongsAttributes;
 }
