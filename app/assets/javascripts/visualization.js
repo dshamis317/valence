@@ -11,9 +11,9 @@ var svgWindow     = {
                   padding: 5
                   };
 
- 
+
 function makeCanvas(){
-  var canvas = d3.select('.canvas') 
+  var canvas = d3.select('.canvas')
       .attr("width", svgWindow.width + svgMargin.left + svgMargin.right)
       .attr("height", svgWindow.height + svgMargin.top + svgMargin.bottom)
       .append('g')
@@ -23,7 +23,7 @@ function makeCanvas(){
 }
 
 function getCanvas(){
-  var canvas = d3.select('.canvas');  
+  var canvas = d3.select('.canvas');
   return canvas;
 }
 
@@ -91,8 +91,9 @@ function songsAttrArr(playlistCollectionObject){
 
 
 
+
 // ***** VISUALIZATION FUNCTIONS *****
-  
+
 function coloredBars(playlistSongsAttributes){
 
   var energy = playlistSongsAttributes.energy;
@@ -157,7 +158,7 @@ function slide(danceability){
 } // end of slide
 
 function pulsingCircles(playlistSongsAttributes){
-  
+
   var tempo = playlistSongsAttributes.tempo;
   var valence = playlistSongsAttributes.valence;
 
@@ -167,12 +168,12 @@ function pulsingCircles(playlistSongsAttributes){
   // height for song objects in relation to canvas height and number of objects in array
   var songRadius = (svgWindow.height/tempo.length - padding)/2;
 
-  // sets the y attribute in relation to the number of data elements entered and the height of the canvas 
+  // sets the y attribute in relation to the number of data elements entered and the height of the canvas
   var y = d3.scale.ordinal()
     .domain(d3.range(tempo.length))
-    .rangePoints ([0, (svgWindow.height-(songRadius*2))]); 
+    .rangePoints ([0, (svgWindow.height-(songRadius*2))]);
 
-  // creates songObjects as "g"s in "canvas" svg corresponding to the number of elements in data array, adds radius and x,y and sets up a call back to pulse function  
+  // creates songObjects as "g"s in "canvas" svg corresponding to the number of elements in data array, adds radius and x,y and sets up a call back to pulse function
   makeCanvas().selectAll('circle')
     .data(tempo)
       .enter().append('circle')
@@ -208,7 +209,7 @@ function pulse(songRadius){
 
 // ***** VISUALIZATION LOADER *****
 function visualizePlaylist(playlistSongsAttributes, callback) {
-  
+
   $('g').remove();
   callback(playlistSongsAttributes);
 
