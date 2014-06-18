@@ -45,7 +45,7 @@ gem 'httparty'
 gem 'jquery-ui-rails'
 
 gem 'best_in_place'
-
+ 
 group :development, :test do 
   gem 'pry'
   gem 'pry-nav'
