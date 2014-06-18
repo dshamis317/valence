@@ -1,6 +1,30 @@
 <h2>Hi, <%= @user.email %>. Welcome to Valence</h2>
 
-<h4>You currently have <%= @user.playlists.count%> playlists. <%= link_to 'Create another?', new_user_playlist_path(@user) %></h4>
+<h4>You currently have <%= @user.playlists.count%> playlists. <a class="open" href="">Create Another?</a></h4>
+
+<div class="edit-form" style="display: none">
+
+  <form action="/users/<%= current_user.id %>/playlists/" method='post'>
+    <%= token_tag %>
+    <input class='field' type="text" name='playlist[title]'>
+    <input class='field' type="text" name='playlist[mood]'>
+    <p>
+      <button type="submit" class="go-away">Create Playlist</button>
+      <button type="reset">Reset</button>
+      <button type="cancel" class="go-away">Cancel</button>
+    </p>
+  </form>
+</div>
+
+<script>
+$( ".open" ).click(function(e) {
+  e.preventDefault();
+  $( ".edit-form" ).show( "slow" );
+});
+$( ".go-away" ).click(function() {
+  $( ".edit-form" ).hide( "slow" );
+});
+</script>
 
 <form action="/search" method="get" class="song-search">
   <label for="">Song Search: </label>
@@ -66,22 +90,23 @@ function addSongToDatabase(playlistID, index) {
 }
 
 $(document).on('ready page:change', function() {
-   $(".spinner").bind("ajaxSend", function() {
-        $(this).show();
-    }).bind("ajaxStop", function() {
-        $(this).hide();
-    }).bind("ajaxError", function() {
-        $(this).hide();
-    });
+ $("#spinner").bind("ajaxSend", function() {
+  $(this).show();
+}).bind("ajaxStop", function() {
+  $(this).hide();
+}).bind("ajaxError", function() {
+  $(this).hide();
+});
 
-  $('.song-search').submit(function(e) {
-    $('.search-results').html('');
-    e.preventDefault();
-    var query = $('.song-text-field').val();
-    songCollection.search(query);
-  })
 
-  setDroppableHandlers();
+$('.song-search').submit(function(e) {
+  $('.search-results').html('');
+  e.preventDefault();
+  var query = $('.song-text-field').val();
+  songCollection.search(query);
+})
+
+setDroppableHandlers();
 })
 
 </script>
