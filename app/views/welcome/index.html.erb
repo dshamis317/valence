@@ -1,11 +1,9 @@
-<h2>welcome#index</h2>
-<h1>This is the landing page</h1>
+<h1>Welcome to Valence</h1>
+<h3>Sign up today to see your favorite songs brought to life!</h3>
 
 <h3>Welcome <%= current_user ? 'Playlist Sculptor' : 'Person' %></h3>
 
 <% if current_user%>
-  <%= link_to 'Edit Profile', edit_user_path(current_user) %>
-  <%= link_to 'View Profile', user_path(current_user) %>
-  <%= link_to 'View Playlists', user_playlists_path(current_user) %>
+  <%= link_to 'View Your Playlists', user_playlists_path(current_user) %>
 <% end %>
 

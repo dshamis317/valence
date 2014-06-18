@@ -28,19 +28,6 @@ $( ".go-away" ).click(function() {
   $( ".edit-form" ).hide( "slow" );
 });
 </script>
-<!-- p class="text-to-edit">test<input type="submit" class="open-text-edit"></p> -->
-
-<!--
-<p>
-  <b>test playlist title:</b>
-  <%= best_in_place @playlist, :title, :path => edit_user_playlist_path %>
-</p>
-
-<p>
-  <b>test playlist mood:</b>
-  <%= best_in_place @playlist, :mood, :path => edit_user_playlist_path %>
-</p>
- -->
 
 <div class="playlist">
   <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
@@ -48,47 +35,27 @@ $( ".go-away" ).click(function() {
   <h3>
   <h4>mood: <%= @playlist.mood %></h4>
 
-  <div class="playlist-songs"></div>
+<div class="playlist">
+  <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>"><%= @playlist.title %><h3>
+    <h4>Mood: <%= @playlist.mood %></h4>
 
-   <!--  <ul>
-      <% @songs.each do |song| %>
-      <li>
-        <%= song.title %>
-        <form action="/songs/<%= song.id %>" method='post'>
-          <%= token_tag %>
-          <input type="hidden" name='_method' value='delete'>
-          <button type='submit'>delete song</button>
-        </li>
-        <% end %>
-      </ul> -->
+    <div class="playlist-songs"></div>
 
-      <div>
-        <a href="/users/<%= current_user.id %>/playlists">
-          see your playlists
-        </a>
-      </div>
+    <div class="viz">VISUALIZATION</div>
 
-      <div>
-        <a href="/users/<%= current_user.id %>/playlists/new">
-          make a new playlist
-        </a>
-      </div>
+    <script>
 
-      <div class="viz">VISUALIZATION</div>
-
-<script>
-
-  var playlistCollection = new PlaylistCollection();
+    var playlistCollection = new PlaylistCollection();
 
 
-  function greg(){
-    playlistCollection.fetch(displaySongsOnShow);
-  }
+    function greg(){
+      playlistCollection.fetch(displaySongsOnShow);
+    }
 
-  $(document).on('page:change', function() {
-    greg();
-    $(document).unbind();
-  });
+    $(document).on('page:change', function() {
+      greg();
+      $(document).unbind();
+    });
 
-</script>
+    </script>
 

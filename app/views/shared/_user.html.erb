@@ -1,5 +1,5 @@
 <nav>
-  <%= link_to 'HOME', root_path %>
+  <%= link_to 'HOME', user_playlists_path(current_user) %>
   <span class="right">
       <%= current_user.email%>
       <%= link_to 'logOut', logout_path, method: :delete %>
