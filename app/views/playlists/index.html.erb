@@ -11,23 +11,25 @@
 <ul>
   <% @playlists.each do |playlist| %>
   <div class="playlist-index <%= playlist.id %>" data-user-id="<%= current_user.id %>" data-playlist-id="<%= playlist.id %>">
-  <li>
-    <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
-    <p>Mood: <%= playlist.mood %></p>
+    <li>
+      <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
+      <p>Mood: <%= playlist.mood %></p>
 
-    <div class="playlist-songs-index"></div>
-    <form action="/users/<%= current_user.id %>/playlists/<%= playlist.id %>" method='post'>
-      <%= token_tag %>
-      <input type="hidden" name='_method' value='delete'>
-      <button type='submit'><i class="fa fa-trash-o fa-2x"></i></button>
-    </form>
-  </li>
+      <div class="playlist-songs-index"></div>
+      <form action="/users/<%= current_user.id %>/playlists/<%= playlist.id %>" method='post'>
+        <%= token_tag %>
+        <input type="hidden" name='_method' value='delete'>
+        <button type='submit'><i class="fa fa-trash-o fa-2x"></i></button>
+      </form>
+    </li>
   </div>
   <% end %>
 </ul>
 
 <div class="search-results">
-  <img src="<%= asset_path 'drums.gif' %>" alt="" id="loading-image">
+  <div class="spinner">
+    <img src="<%= asset_path 'drums.gif' %>" alt="" id="loading-image">
+  </div>
 </div>
 
 
@@ -40,31 +42,37 @@
 <script>
 
 
-  var songCollection = new SongCollection();
+var songCollection = new SongCollection();
 
 
-  function setDroppableHandlers() {
-    $('.playlist-index').droppable({
-      drop: function(e, dropped) {
-        var index = dropped.draggable.data('index');
-        shrinkArtwork(dropped.draggable);
-        var playlistID = parseInt(e.target.attributes[2].value)
-        addSongToDatabase(playlistID, index);
-      }
-    })
-  }
+function setDroppableHandlers() {
+  $('.playlist-index').droppable({
+    drop: function(e, dropped) {
+      var index = dropped.draggable.data('index');
+      shrinkArtwork(dropped.draggable);
+      var playlistID = parseInt(e.target.attributes[2].value)
+      addSongToDatabase(playlistID, index);
+    }
+  })
+}
 
-  function shrinkArtwork(el) {
-    el.toggle('scale');
-  }
+function shrinkArtwork(el) {
+  el.toggle('scale');
+}
 
-  function addSongToDatabase(playlistID, index) {
-    var resultsArray = songCollection.searchResults;
-    songCollection.addToDB(playlistID, resultsArray[index]);
-  }
+function addSongToDatabase(playlistID, index) {
+  var resultsArray = songCollection.searchResults;
+  songCollection.addToDB(playlistID, resultsArray[index]);
+}
 
-
-  $(document).on('ready page:change', function() {
+$(document).on('ready page:change', function() {
+   $(".spinner").bind("ajaxSend", function() {
+        $(this).show();
+    }).bind("ajaxStop", function() {
+        $(this).hide();
+    }).bind("ajaxError", function() {
+        $(this).hide();
+    });
 
   $('.song-search').submit(function(e) {
     $('.search-results').html('');
@@ -74,7 +82,7 @@
   })
 
   setDroppableHandlers();
-  })
+})
 
 </script>
 
