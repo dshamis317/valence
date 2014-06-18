@@ -168,7 +168,6 @@ nav a:hover {
 
 .canvas {
   position: fixed;
-
   top: 50px;
   right: 50px;
   -webkit-backface-visibility: hidden;
