@@ -13,9 +13,7 @@ Valence is an interactive tool that allows anyone to visualize their music and s
 | User             |
 | ---------------- |
 | email            |
-| crypted_password |
-| salt             |
-| username         |
+| password         |
 
 | Songs           |
 | ----------------|
@@ -32,7 +30,7 @@ Valence is an interactive tool that allows anyone to visualize their music and s
 | valence         |
 | danceability    |
 | preview         |
-| url             |
+| image_url       |
 
 | Playlist        |
 | --------------- |
@@ -48,15 +46,17 @@ Valence is an interactive tool that allows anyone to visualize their music and s
 
 ##Sitemap
 
+![Alt text](/lib/planning-art/valence-sitemap.JPG)
 
 
 ##Wireframes
 
+![Alt text](/lib/planning-art/valence-wireframes.JPG)
 
 
 #### Resources/Gems:
 
-EchoNest API: http://developer.echonest.com/
+EchoNest API: http://developer.echonest.com/  
 iTunes API: https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
 
 
@@ -70,31 +70,7 @@ http://valence.herokuapp.com/
 https://trello.com/b/RMuqoudp/valence
 
 
-##Questions and Ideas
-
-- single page CRUD functionality for song search and playlists creation
-- modal window?
-- comparing search results from two API sources – specifically iTunes and EchoNest
-- how to do form partial with Sorcery
-
-##Visualization Radicalness Ideas
-- vibrating blocks/playlist sculpture
-
-
-
-##Things To Address or Implement or Just Talk About a Bit More
-- D3
-- iTunes API
-
-##To Do Tomorrow
-- finish navigation between user pages
-- current_user can only edit their own page
-- email and password confirmation field
-- validations??
-- ajax?
-
-
-
+###Thanks and let us know if you have any feedback!
 
 
 
