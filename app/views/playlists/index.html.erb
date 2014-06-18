@@ -6,12 +6,12 @@
 
   <form action="/users/<%= current_user.id %>/playlists/" method='post'>
     <%= token_tag %>
-    <input class='field' type="text" name='playlist[title]'>
-    <input class='field' type="text" name='playlist[mood]'>
+    <p>title<input class='field' type="text" name='playlist[title]'></input></p>
+    <p>mood<input class='field' type="text" name='playlist[mood]'></input></p>
     <p>
       <button type="submit" class="go-away">Create Playlist</button>
       <button type="reset">Reset</button>
-      <button type="cancel" class="go-away">Cancel</button>
+      <input type="button" value="cancel" class="go-away"></input>
     </p>
   </form>
 </div>
@@ -54,7 +54,6 @@ $( ".go-away" ).click(function() {
   <img src="<%= asset_path 'drums.gif' %>" alt="" class="spinner">
 </div>
 
-
 <!-- <ul class="sortable">
   <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 1</li>
   <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>This is a test 2</li>
@@ -62,7 +61,6 @@ $( ".go-away" ).click(function() {
 </ul> -->
 
 <script>
-
 
 var songCollection = new SongCollection();
 

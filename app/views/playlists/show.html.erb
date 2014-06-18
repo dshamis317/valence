@@ -1,52 +1,55 @@
+<h2>playlists#show</h2>
+<h1>Individual Playlist Page</h1>
+
+<div>
+  <button class="open">Edit Playlist Info</button>
+  <div class="edit-form" style="display: none">
+
+    <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
+      <input type='hidden' name='_method' value='put'>
+      <%= token_tag %>
+      <p>title<input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'></input></p>
+      <p>mood<input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'></input></p>
+      <p>
+        <button type="submit" class="go-away">save changes</button>
+        <button type="reset">reset</button>
+        <input type="button" value="cancel" class="go-away"></input>
+      </p>
+    </form>
+
+    <script>
+
+      $( ".open" ).click(function() {
+        $( ".edit-form" ).show( "slow" );
+      });
+
+      $( ".go-away" ).click(function() {
+        $( ".edit-form" ).hide( "slow" );
+      });
+
+    </script>
+
+  </div>
+</div>
+
 <div class="playlist">
-  <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>"><%= @playlist.title %><h3>
+  <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
+    <%= @playlist.title %>
+  <h3>
   <h4>mood: <%= @playlist.mood %></h4>
 
-  <div>
-    <button class="open">Edit Playlist Info</button>
-      <div class="edit-form" style="display: none">
+  <div class="playlist-songs"></div>
 
-        <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
-          <input type='hidden' name='_method' value='put'>
-          <%= token_tag %>
-          <input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'>
-          <input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'>
-          <p>
-            <button type="submit" class="go-away">Save Changes</button>
-            <button type="reset">Reset</button>
-            <button type="cancel" class="go-away">Cancel</button>
-          </p>
-        </form>
+  <div class="viz">DATA VIZ HERE</div>
 
-      </div>
-    </div>
-
-    <script>
-    $( ".open" ).click(function() {
-      $( ".edit-form" ).show( "slow" );
-    });
-    $( ".go-away" ).click(function() {
-      $( ".edit-form" ).hide( "slow" );
-    });
-    </script>
-
-    <div class="playlist-songs"></div>
-
-    <div class="viz">VISUALIZATION</div>
-
-    <script>
-
-    var playlistCollection = new PlaylistCollection();
-
-
-    function greg(){
-      playlistCollection.fetch(displaySongsOnShow);
-    }
-
-    $(document).on('page:change', function() {
-      greg();
-      $(document).unbind();
-    });
-
-    </script>
+<script>
+  var playlistCollection = new PlaylistCollection();
+  function greg(){
+    playlistCollection.fetch(displaySongsOnShow);
+  }
+  $(document).on('page:change', function() {
+   greg();
+  $(document).unbind();
+  });
+</script>
 
