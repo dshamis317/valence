@@ -166,13 +166,12 @@ nav a:hover {
   float: left;
 }
 
-.viz {
-  width: 650px;
-  height: 500px;
+.canvas {
   position: fixed;
-  background-color: lightblue;
+
   top: 50px;
   right: 50px;
+  -webkit-backface-visibility: hidden;
 }
 
 .search-results {

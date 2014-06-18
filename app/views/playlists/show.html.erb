@@ -1,6 +1,9 @@
 <h2>playlists#show</h2>
 <h1>Individual Playlist Page</h1>
 
+
+<svg class="canvas">DATA VIZ HERE</svg>
+
 <div>
   <button class="open">Edit Playlist Info</button>
   <div class="edit-form" style="display: none">
@@ -19,13 +22,13 @@
 
     <script>
 
-      $( ".open" ).click(function() {
-        $( ".edit-form" ).show( "slow" );
-      });
+    $( ".open" ).click(function() {
+      $( ".edit-form" ).show( "slow" );
+    });
 
-      $( ".go-away" ).click(function() {
-        $( ".edit-form" ).hide( "slow" );
-      });
+    $( ".go-away" ).click(function() {
+      $( ".edit-form" ).hide( "slow" );
+    });
 
     </script>
 
@@ -35,21 +38,21 @@
 <div class="playlist">
   <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
     <%= @playlist.title %>
-  <h3>
-  <h4>mood: <%= @playlist.mood %></h4>
+    <h3>
+      <h4>mood: <%= @playlist.mood %></h4>
 
-  <div class="playlist-songs"></div>
+      <div class="playlist-songs"></div>
 
-  <div class="viz">DATA VIZ HERE</div>
 
-<script>
-  var playlistCollection = new PlaylistCollection();
-  function greg(){
-    playlistCollection.fetch(displaySongsOnShow);
-  }
-  $(document).on('page:change', function() {
-   greg();
-  $(document).unbind();
-  });
-</script>
+
+      <script>
+      var playlistCollection = new PlaylistCollection();
+      function greg(){
+        playlistCollection.fetch(displaySongsOnShow);
+      }
+      $(document).on('page:change', function() {
+       greg();
+       $(document).unbind();
+     });
+      </script>
 
