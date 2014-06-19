@@ -1,86 +1,86 @@
-<h2><div class="highlight">Playlist: <%= @playlist.title %></div></h2>
-<h4>Mood: <%= @playlist.mood %>   <button class="open">Edit Playlist Info</button></h4>
-<div class='update-playlist-container'>
+  <h2><div class="highlight">Playlist: <%= @playlist.title %></div></h2>
+  <h4>Mood: <%= @playlist.mood %>   <button class="open">Edit Playlist Info</button></h4>
+  <div class='update-playlist-container'>
 
 
- <div class="edit-form" style="display: none">
-  <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
-    <input type='hidden' name='_method' value='put'>
-    <%= token_tag %>
-    <p>title<input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'></input></p>
-    <p>mood<input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'></input></p>
-    <p>
-      <button type="submit" class="go-away">save changes</button>
-      <button type="reset">reset</button>
-      <input type="button" value="cancel" class="go-away"></input>
-    </p>
-  </form>
-</div>
-</div>
+   <div class="edit-form" style="display: none">
+    <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
+      <input type='hidden' name='_method' value='put'>
+      <%= token_tag %>
+      <p>title<input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'></input></p>
+      <p>mood<input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'></input></p>
+      <p>
+        <button type="submit" class="go-away">save changes</button>
+        <button type="reset">reset</button>
+        <input type="button" value="cancel" class="go-away"></input>
+      </p>
+    </form>
+  </div>
+  </div>
 
-<h3 class="heading">Visualizer</h3>
-<ul class="menu">
- <li class='blank'><strong>Select A Visualizer From Below</strong></li>
- <li class='menu-items' data-callback='coloredBars'>Colored Bars</li>
- <li class='menu-items'  data-callback='pulsingCircles'>Pulsing Circles</li>
- <li class='menu-items' data-callback='pieCharts'>Pie Chart</li>
-</ul>
+  <h3 class="heading">Visualizer</h3>
+  <ul class="menu">
+   <li class='blank'><strong>Select A Visualizer From Below</strong></li>
+   <li class='menu-items' data-callback='coloredBars'>Colored Bars</li>
+   <li class='menu-items'  data-callback='pulsingCircles'>Pulsing Circles</li>
+   <li class='menu-items' data-callback='pieCharts'>Pie Chart</li>
+  </ul>
 
-<div class="svg-container">
- <svg class="canvas"></svg>
-</div>
+  <div class="svg-container">
+   <svg class="canvas"></svg>
+  </div>
 
-<div class="playlist">
- <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
-  Songs:
-  <h3>
-   <div class="playlist-songs" id="sortable"></div>
- </div>
+  <div class="playlist">
+   <h3 class='playlist-title' data-user-id="<%= current_user.id %>" data-playlist-id="<%= @playlist.id %>">
+    Songs:
+    <h3>
+     <div class="playlist-songs" id="sortable"></div>
+   </div>
 
- <script>
+   <script>
 
- $(".open").click(function() {
-  $(".edit-form").show("slow");
-});
-
- $(".go-away").click(function() {
-  $(".edit-form").hide("slow");
-});
-
-
- $(function() {
-  $('.menu-items').on("click", function(){
-
-    if ($(this).hasClass('down')){
-      $(this).removeClass('down')
-      $('g').remove();
-      return 'good job';
-    }
-
-    $(this).siblings().removeClass('down');
-    $(this).toggleClass('down');
-    var callback = window[$(this).data('callback')];
-    visualizePlaylist(playlistSongsAttributes, callback);
+   $(".open").click(function() {
+    $(".edit-form").show("slow");
   });
 
-  console.log('loaded')
+   $(".go-away").click(function() {
+    $(".edit-form").hide("slow");
+  });
 
 
-});
+   $(function() {
+    $('.menu-items').on("click", function(){
+
+      if ($(this).hasClass('down')){
+        $(this).removeClass('down')
+        $('g').remove();
+        return 'good job';
+      }
+
+      $(this).siblings().removeClass('down');
+      $(this).toggleClass('down');
+      var callback = window[$(this).data('callback')];
+      visualizePlaylist(playlistSongsAttributes, callback);
+    });
+
+    console.log('loaded')
+
+
+  });
 
 
 
- var playlistCollection = new PlaylistCollection();
+   var playlistCollection = new PlaylistCollection();
 
- function getPlaylistSongs(){
-  playlistCollection.fetch(displaySongsOnShow);
-}
+   function getPlaylistSongs(){
+    playlistCollection.fetch(displaySongsOnShow);
+  }
 
-$(document).on('page:change', function() {
-  getPlaylistSongs();
-  $(document).unbind();
+  $(document).on('page:change', function() {
+    getPlaylistSongs();
+    $(document).unbind();
 
-});
+  });
 
 
-</script>
+  </script>
