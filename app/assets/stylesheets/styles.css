@@ -78,325 +78,362 @@ nav {
   height: 20px;
   margin: 0 auto;
   padding: 10px;
-}
+  margin: 0 -10px 0 -10px}
 
-h4 a {
-  color: gray;
-  text-decoration: none;
-}
+  h4 a {
+    color: gray;
+    text-decoration: none;
+  }
 
-h4 a:hover {
-  color: darkslategray;
-  text-decoration: none;
-}
+  h4 a:hover {
+    color: darkslategray;
+    text-decoration: none;
+  }
 
-nav a {
-  font-family: 'Titillium Web', sans-serif;
-  font-weight: 400;
-  color: slategray;
-  text-decoration: none;
-  margin-right: 20px;
-}
+  nav a {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 400;
+    color: slategray;
+    text-decoration: none;
+    margin-right: 20px;
+  }
 
-nav a:hover {
-  color: darkslategray;
-  text-decoration: none;
-}
+  nav a:hover {
+    color: darkslategray;
+    text-decoration: none;
+  }
 
-ul {
-  font-family: 'Titillium Web', sans-serif;
-  font-weight: 400;
-  list-style-type: none;
-}
+  ul {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 400;
+    list-style-type: none;
+  }
 
-#email {
-  width: 300px;
-  height: 30px;
-  font-size: 16px;
-  text-align: center;
-  margin:10px auto;
-  padding:0;
-}
+  #email {
+    width: 300px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    margin:10px auto;
+    padding:0;
+  }
 
-#email_confirmation {
-  width: 300px;
-  height: 30px;
-  font-size: 16px;
-  text-align: center;
-  margin:10px auto;
-  padding:0;
-}
+  #email_confirmation {
+    width: 300px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    margin:10px auto;
+    padding:0;
+  }
 
-#password {
-  width: 300px;
-  height: 30px;
-  font-size: 16px;
-  text-align: center;
-  margin:10px auto;
-  padding:0;
-}
+  #password {
+    width: 300px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    margin:10px auto;
+    padding:0;
+  }
 
-#password_confirmation {
-  width: 300px;
-  height: 30px;
-  font-size: 16px;
-  text-align: center;
-  margin:10px auto;
-  padding:0;
-}
+  #password_confirmation {
+    width: 300px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    margin:10px auto;
+    padding:0;
+  }
 
-.container {
-  margin: 0;
-  padding:50px;
-}
+  .container {
+    margin: 0;
+    padding:50px;
+  }
 
-.edit-form {
-  background-color: lightgray;
-  margin:10px;
-  padding: 10px;
-  width: 350px;
-}
+  .edit-form {
+    background-color: lightblue;
+    margin:10px;
+    padding: 10px;
+    width: 350px;
+  }
 
-.button {
-  background-color: lightgray;
-  background: transparent none;
-  box-shadow: none;
-  border:none;
-  padding: 20px;
-}
+  .button {
+    background-color: lightgray;
+    background: transparent none;
+    box-shadow: none;
+    border:none;
+    padding: 20px;
+  }
 
-#create-playlist {
-  text-decoration: none;
-}
+  #create-another {
+    color: slategray;
+    text-decoration: none;
+  }
 
-.song-text-field {
-  width: 300px;
-  height: 30px;
-  font-size: 16px;
-  margin:10px auto;
-  padding:0;
-}
+  .song-text-field {
+    width: 300px;
+    height: 30px;
+    font-size: 16px;
+    margin:10px auto;
+    padding:0;
+  }
 
-input {
-  border: 1px solid lightgray;
-  text-align:center;
-  margin: 0 auto;
-  padding:10px;
-  margin: 10px auto 40px auto;
-}
+  input {
+    border: 1px solid lightgray;
+    text-align:center;
+    margin: 0 auto;
+    padding:10px;
+    margin: 10px auto 40px auto;
+  }
 
-.text_field {
-  width: 300px;
-  height: 20px;
-  font-size: 16px;
-  text-align: center;
-  margin:10px auto;
-  padding:0;
-}
+  .text_field {
+    width: 300px;
+    height: 20px;
+    font-size: 16px;
+    text-align: center;
+    margin:10px auto;
+    padding:0;
+  }
 
-.form_center {
-  margin:0;
-  padding:0;
-  display: block;
-  text-align: center;
-}
+  .form_center {
+    margin:0;
+    padding:0;
+    display: block;
+    text-align: center;
+  }
 
-#user_email, #user_email_confirmation, #user_password, #user_password_confirmation {
-  display: block;
-  width: 300px;
-  margin: 10px auto 10px auto;
-  height: 40px;
-  font-size: 16px;
-  text-align: center;
-  padding:0;
-}
+  #user_email, #user_email_confirmation, #user_password, #user_password_confirmation {
+    display: block;
+    width: 300px;
+    margin: 10px auto 10px auto;
+    height: 40px;
+    font-size: 16px;
+    text-align: center;
+    padding:0;
+  }
 
-.footer {
-  font-family: 'Titillium Web', sans-serif;
-  font-weight: 300;
-  color: lightgray;
-  text-align: center;
-  display: block;
-  margin 0 auto;
-  height:50px;
-}
+  .footer {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 300;
+    color: lightgray;
+    text-align: center;
+    display: block;
+    margin 0 auto;
+    height:50px;
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+  }
 
-.modalDialog {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 99999;
-  opacity:0;
-  -webkit-transition: opacity 400ms ease-in;
-  -moz-transition: opacity 400ms ease-in;
-  transition: opacity 400ms ease-in;
-  pointer-events: none;
-}
+  .modalDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+  }
 
-.modalDialog:target {
-  opacity:1;
-  pointer-events: auto;
-}
+  .modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+  }
 
-.modalDialog > div {
-  width: 400px;
-  position: relative;
-  margin: 10% auto;
-  padding: 5px 10px 0px 10px;
-  background: #ccc;
-}
+  .modalDialog > div {
+    width: 400px;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 10px 0px 10px;
+    background: #ccc;
+  }
 
-.close {
-  background: aquamarine;
-  color: white;
-  font-size: 22px;
-  position: absolute;
-  right: -16px;
-  text-align: center;
-  top: -14px;
-  width: 40px;
-  height: 40px;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 20px;
-}
+  .close {
+    background: lightblue;
+    color: white;
+    font-size: 22px;
+    position: absolute;
+    right: -16px;
+    text-align: center;
+    top: -14px;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 20px;
+  }
 
-.close:hover { background: aqua; }
+  .close:hover { background: aqua; }
 
-.playlist {
-  width: 500px;
-  float: left;
-}
+  .playlist {
+    width: 500px;
+    float: left;
+  }
 
-.canvas {
-  position: fixed;
-  top: 50px;
-  right: 50px;
-  -webkit-backface-visibility: hidden;
-}
+  .canvas {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    -webkit-backface-visibility: hidden;
+  }
 
-.search-results {
-  width: 650px;
-  height: auto;
-  position: fixed;
-  background-color: aquamarine;
-  top: 50px;
-  right: 50px;
-}
+  .search-results {
+    width: 650px;
+    height: auto;
+    position: fixed;
+    top: 50px;
+    right: 50px;
+  }
 
-.song-object {
-  display: inline-block;
-  background-color: aquamarine;
-  width: 400px;
-  height: 100px;
-  margin: 5px;
-}
+  .song-object {
+    display: inline-block;
+    background-color: lightgray;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    border: 1px solid black;
+  }
 
-.fa-trash-o {
-  font-size: 1.25em;
-  color: gray;
-  padding: 5px;
-  margin: 5px;
-}
+  .song-object p {
+    width: 100px;
+    height: 28px;
+    margin-top: -1px;
+    overflow: hidden;
+  }
 
-.fa-arrows-v {
-  color: white;
-  background-color: gray;
-  height: 65px;
-  width: 20px;
-  display: inline;
-  padding: 35px 0 0 5px;
-  float: left;
-}
+  .fa-trash-o {
+    font-size: 1.25em;
+    color: gray;
+    padding: 5px;
+    margin: 5px;
+    float: right;
+  }
 
-.song-show-image {
-  width: 100px;
-  height: 100px;
-}
+  .fa-arrows-v {
+    color: white;
+    background-color: gray;
+    height: 40px;
+    width: 20px;
+    display: inline;
+    padding: 5px 0 0 5px;
+    float: left;
+  }
 
-.playlist-index {
-  width: 200px;
-  height: 100px;
-  display: block;
-  margin-bottom: 5px;
-  background-color: gray;
-  float: right;
-}
+  .song-show-image {
+    width: 100px;
+    height: 100px;
+  }
 
-.playlist-index-artwork {
-  width: 20px;
-  height: 20px;
-}
+  .playlist-index {
+    width: 150px;
+    height: 100px;
+    /*border: 3px solid tan;*/
+    display: block;
+    margin-top: 10px;
+    /*margin-bottom: 5px;*/
+    background-color: beige;
+    float: right;
+  }
 
-.sort-me {
-  background-color: lightgray;
-  width: 400px;
-  height: 100px;
-  margin: 5px;
-}
+  .playlist-song {
+    width: 450px;
+    height: 100px;
+    font-size: 14px;
+    display: inline-block;
+    border: 1px solid black;
+    position: relative;
+    margin: 3px;
+  }
 
-.sortable {
-  list-style-type: none;
-  margin: auto;
-  width: 500px;
-  height: 100px;
-}
+  .playlist-song img {
+    float: left;
+  }
 
-.sortable li {
-  height: 50px;
-}
 
-.sortable li span {
-  position: absolute;
-}
+  .sort-me {
+    background-color: lightgray;
+    width: 450px;
+    height: 150px;
+    margin: 5px;
+  }
 
-.spinner {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 65%;
-  margin-left: -50px;
-  margin-top: -50px;
-  text-align:center;
-  z-index:1;
-}
+  .sortable {
+    list-style-type: none;
+    margin: auto;
+    width: 500px;
+    height: 100px;
+  }
 
-.menu {
-  width: 150px;
-  font-size: 16px;
-  margin-bottom: 20px;
-}
+  .sortable li {
+    height: 50px;
+  }
 
-.menu li {
-  font-family: 'Helvetica';
-}
+  .sortable li span {
+    position: absolute;
+  }
 
-.menu li:hover {
-  background-color: lightgrey;
-  color: white;
-}
-.menu li:active {
-  background-color: steelblue;
-  color: white;
-}
+  .playlist-li {
+    background-color: lightgrey;
+    border: 0px solid lightgrey;
+  }
+  .spinner {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 65%;
+    margin-left: -50px;
+    margin-top: -50px;
+    text-align:center;
+    z-index:1;
+  }
 
-.down {
-  background-color: steelblue;
-  color: white;
-}
+  .menu {
+    width: 150px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
 
-.heading {
-  font-size: 18px;
-  font-family: 'Titillium Web', sans-serif;
-  font-weight: 300;
-  font-style: bold;
-  margin-bottom: 0px;
-}
+  .menu li {
+    font-family: 'Helvetica';
+  }
 
-svg{
-  z-index: -2;
-}
+  .menu li:hover {
+    background-color: lightgrey;
+    color: white;
+  }
+  .menu li:active {
+    background-color: steelblue;
+    color: white;
+  }
 
+  .down {
+    background-color: steelblue;
+    color: white;
+  }
+
+  .heading {
+    font-size: 18px;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 300;
+    font-style: bold;
+    margin-bottom: 0px;
+  }
+
+  svg{
+    z-index: -2;
+  }
+
+  .song-text-field {
+    border: 1px solid black;
+  }
+
+  .create {
+    color: blue;
+  }
