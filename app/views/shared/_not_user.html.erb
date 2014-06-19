@@ -9,7 +9,7 @@
 <div id="openSignupModal" class="modalDialog">
   <div class="form_center">
     <a href="#close" title="Close" class="close">x</a>
-    <h2>New Account</h2>
+    <h2>NEW ACCOUNT</h2>
     <%= render 'users/form' %>
     <% if @user.errors.any? %>
     <%= render 'users/errors' %>
@@ -20,11 +20,11 @@
 <div id="openLoginModal" class="modalDialog">
   <div class="form_center">
     <a href="#close" title="Close" class="close">x</a>
-    <h2>login</h2>
+    <h2>LOG IN</h2>
     <%= form_tag sessions_path do %>
     <%= text_field_tag :email %>
     <%= password_field_tag :password %>
-    <%= submit_tag :login %>
+    <p><%= submit_tag :login %></p>
     <% end %>
   </div>
 </div>
