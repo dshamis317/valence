@@ -44,8 +44,6 @@ gem 'rails_12factor', group: :production
 gem 'httparty'
 gem 'jquery-ui-rails'
 
-gem 'best_in_place'
-
 gem 'd3-rails'
  
 group :development, :test do 
