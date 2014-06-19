@@ -78,7 +78,7 @@ nav {
   height: 20px;
   margin: 0 auto;
   padding: 10px;
-}
+  margin: 0 -10px 0 -10px}
 
 h4 a {
   color: gray;
@@ -283,17 +283,24 @@ input {
   width: 650px;
   height: auto;
   position: fixed;
-  background-color: lightblue;
   top: 50px;
   right: 50px;
 }
 
 .song-object {
   display: inline-block;
-  background-color: lightyellow;
-  width: 400px;
+  background-color: lightgray;
+  width: 100px;
   height: 100px;
   margin: 5px;
+  border: 1px solid black;
+}
+
+.song-object p {
+  width: 100px;
+  height: 28px;
+  margin-top: -1px;
+  overflow: hidden;
 }
 
 .fa-trash-o {
@@ -301,15 +308,16 @@ input {
   color: gray;
   padding: 5px;
   margin: 5px;
+  float: right;
 }
 
 .fa-arrows-v {
   color: white;
   background-color: gray;
-  height: 65px;
+  height: 40px;
   width: 20px;
   display: inline;
-  padding: 35px 0 0 5px;
+  padding: 5px 0 0 5px;
   float: left;
 }
 
@@ -319,23 +327,35 @@ input {
 }
 
 .playlist-index {
-  width: 200px;
+  width: 150px;
   height: 100px;
+  /*border: 3px solid tan;*/
   display: block;
-  margin-bottom: 5px;
-  background-color: gray;
+  margin-top: 10px;
+  /*margin-bottom: 5px;*/
+  background-color: beige;
   float: right;
 }
 
-.playlist-index-artwork {
-  width: 20px;
-  height: 20px;
+.playlist-song {
+  width: 450px;
+  height: 100px;
+  font-size: 14px;
+  display: inline-block;
+  border: 1px solid black;
+  position: relative;
+  margin: 3px;
 }
+
+.playlist-song img {
+  float: left;
+}
+
 
 .sort-me {
   background-color: lightgray;
-  width: 400px;
-  height: 100px;
+  width: 450px;
+  height: 150px;
   margin: 5px;
 }
 
@@ -354,6 +374,10 @@ input {
   position: absolute;
 }
 
+.playlist-li {
+  background-color: lightgrey;
+  border: 0px solid lightgrey;
+}
 .spinner {
   display: none;
   position: fixed;
@@ -401,3 +425,10 @@ svg{
   z-index: -2;
 }
 
+.song-text-field {
+  border: 1px solid black;
+}
+
+.create {
+  color: blue;
+}

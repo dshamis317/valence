@@ -2,9 +2,9 @@
 
 <h4>You currently have <%= @user.playlists.count%> playlists.
   <% if @user.playlists.count.zero? %>
-  <a class="open" href="#" id="create-another">Would you like to create one?</a>
+  <a class="open create" href="">Would you like to create one?</a>
   <% else %>
-  <a class="open" href="#" id="create-another">Create Another?</a>
+  <a class="open create" href="">Create Another?</a>
   <% end %>
 </h4>
 
@@ -33,7 +33,7 @@
   <div class="sort-me">
   <i class="fa fa-arrows-v fa-2x"></i>
   <div class="playlist-index <%= playlist.id %>" data-user-id="<%= current_user.id %>" data-playlist-id="<%= playlist.id %>">
-    <li>
+    <li class="playlist-li">
       <a href="/users/<%= current_user.id %>/playlists/<%= playlist.id %>"><%= playlist.title %></a>
       <p>Mood: <%= playlist.mood %></p>
       <div class="playlist-songs-index"></div>

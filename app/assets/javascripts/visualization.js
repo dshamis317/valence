@@ -11,9 +11,9 @@ var svgWindow     = {
                   padding: 5
                   };
 
- 
+
 function makeCanvas(){
-  var canvas = d3.select('.canvas') 
+  var canvas = d3.select('.canvas')
       .attr("width", svgWindow.width + svgMargin.left + svgMargin.right)
       .attr("height", svgWindow.height + svgMargin.top + svgMargin.bottom)
       .append('g')
@@ -23,7 +23,7 @@ function makeCanvas(){
 }
 
 function getCanvas(){
-  var canvas = d3.select('.canvas');  
+  var canvas = d3.select('.canvas');
   return canvas;
 }
 
@@ -92,7 +92,7 @@ function songsAttrArr(playlistCollectionObject){
 
 
 // ***** VISUALIZATION FUNCTIONS *****
-  
+
 function coloredBars(playlistSongsAttributes){
 
   var energy = playlistSongsAttributes.energy;
@@ -157,7 +157,7 @@ function slide(danceability){
 } // end of slide
 
 function pulsingCircles(playlistSongsAttributes){
-  
+
   var tempo = playlistSongsAttributes.tempo;
   var valence = playlistSongsAttributes.valence;
 
@@ -167,12 +167,12 @@ function pulsingCircles(playlistSongsAttributes){
   // height for song objects in relation to canvas height and number of objects in array
   var songRadius = (svgWindow.height/tempo.length - padding)/2;
 
-  // sets the y attribute in relation to the number of data elements entered and the height of the canvas 
+  // sets the y attribute in relation to the number of data elements entered and the height of the canvas
   var y = d3.scale.ordinal()
     .domain(d3.range(tempo.length))
-    .rangePoints ([0, (svgWindow.height-(songRadius*2))]); 
+    .rangePoints ([0, (svgWindow.height-(songRadius*2))]);
 
-  // creates songObjects as "g"s in "canvas" svg corresponding to the number of elements in data array, adds radius and x,y and sets up a call back to pulse function  
+  // creates songObjects as "g"s in "canvas" svg corresponding to the number of elements in data array, adds radius and x,y and sets up a call back to pulse function
   makeCanvas().selectAll('circle')
     .data(tempo)
       .enter().append('circle')
@@ -189,7 +189,7 @@ function pulsingCircles(playlistSongsAttributes){
 
   d3.selectAll('circle')
     .data(valence)
-      .attr('cx', function(d){return (svgWindow.width)*d}); 
+      .attr('cx', function(d){return (svgWindow.width)*d});
 }
 
 function pulse(songRadius){
@@ -206,9 +206,62 @@ function pulse(songRadius){
 
 }
 
+function pieCharts(playlistSongsAttributes) {
+  var data = {
+    duration: playlistSongsAttributes.duration,
+    danceability: playlistSongsAttributes.danceability
+  }
+
+  var title = playlistSongsAttributes.title;
+
+  var r = 210;
+
+  var color = d3.scale.linear()
+    .domain([0.2, 0.9])
+    .range(["pink", "red"]);
+
+  var canvas = makeCanvas()
+
+  var arc = d3.svg.arc()
+    .innerRadius(30)
+    .outerRadius(r)
+
+  var group = canvas.append('g')
+    .attr('transform', 'translate(300,300)')
+
+  var pie = d3.layout.pie()
+    .value(function(d) {return d;});
+
+  var arcs = group.selectAll('.arc')
+    .data(pie(data.danceability))
+    .enter()
+    .append('g')
+    .attr('class', 'arc')
+
+  arcs.append('path')
+    .attr('d', arc)
+    .attr('fill', function(d) {return color(d.data)})
+  .transition().delay(function(d, i) { return i * 500; }).duration(500)
+  .attrTween('d', function(d) {
+       var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
+       return function(t) {
+           d.endAngle = i(t);
+         return arc(d);
+       }
+  });
+
+
+  arcs.append('text')
+    .attr('transform', function(d) {return 'translate(' + arc.
+    centroid(d) + ')'})
+    .attr('text-anchor', 'middle')
+    .attr('font-size', '.75em')
+    .text(function(d){return d.data})
+}
+
 // ***** VISUALIZATION LOADER *****
 function visualizePlaylist(playlistSongsAttributes, callback) {
-  
+
   $('g').remove();
   callback(playlistSongsAttributes);
 

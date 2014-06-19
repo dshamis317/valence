@@ -14,8 +14,6 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new', as: 'signup'
 
-  # get '/profile' => 'users#profile', as: 'profile'
-
   get '/search' => 'playlists#search'
 
   post '/users/:id/playlists/:playlist_id/new' => 'playlists#song'
@@ -25,7 +23,5 @@ Rails.application.routes.draw do
   get '/users/:id/playlists/:playlist_id/thumbnails' => 'playlists#thumbnails'
 
   get '/users/:id/playlists/:playlist_id/songs' => 'playlists#songs'
-
-  # get '/playlists/:playlist_id' => 'playlists#update'
 
 end
