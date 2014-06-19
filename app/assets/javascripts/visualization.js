@@ -190,7 +190,7 @@ function pulsingCircles(playlistSongsAttributes){
 
   d3.selectAll('circle')
     .data(valence)
-      .attr('cx', function(d){return svgWindow.width*d}); 
+      .attr('cx', function(d){return svgWindow.width*d});
 }
 
 function pulse(songRadius){
@@ -205,6 +205,59 @@ function pulse(songRadius){
       .each('end', repeat);
   }) ();
 
+}
+
+function pieCharts(playlistSongsAttributes) {
+  var data = {
+    duration: playlistSongsAttributes.duration,
+    danceability: playlistSongsAttributes.danceability
+  }
+
+  var title = playlistSongsAttributes.title;
+
+  var r = 210;
+
+  var color = d3.scale.linear()
+    .domain([0.2, 0.9])
+    .range(["pink", "red"]);
+
+  var canvas = makeCanvas()
+
+  var arc = d3.svg.arc()
+    .innerRadius(30)
+    .outerRadius(r)
+
+  var group = canvas.append('g')
+    .attr('transform', 'translate(300,300)')
+
+  var pie = d3.layout.pie()
+    .value(function(d) {return d;});
+
+  var arcs = group.selectAll('.arc')
+    .data(pie(data.danceability))
+    .enter()
+    .append('g')
+    .attr('class', 'arc')
+
+  arcs.append('path')
+    .attr('d', arc)
+    .attr('fill', function(d) {return color(d.data)})
+  .transition().delay(function(d, i) { return i * 500; }).duration(500)
+  .attrTween('d', function(d) {
+       var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
+       return function(t) {
+           d.endAngle = i(t);
+         return arc(d);
+       }
+  });
+
+
+  arcs.append('text')
+    .attr('transform', function(d) {return 'translate(' + arc.
+    centroid(d) + ')'})
+    .attr('text-anchor', 'middle')
+    .attr('font-size', '.75em')
+    .text(function(d){return d.data})
 }
 
 // ***** VISUALIZATION LOADER *****
