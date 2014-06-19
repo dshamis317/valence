@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+
   end
 
   def create # login
@@ -8,7 +9,7 @@ class SessionsController < ApplicationController
     if user
       redirect_to user_playlists_path(user)
     else
-      render :new
+      render :_form
     end
   end
 
