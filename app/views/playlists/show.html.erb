@@ -1,6 +1,5 @@
 <h2><div class="highlight">Your Playlists</div></h2>
 
-
 <h3 class="heading">Visualizer</h3>
 <ul class="menu">
    <li class='blank'><strong>Select A Visualizer From Below</strong></li>
@@ -20,15 +19,15 @@
    <button class="open">Edit Playlist Info</button>
    <div class="edit-form" style="display: none">
       <form action="/users/<%= current_user.id %>/playlists/<%= @playlist.id %>" method='post'>
-         <input type='hidden' name='_method' value='put'>
-         <%= token_tag %>
-         <p>title<input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'></input></p>
-         <p>mood<input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'></input></p>
-         <p>
-           <button type="submit" class="go-away">save changes</button>
-           <button type="reset">reset</button>
-           <input type="button" value="cancel" class="go-away"></input>
-         </p>
+        <input type='hidden' name='_method' value='put'>
+        <%= token_tag %>
+        <p>title<input class='field' type="text" name='playlist[title]' value='<%= @playlist.title %>'></input></p>
+        <p>mood<input class='field' type="text" name='playlist[mood]' value='<%= @playlist.mood %>'></input></p>
+        <p>
+          <button type="submit" class="go-away">save changes</button>
+          <button type="reset">reset</button>
+          <input type="button" value="cancel" class="go-away"></input>
+        </p>
       </form>
    </div>
 </div>
@@ -38,10 +37,8 @@
       <%= @playlist.title %>
    <h3>
    <h4>mood: <%= @playlist.mood %></h4>
-   <div class="playlist-songs"></div>
+   <div class="playlist-songs" id="sortable"></div>
 </div>
-
-
 
 <script>
 
