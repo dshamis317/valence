@@ -91,7 +91,6 @@ function songsAttrArr(playlistCollectionObject){
 
 
 
-
 // ***** VISUALIZATION FUNCTIONS *****
 
 function coloredBars(playlistSongsAttributes){
@@ -190,7 +189,7 @@ function pulsingCircles(playlistSongsAttributes){
 
   d3.selectAll('circle')
     .data(valence)
-      .attr('cx', function(d){return svgWindow.width*d});
+      .attr('cx', function(d){return (svgWindow.width)*d});
 }
 
 function pulse(songRadius){

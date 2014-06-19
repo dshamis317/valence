@@ -5,8 +5,6 @@ body {
   font-family: 'Titillium Web', sans-serif;
   font-weight: 300;
   font-size: 16px;
-  margin: 5px;
-  padding: 5px;
 }
 
 .welcome {
@@ -33,10 +31,11 @@ h2 {
 
 .highlight {
   padding:10px 20px 10px 20px;
-  background-color: darkslategrey;
+  background-color: aquamarine;
   font-family: 'Titillium Web', sans-serif;
   color: white;
   font-weight: 200;
+  margin: 0 auto;
   display: inline-block;
 }
 
@@ -96,7 +95,6 @@ nav a {
   font-weight: 400;
   color: slategray;
   text-decoration: none;
-  /*padding: 10px;*/
   margin-right: 20px;
 }
 
@@ -167,10 +165,23 @@ ul {
   padding: 20px;
 }
 
+#create-another {
+  color: slategray;
+  text-decoration: none;
+}
+
+.song-text-field {
+  width: 300px;
+  height: 30px;
+  font-size: 16px;
+  margin:10px auto;
+  padding:0;
+}
+
 input {
+  border: 1px solid lightgray;
   text-align:center;
   margin: 0 auto;
-  border: none;
   padding:10px;
   margin: 10px auto 40px auto;
 }
@@ -194,14 +205,20 @@ input {
 #user_email, #user_email_confirmation, #user_password, #user_password_confirmation {
   display: block;
   width: 300px;
-  height: 15px;
   margin: 10px auto 10px auto;
+  height: 40px;
+  font-size: 16px;
+  text-align: center;
+  padding:0;
 }
 
 .footer {
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 300;
   color: lightgray;
   text-align: center;
   display: block;
+  margin 0 auto;
   height:50px;
 }
 
@@ -234,25 +251,21 @@ input {
 }
 
 .close {
-  background: #606061;
-  color: #FFFFFF;
-  line-height: 25px;
+  background: lightblue;
+  color: white;
+  font-size: 22px;
   position: absolute;
-  right: -12px;
+  right: -16px;
   text-align: center;
-  top: -10px;
-  width: 24px;
+  top: -14px;
+  width: 40px;
+  height: 40px;
   text-decoration: none;
   font-weight: bold;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  border-radius: 12px;
-  -moz-box-shadow: 1px 1px 3px #000;
-  -webkit-box-shadow: 1px 1px 3px #000;
-  box-shadow: 1px 1px 3px #000;
+  border-radius: 20px;
 }
 
-.close:hover { background: #00d9ff; }
+.close:hover { background: aqua; }
 
 .playlist {
   width: 500px;
@@ -402,7 +415,8 @@ input {
 
 .heading {
   font-size: 18px;
-  font-family: sans-serif;
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 300;
   font-style: bold;
   margin-bottom: 0px;
 }
