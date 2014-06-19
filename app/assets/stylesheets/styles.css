@@ -151,7 +151,7 @@ ul {
 }
 
 .edit-form {
-  background-color: lightblue;
+  background-color: lightgray;
   margin:10px;
   padding: 10px;
   width: 350px;
@@ -165,8 +165,7 @@ ul {
   padding: 20px;
 }
 
-#create-another {
-  color: slategray;
+#create-playlist {
   text-decoration: none;
 }
 
@@ -251,7 +250,7 @@ input {
 }
 
 .close {
-  background: lightblue;
+  background: aquamarine;
   color: white;
   font-size: 22px;
   position: absolute;
@@ -283,14 +282,14 @@ input {
   width: 650px;
   height: auto;
   position: fixed;
-  background-color: lightblue;
+  background-color: aquamarine;
   top: 50px;
   right: 50px;
 }
 
 .song-object {
   display: inline-block;
-  background-color: lightyellow;
+  background-color: aquamarine;
   width: 400px;
   height: 100px;
   margin: 5px;

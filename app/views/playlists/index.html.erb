@@ -2,9 +2,9 @@
 
 <h4>You currently have <%= @user.playlists.count%> playlists.
   <% if @user.playlists.count.zero? %>
-  <a class="open" href="#" id="create-another">Would you like to create one?</a>
+  <a class="open" href="#" id="create-playlist">Would you like to create one?</a>
   <% else %>
-  <a class="open" href="#" id="create-another">Create Another?</a>
+  <a class="open" href="#" id="create-playlist">Create Another?</a>
   <% end %>
 </h4>
 
@@ -15,9 +15,9 @@
     <p>title<input class='field' type="text" name='playlist[title]'></input></p>
     <p>mood<input class='field' type="text" name='playlist[mood]'></input></p>
     <p>
-      <button type="submit" class="go-away" id="create-another">Create Playlist</button>
+      <button type="submit" class="go-away" id="create-playlist">Create Playlist</button>
       <button type="reset">Reset</button>
-      <input type="button" value="cancel" class="go-away"></input>
+      <button type="cancel" value="cancel" class="go-away">Cancel</button>
     </p>
   </form>
 </div>

@@ -1,8 +1,8 @@
 <nav>
   <%= link_to 'HOME', user_playlists_path(current_user) %>
   <span class="right">
-      <a href="/users/<%= current_user.id %>/playlists"><%= current_user.email%></a>
-      <%= link_to 'logOut', logout_path, method: :delete %>
+      <a href="/users/<%= current_user.id %>/edit"><%= current_user.email%></a>
+      <%= link_to 'LOG OUT', logout_path, method: :delete %>
   </span>
 </nav>
 
