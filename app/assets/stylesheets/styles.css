@@ -301,6 +301,10 @@ nav {
     border: 1px solid black;
   }
 
+  .song-object img {
+    cursor: pointer;
+  }
+
   .song-object p {
     width: 100px;
     height: 28px;
@@ -387,7 +391,7 @@ nav {
     display: none;
     position: fixed;
     top: 50%;
-    left: 65%;
+    left: 55%;
     margin-left: -50px;
     margin-top: -50px;
     text-align:center;
