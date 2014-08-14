@@ -290,6 +290,7 @@ nav {
     position: fixed;
     top: 50px;
     right: 50px;
+    z-index: 100;
   }
 
   .song-object {
@@ -395,7 +396,7 @@ nav {
     margin-left: -50px;
     margin-top: -50px;
     text-align:center;
-    z-index:1;
+    z-index: 1;
   }
 
   .menu {
